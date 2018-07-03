@@ -17,8 +17,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+
+    UIButton * createWorkoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [createWorkoutButton setTitle:@"Create Workout" forState:UIControlStateNormal];
+    [createWorkoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    createWorkoutButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [createWorkoutButton setBackgroundColor:[UIColor greenColor]];
+    createWorkoutButton.frame = CGRectMake((screenRect.size.width - 200)/2, screenRect.size.height*0.2, 200, 100);
+    [createWorkoutButton addTarget:self action:@selector(createWorkout) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:createWorkoutButton];
+
+    UIButton * startWorkoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [startWorkoutButton setTitle:@"Start Workout" forState:UIControlStateNormal];
+    [startWorkoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    startWorkoutButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [startWorkoutButton setBackgroundColor:[UIColor yellowColor]];
+    startWorkoutButton.frame = CGRectMake((screenRect.size.width - 200)/2, screenRect.size.height*0.2 + 130, 200, 100);
+    [startWorkoutButton addTarget:self action:@selector(startWorkout) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:startWorkoutButton];
+
 }
 
+-(void)createWorkout{
+    
+}
+
+-(void)startWorkout{
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
