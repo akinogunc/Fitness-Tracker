@@ -4,7 +4,7 @@ Fitness Tracker is an app for tracking workout progress, creating workout plans 
 
 The MIT License (MIT)
 
-Copyright © 2017 Akin Ogunc
+Copyright © 2018 Akin Ogunc
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
