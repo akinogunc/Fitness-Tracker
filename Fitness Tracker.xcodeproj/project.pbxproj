@@ -15,6 +15,7 @@
 		F47C07EF20EB9E6600591C29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07EE20EB9E6600591C29 /* main.m */; };
 		F47C07F920EB9E6600591C29 /* Fitness_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07F820EB9E6600591C29 /* Fitness_TrackerTests.m */; };
 		F47C080420EB9E6600591C29 /* Fitness_TrackerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C080320EB9E6600591C29 /* Fitness_TrackerUITests.m */; };
+		F47C081320EBE18A00591C29 /* WorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C081220EBE18A00591C29 /* WorkoutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		F47C07FF20EB9E6600591C29 /* Fitness TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fitness TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47C080320EB9E6600591C29 /* Fitness_TrackerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fitness_TrackerUITests.m; sourceTree = "<group>"; };
 		F47C080520EB9E6600591C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F47C081120EBE18A00591C29 /* WorkoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutViewController.h; sourceTree = "<group>"; };
+		F47C081220EBE18A00591C29 /* WorkoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 				F47C07E020EB9E6400591C29 /* AppDelegate.m */,
 				F47C07E220EB9E6400591C29 /* ViewController.h */,
 				F47C07E320EB9E6400591C29 /* ViewController.m */,
+				F47C081120EBE18A00591C29 /* WorkoutViewController.h */,
+				F47C081220EBE18A00591C29 /* WorkoutViewController.m */,
 				F47C07E520EB9E6500591C29 /* Main.storyboard */,
 				F47C07E820EB9E6600591C29 /* Assets.xcassets */,
 				F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */,
@@ -262,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F47C081320EBE18A00591C29 /* WorkoutViewController.m in Sources */,
 				F47C07E420EB9E6400591C29 /* ViewController.m in Sources */,
 				F47C07EF20EB9E6600591C29 /* main.m in Sources */,
 				F47C07E120EB9E6400591C29 /* AppDelegate.m in Sources */,
