@@ -1,5 +1,7 @@
 Fitness Tracker is an app for tracking workout progress, creating workout plans and using Apple Watch app to complete your workout without missing anything.
 
+## Screenshots
+
 <p align="center">
   <img src="/screenshots/ss1.png?raw=true" width="300"/>
   <img src="/screenshots/ss2.png?raw=true" width="300"/>
