@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "WorkoutViewController.h"
 
 @interface ViewController ()
 
@@ -20,6 +21,7 @@
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
 
+    //This button will open the create workout view controller
     UIButton * createWorkoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [createWorkoutButton setTitle:@"Create Workout" forState:UIControlStateNormal];
     [createWorkoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -29,6 +31,7 @@
     [createWorkoutButton addTarget:self action:@selector(createWorkout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:createWorkoutButton];
 
+    //This button will open the start workout view controller
     UIButton * startWorkoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [startWorkoutButton setTitle:@"Start Workout" forState:UIControlStateNormal];
     [startWorkoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -41,7 +44,8 @@
 }
 
 -(void)createWorkout{
-    
+    WorkoutViewController *workoutViewController = [[WorkoutViewController alloc] init];
+    [self presentViewController:workoutViewController animated:YES completion:NULL];
 }
 
 -(void)startWorkout{
