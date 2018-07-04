@@ -7,9 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WorkoutViewController.h"
+#import "ViewController.h"
 
 @interface Fitness_TrackerTests : XCTestCase
-
+@property(strong,nonatomic) ViewController * vcToTest;
 @end
 
 @implementation Fitness_TrackerTests
@@ -24,9 +26,12 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testWorkoutNavigation {
+    [self.vcToTest createWorkout];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        XCTAssertTrue([UIApplication.sharedApplication.keyWindow.rootViewController isKindOfClass:[WorkoutViewController class]], @"Did not navigate to WorkoutViewController");
+    });
 }
 
 - (void)testPerformanceExample {

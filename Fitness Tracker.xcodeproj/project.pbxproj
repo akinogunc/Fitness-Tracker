@@ -16,6 +16,8 @@
 		F47C07F920EB9E6600591C29 /* Fitness_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07F820EB9E6600591C29 /* Fitness_TrackerTests.m */; };
 		F47C080420EB9E6600591C29 /* Fitness_TrackerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C080320EB9E6600591C29 /* Fitness_TrackerUITests.m */; };
 		F47C081320EBE18A00591C29 /* WorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C081220EBE18A00591C29 /* WorkoutViewController.m */; };
+		F47C081520ED147C00591C29 /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F47C081420ED147B00591C29 /* Metropolis-Medium.otf */; };
+		F47C081720ED18C200591C29 /* start_button.png in Resources */ = {isa = PBXBuildFile; fileRef = F47C081620ED18C200591C29 /* start_button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		F47C080520EB9E6600591C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F47C081120EBE18A00591C29 /* WorkoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutViewController.h; sourceTree = "<group>"; };
 		F47C081220EBE18A00591C29 /* WorkoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutViewController.m; sourceTree = "<group>"; };
+		F47C081420ED147B00591C29 /* Metropolis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Medium.otf"; sourceTree = "<group>"; };
+		F47C081620ED18C200591C29 /* start_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_button.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 				F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */,
 				F47C07ED20EB9E6600591C29 /* Info.plist */,
 				F47C07EE20EB9E6600591C29 /* main.m */,
+				F47C081820ED18C800591C29 /* Files */,
 			);
 			path = "Fitness Tracker";
 			sourceTree = "<group>";
@@ -135,6 +140,15 @@
 				F47C080520EB9E6600591C29 /* Info.plist */,
 			);
 			path = "Fitness TrackerUITests";
+			sourceTree = "<group>";
+		};
+		F47C081820ED18C800591C29 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				F47C081420ED147B00591C29 /* Metropolis-Medium.otf */,
+				F47C081620ED18C200591C29 /* start_button.png */,
+			);
+			path = Files;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +254,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F47C081720ED18C200591C29 /* start_button.png in Resources */,
+				F47C081520ED147C00591C29 /* Metropolis-Medium.otf in Resources */,
 				F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */,
 				F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */,
 				F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */,
@@ -442,6 +458,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness Tracker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +476,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness Tracker/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
