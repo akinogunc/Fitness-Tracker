@@ -8,16 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		F47C07E120EB9E6400591C29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07E020EB9E6400591C29 /* AppDelegate.m */; };
-		F47C07E420EB9E6400591C29 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07E320EB9E6400591C29 /* ViewController.m */; };
+		F47C07E420EB9E6400591C29 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07E320EB9E6400591C29 /* HomeViewController.m */; };
 		F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E520EB9E6500591C29 /* Main.storyboard */; };
 		F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E820EB9E6600591C29 /* Assets.xcassets */; };
 		F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */; };
 		F47C07EF20EB9E6600591C29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07EE20EB9E6600591C29 /* main.m */; };
 		F47C07F920EB9E6600591C29 /* Fitness_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07F820EB9E6600591C29 /* Fitness_TrackerTests.m */; };
 		F47C080420EB9E6600591C29 /* Fitness_TrackerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C080320EB9E6600591C29 /* Fitness_TrackerUITests.m */; };
-		F47C081320EBE18A00591C29 /* WorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C081220EBE18A00591C29 /* WorkoutViewController.m */; };
+		F47C081320EBE18A00591C29 /* WorkoutCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C081220EBE18A00591C29 /* WorkoutCreator.m */; };
 		F47C081520ED147C00591C29 /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F47C081420ED147B00591C29 /* Metropolis-Medium.otf */; };
 		F47C081720ED18C200591C29 /* start_button.png in Resources */ = {isa = PBXBuildFile; fileRef = F47C081620ED18C200591C29 /* start_button.png */; };
+		F47C081B20ED22BF00591C29 /* HalfSizePresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C081A20ED22BF00591C29 /* HalfSizePresentationController.m */; };
+		F47C081E20ED250800591C29 /* ExerciseCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C081D20ED250800591C29 /* ExerciseCreator.m */; };
+		F47C082220ED3AAE00591C29 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = F47C082020ED3AAE00591C29 /* up.png */; };
+		F47C082320ED3AAE00591C29 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = F47C082120ED3AAE00591C29 /* down.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +45,8 @@
 		F47C07DC20EB9E6400591C29 /* Fitness Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47C07DF20EB9E6400591C29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F47C07E020EB9E6400591C29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F47C07E220EB9E6400591C29 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F47C07E320EB9E6400591C29 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F47C07E220EB9E6400591C29 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		F47C07E320EB9E6400591C29 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		F47C07E620EB9E6500591C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47C07E820EB9E6600591C29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F47C07EB20EB9E6600591C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,10 +58,16 @@
 		F47C07FF20EB9E6600591C29 /* Fitness TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fitness TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47C080320EB9E6600591C29 /* Fitness_TrackerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fitness_TrackerUITests.m; sourceTree = "<group>"; };
 		F47C080520EB9E6600591C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F47C081120EBE18A00591C29 /* WorkoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutViewController.h; sourceTree = "<group>"; };
-		F47C081220EBE18A00591C29 /* WorkoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutViewController.m; sourceTree = "<group>"; };
+		F47C081120EBE18A00591C29 /* WorkoutCreator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkoutCreator.h; sourceTree = "<group>"; };
+		F47C081220EBE18A00591C29 /* WorkoutCreator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutCreator.m; sourceTree = "<group>"; };
 		F47C081420ED147B00591C29 /* Metropolis-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Medium.otf"; sourceTree = "<group>"; };
 		F47C081620ED18C200591C29 /* start_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start_button.png; sourceTree = "<group>"; };
+		F47C081920ED22BF00591C29 /* HalfSizePresentationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HalfSizePresentationController.h; sourceTree = "<group>"; };
+		F47C081A20ED22BF00591C29 /* HalfSizePresentationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HalfSizePresentationController.m; sourceTree = "<group>"; };
+		F47C081C20ED250800591C29 /* ExerciseCreator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseCreator.h; sourceTree = "<group>"; };
+		F47C081D20ED250800591C29 /* ExerciseCreator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseCreator.m; sourceTree = "<group>"; };
+		F47C082020ED3AAE00591C29 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
+		F47C082120ED3AAE00591C29 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,15 +120,18 @@
 			children = (
 				F47C07DF20EB9E6400591C29 /* AppDelegate.h */,
 				F47C07E020EB9E6400591C29 /* AppDelegate.m */,
-				F47C07E220EB9E6400591C29 /* ViewController.h */,
-				F47C07E320EB9E6400591C29 /* ViewController.m */,
-				F47C081120EBE18A00591C29 /* WorkoutViewController.h */,
-				F47C081220EBE18A00591C29 /* WorkoutViewController.m */,
+				F47C07E220EB9E6400591C29 /* HomeViewController.h */,
+				F47C07E320EB9E6400591C29 /* HomeViewController.m */,
+				F47C081120EBE18A00591C29 /* WorkoutCreator.h */,
+				F47C081220EBE18A00591C29 /* WorkoutCreator.m */,
+				F47C081C20ED250800591C29 /* ExerciseCreator.h */,
+				F47C081D20ED250800591C29 /* ExerciseCreator.m */,
 				F47C07E520EB9E6500591C29 /* Main.storyboard */,
-				F47C07E820EB9E6600591C29 /* Assets.xcassets */,
 				F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */,
 				F47C07ED20EB9E6600591C29 /* Info.plist */,
 				F47C07EE20EB9E6600591C29 /* main.m */,
+				F47C07E820EB9E6600591C29 /* Assets.xcassets */,
+				F47C081F20ED313B00591C29 /* Helpers */,
 				F47C081820ED18C800591C29 /* Files */,
 			);
 			path = "Fitness Tracker";
@@ -145,10 +158,21 @@
 		F47C081820ED18C800591C29 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				F47C082120ED3AAE00591C29 /* down.png */,
+				F47C082020ED3AAE00591C29 /* up.png */,
 				F47C081420ED147B00591C29 /* Metropolis-Medium.otf */,
 				F47C081620ED18C200591C29 /* start_button.png */,
 			);
 			path = Files;
+			sourceTree = "<group>";
+		};
+		F47C081F20ED313B00591C29 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F47C081920ED22BF00591C29 /* HalfSizePresentationController.h */,
+				F47C081A20ED22BF00591C29 /* HalfSizePresentationController.m */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +278,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F47C082220ED3AAE00591C29 /* up.png in Resources */,
 				F47C081720ED18C200591C29 /* start_button.png in Resources */,
+				F47C082320ED3AAE00591C29 /* down.png in Resources */,
 				F47C081520ED147C00591C29 /* Metropolis-Medium.otf in Resources */,
 				F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */,
 				F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */,
@@ -283,8 +309,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F47C081320EBE18A00591C29 /* WorkoutViewController.m in Sources */,
-				F47C07E420EB9E6400591C29 /* ViewController.m in Sources */,
+				F47C081320EBE18A00591C29 /* WorkoutCreator.m in Sources */,
+				F47C081B20ED22BF00591C29 /* HalfSizePresentationController.m in Sources */,
+				F47C07E420EB9E6400591C29 /* HomeViewController.m in Sources */,
+				F47C081E20ED250800591C29 /* ExerciseCreator.m in Sources */,
 				F47C07EF20EB9E6600591C29 /* main.m in Sources */,
 				F47C07E120EB9E6400591C29 /* AppDelegate.m in Sources */,
 			);

@@ -32,9 +32,50 @@
     [super tearDown];
 }
 
-- (void)testExample {
-    // Use recording to get started writing UI tests.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testWeightSegment{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"Create Workout"] tap];
+    [app.navigationBars[@"Create Workout"].buttons[@"Add"] tap];
+    [[[[[[[[[app childrenMatchingType:XCUIElementTypeWindow] elementBoundByIndex:0] childrenMatchingType:XCUIElementTypeOther] elementBoundByIndex:1] childrenMatchingType:XCUIElementTypeOther].element childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"up"] elementBoundByIndex:0] tap];
+    [[[[[[[[[app childrenMatchingType:XCUIElementTypeWindow] elementBoundByIndex:0] childrenMatchingType:XCUIElementTypeOther] elementBoundByIndex:1] childrenMatchingType:XCUIElementTypeOther].element childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"up"] elementBoundByIndex:0] tap];
+
+    XCUIElement * setsLabelElement = app.staticTexts[@"SetsLabel"];
+    XCTAssertTrue([setsLabelElement.label isEqualToString:@"2 Sets"], @"Sets label is not changed correctly");
+    
+    
+    XCUIElement *element = [[[[[app childrenMatchingType:XCUIElementTypeWindow] elementBoundByIndex:0] childrenMatchingType:XCUIElementTypeOther] elementBoundByIndex:1] childrenMatchingType:XCUIElementTypeOther].element;
+    XCUIElement *upButton = [[[element childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"up"] elementBoundByIndex:1];
+    [upButton tap];
+    
+    XCUIElement *downButton = [[[element childrenMatchingType:XCUIElementTypeButton] matchingIdentifier:@"down"] elementBoundByIndex:1];
+    [downButton tap];
+    [upButton tap];
+    [upButton tap];
+    [downButton tap];
+    
+    XCUIElement * repsLabelElement = app.staticTexts[@"RepsLabel"];
+    XCTAssertTrue([repsLabelElement.label isEqualToString:@"1 Reps"], @"Reps label is not changed correctly");
+    
+
+}
+
+- (void)testCardioSegment{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.buttons[@"Create Workout"] tap];
+    [app.navigationBars[@"Create Workout"].buttons[@"Add"] tap];
+    [app/*@START_MENU_TOKEN@*/.buttons[@"Cardio"]/*[[".segmentedControls.buttons[@\"Cardio\"]",".buttons[@\"Cardio\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/ tap];
+    
+    XCUIElement *upButton = app.buttons[@"up"];
+    [upButton tap];
+    [upButton tap];
+    [upButton tap];
+    [app.buttons[@"down"] tap];
+
+    XCUIElement * repsLabelElement = app.staticTexts[@"CardioLabel"];
+    XCTAssertTrue([repsLabelElement.label isEqualToString:@"3 Minutes"], @"Cardio Time label is not changed correctly");
+
 }
 
 @end

@@ -6,14 +6,14 @@
 //  Copyright © 2018 Maruf Nebil Ogunc. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "WorkoutViewController.h"
+#import "HomeViewController.h"
+#import "WorkoutCreator.h"
 
-@interface ViewController ()
+@interface HomeViewController ()
 
 @end
 
-@implementation ViewController
+@implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,8 +59,8 @@
 }
 
 -(void)createWorkout{
-    WorkoutViewController *workoutViewController = [[WorkoutViewController alloc] init];
-    [self.navigationController pushViewController:workoutViewController animated:YES];
+    WorkoutCreator *workoutCreator = [[WorkoutCreator alloc] init];
+    [self.navigationController pushViewController:workoutCreator animated:YES];
 
 }
 
