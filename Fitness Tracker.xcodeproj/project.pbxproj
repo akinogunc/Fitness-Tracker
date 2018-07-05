@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F42C5AC020EE2ACC006C8248 /* ExerciseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C5ABF20EE2ACC006C8248 /* ExerciseCell.m */; };
+		F42C5AC220EE3C04006C8248 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */; };
 		F47C07E120EB9E6400591C29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07E020EB9E6400591C29 /* AppDelegate.m */; };
 		F47C07E420EB9E6400591C29 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07E320EB9E6400591C29 /* HomeViewController.m */; };
 		F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E520EB9E6500591C29 /* Main.storyboard */; };
@@ -42,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F42C5ABE20EE2ACC006C8248 /* ExerciseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseCell.h; sourceTree = "<group>"; };
+		F42C5ABF20EE2ACC006C8248 /* ExerciseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseCell.m; sourceTree = "<group>"; };
+		F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Bold.otf"; sourceTree = "<group>"; };
 		F47C07DC20EB9E6400591C29 /* Fitness Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47C07DF20EB9E6400591C29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F47C07E020EB9E6400591C29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -126,11 +131,8 @@
 				F47C081220EBE18A00591C29 /* WorkoutCreator.m */,
 				F47C081C20ED250800591C29 /* ExerciseCreator.h */,
 				F47C081D20ED250800591C29 /* ExerciseCreator.m */,
-				F47C07E520EB9E6500591C29 /* Main.storyboard */,
-				F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */,
-				F47C07ED20EB9E6600591C29 /* Info.plist */,
-				F47C07EE20EB9E6600591C29 /* main.m */,
 				F47C07E820EB9E6600591C29 /* Assets.xcassets */,
+				F47C07ED20EB9E6600591C29 /* Info.plist */,
 				F47C081F20ED313B00591C29 /* Helpers */,
 				F47C081820ED18C800591C29 /* Files */,
 			);
@@ -158,9 +160,13 @@
 		F47C081820ED18C800591C29 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				F47C07E520EB9E6500591C29 /* Main.storyboard */,
+				F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */,
+				F47C07EE20EB9E6600591C29 /* main.m */,
 				F47C082120ED3AAE00591C29 /* down.png */,
 				F47C082020ED3AAE00591C29 /* up.png */,
 				F47C081420ED147B00591C29 /* Metropolis-Medium.otf */,
+				F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */,
 				F47C081620ED18C200591C29 /* start_button.png */,
 			);
 			path = Files;
@@ -169,6 +175,8 @@
 		F47C081F20ED313B00591C29 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F42C5ABE20EE2ACC006C8248 /* ExerciseCell.h */,
+				F42C5ABF20EE2ACC006C8248 /* ExerciseCell.m */,
 				F47C081920ED22BF00591C29 /* HalfSizePresentationController.h */,
 				F47C081A20ED22BF00591C29 /* HalfSizePresentationController.m */,
 			);
@@ -284,6 +292,7 @@
 				F47C081520ED147C00591C29 /* Metropolis-Medium.otf in Resources */,
 				F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */,
 				F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */,
+				F42C5AC220EE3C04006C8248 /* Metropolis-Bold.otf in Resources */,
 				F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F47C081320EBE18A00591C29 /* WorkoutCreator.m in Sources */,
+				F42C5AC020EE2ACC006C8248 /* ExerciseCell.m in Sources */,
 				F47C081B20ED22BF00591C29 /* HalfSizePresentationController.m in Sources */,
 				F47C07E420EB9E6400591C29 /* HomeViewController.m in Sources */,
 				F47C081E20ED250800591C29 /* ExerciseCreator.m in Sources */,

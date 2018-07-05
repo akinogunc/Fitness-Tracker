@@ -10,4 +10,6 @@
 
 @interface WorkoutCreator : UIViewController <UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate>
 
+@property UITableView * exercisesTableView;
+
 @end

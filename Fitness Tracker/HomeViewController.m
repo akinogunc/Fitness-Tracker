@@ -17,11 +17,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont fontWithName:@"Metropolis-Medium" size:20]}];
-    self.navigationController.navigationBar.topItem.title = @"Fitness Tracker";
     [self.view setBackgroundColor:[UIColor whiteColor]];
+
+    //Customizing navigation bar
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont fontWithName:@"Metropolis-Bold" size:20]}];
+    self.navigationController.navigationBar.topItem.title = @"Fitness Tracker";
     
+    //Creating custom back button which will ask a question before popping the view controller
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [[self navigationItem] setBackBarButtonItem:newBackButton];
+
     //Getting size of the device
     CGRect screenRect = [[UIScreen mainScreen] bounds];
 

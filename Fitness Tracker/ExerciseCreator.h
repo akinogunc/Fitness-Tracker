@@ -26,6 +26,11 @@
 @property UIButton * cardioDownButton;
 @property UIButton * cardioUpButton;
 @property int cardioMinutes;
+@property UITextField *exerciseNameTextField;
+@property UISegmentedControl *segmentedControl;
+
+//This block will tell the workout creator view to reload tableview
+@property (nonatomic, copy) void (^onDoneBlock)(void);
 
 -(void)decreaseSets;
 -(void)increaseSets;

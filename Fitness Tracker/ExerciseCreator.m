@@ -9,7 +9,7 @@
 #import "ExerciseCreator.h"
 
 @implementation ExerciseCreator
-@synthesize setsLabel, setsDownButton, setsUpButton, setCount, repsLabel, repsDownButton, repsUpButton, repsCount, restLabel, restDownButton, restUpButton, restSeconds, cardioTimeLabel, cardioDownButton, cardioUpButton, cardioMinutes;
+@synthesize setsLabel, setsDownButton, setsUpButton, setCount, repsLabel, repsDownButton, repsUpButton, repsCount, restLabel, restDownButton, restUpButton, restSeconds, cardioTimeLabel, cardioDownButton, cardioUpButton, cardioMinutes, exerciseNameTextField, segmentedControl;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,7 +47,7 @@
     [self.view addSubview:exerciseName];
 
     //Adding exercise name text field
-    UITextField *exerciseNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(screenRect.size.width/2 - 30, 70, screenRect.size.width/2 + 10, 30)];
+    exerciseNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(screenRect.size.width/2 - 30, 70, screenRect.size.width/2 + 10, 30)];
     exerciseNameTextField.borderStyle = UITextBorderStyleRoundedRect;
     exerciseNameTextField.font = [UIFont fontWithName: @"Metropolis-Medium" size: 16.0f];
     exerciseNameTextField.placeholder = @"Exercise Name";
@@ -60,7 +60,7 @@
     [self.view addSubview:exerciseNameTextField];
 
     //This segmented control switches between Weights UI and Cardio UI
-    UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects: @"Weights", @"Cardio", nil]];
+    segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects: @"Weights", @"Cardio", nil]];
     segmentedControl.frame = CGRectMake(20, 120, screenRect.size.width - 40, 30);
     [segmentedControl addTarget:self action:@selector(MySegmentControlAction:) forControlEvents: UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
@@ -160,6 +160,7 @@
     [self.view addSubview:cardioUpButton];
     
     [self hideCardioUI];
+    
 }
 
 -(void)hideCardioUI{
@@ -263,7 +264,79 @@
 
 - (void)saveExercise{
     
+    if([exerciseNameTextField.text isEqualToString:@""]){
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"Please enter an exercise name" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
+        return;
+    }
+    
+    //Creating a dictionary from the exercise values
+    NSDictionary * exerciseDictionary = [[NSDictionary alloc] init];
+    if (segmentedControl.selectedSegmentIndex == 0) {
+        exerciseDictionary = @{ @"name" : exerciseNameTextField.text, @"sets" : [NSString stringWithFormat:@"%d",setCount], @"reps" : [NSString stringWithFormat:@"%d",repsCount], @"rest" : [NSString stringWithFormat:@"%d",restSeconds]};
+    }else{
+        exerciseDictionary = @{ @"name" : exerciseNameTextField.text, @"cardio_minutes" : [NSNumber numberWithInt:cardioMinutes]};
+    }
+    
+    //Reading exercises JSON file
+    NSString * exercisesString = [self readExercisesJSON];
+    
+    //If JSON file is empty, create it from the dictionary
+    if([exercisesString isEqualToString:@"empty"]){
+        
+        NSMutableArray * exercisesArray = [[NSMutableArray alloc] init];
+        [exercisesArray addObject:exerciseDictionary];
+
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:exercisesArray options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        [self addExerciseToJSON:jsonString];
+
+    }else{//if JSON file is not empty, get it and add dictionary to it then write it to file
+        NSMutableArray *exercisesArray = [NSJSONSerialization JSONObjectWithData:[exercisesString dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:nil];
+        [exercisesArray addObject:exerciseDictionary];
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:exercisesArray options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        [self addExerciseToJSON:jsonString];
+
+    }
+    
+    //Closing modal and refreshing tableview on parent view controller
+    self.onDoneBlock();
 }
+
+- (NSString*)readExercisesJSON {
+    
+    NSString* filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* fileName = @"temp.json";
+    NSString* fileAtPath = [filePath stringByAppendingPathComponent:fileName];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileAtPath]) {
+        return @"empty";
+    }
+    
+    return [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:fileAtPath] encoding:NSUTF8StringEncoding];
+}
+
+
+- (void)addExerciseToJSON:(NSString*)s {
+    
+    // Build the path, and create if needed.
+    NSString* filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* fileName = @"temp.json";
+    NSString* fileAtPath = [filePath stringByAppendingPathComponent:fileName];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileAtPath]) {
+        [[NSFileManager defaultManager] createFileAtPath:fileAtPath contents:nil attributes:nil];
+    }
+    
+    //write to file
+    [[s dataUsingEncoding:NSUTF8StringEncoding] writeToFile:fileAtPath atomically:YES];
+}
+
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
