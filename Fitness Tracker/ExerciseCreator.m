@@ -276,9 +276,9 @@
     //Creating a dictionary from the exercise values
     NSDictionary * exerciseDictionary = [[NSDictionary alloc] init];
     if (segmentedControl.selectedSegmentIndex == 0) {
-        exerciseDictionary = @{ @"name" : exerciseNameTextField.text, @"sets" : [NSString stringWithFormat:@"%d",setCount], @"reps" : [NSString stringWithFormat:@"%d",repsCount], @"rest" : [NSString stringWithFormat:@"%d",restSeconds]};
+        exerciseDictionary = @{ @"name" : exerciseNameTextField.text, @"sets" : [NSString stringWithFormat:@"%d",setCount], @"reps" : [NSString stringWithFormat:@"%d",repsCount], @"rest" : [NSString stringWithFormat:@"%d",restSeconds], @"isCardio" : @NO};
     }else{
-        exerciseDictionary = @{ @"name" : exerciseNameTextField.text, @"cardio_minutes" : [NSNumber numberWithInt:cardioMinutes]};
+        exerciseDictionary = @{ @"name" : exerciseNameTextField.text, @"cardio_minutes" : [NSString stringWithFormat:@"%d",cardioMinutes], @"isCardio" : @YES};
     }
     
     //Reading exercises JSON file

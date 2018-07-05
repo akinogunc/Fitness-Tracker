@@ -14,5 +14,8 @@
 @property(strong, nonatomic) UILabel *setsLabel;
 @property(strong, nonatomic) UILabel *repsLabel;
 @property(strong, nonatomic) UILabel *restLabel;
+@property BOOL isCardio;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isCardio:(BOOL)isCardio;
 
 @end

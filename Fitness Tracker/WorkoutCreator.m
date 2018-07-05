@@ -80,7 +80,7 @@
         
         //Fill the array with the exercises
         exercisesArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:fileAtPath] options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@",[[exercisesArray objectAtIndex:0]objectForKey:@"name"]);
+        NSLog(@"%@",exercisesArray);
         //reload the tableview to show the exercises
         [exercisesTableView reloadData];
     }
@@ -104,20 +104,34 @@
 {
     static NSString *cellIdentifier = @"exerciseCell";
     
+    //Check the workout type and set the cell according to its value
+    BOOL isCardio = [[[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"isCardio"] boolValue];
+
     ExerciseCell *cell = (ExerciseCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[ExerciseCell alloc]initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[ExerciseCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier isCardio:isCardio];
     }
     
-    //Getting exercise values from json array
-    cell.exerciseLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"name"];
-    cell.setsLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"sets"];
-    cell.repsLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"reps"];
+    if (isCardio) {
+        
+        //Getting exercise values from json array
+        cell.exerciseLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"name"];
+        cell.restLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"cardio_minutes"];
+
+    }else{
+        
+        //Getting exercise values from json array
+        cell.exerciseLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"name"];
+        cell.setsLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"sets"];
+        cell.repsLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"reps"];
+        
+        //Adding "s" letter to end of the rest seconds
+        NSString * restSeconds = [NSString stringWithFormat:@"%@s",[[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"rest"]];
+        cell.restLabel.text = restSeconds;
+
+    }
     
-    //Adding "s" letter to end of the rest seconds
-    NSString * restSeconds = [NSString stringWithFormat:@"%@s",[[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"rest"]];
-    cell.restLabel.text = restSeconds;
-     
+    
     
     return cell;
 }
