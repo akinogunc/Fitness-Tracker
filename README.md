@@ -4,7 +4,7 @@ Fitness Tracker is an app for tracking workout progress, creating workout plans 
 
 <p align="center">
   <img src="/screenshots/ss1.png?raw=true" width="300"/>
-  <img src="/screenshots/ss2.png?raw=true" width="300"/>
+  <img src="/screenshots/ss2v2.png?raw=true" width="300"/>
 </p>
 
 ## License
