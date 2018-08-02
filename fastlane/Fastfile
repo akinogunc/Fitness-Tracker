@@ -1,0 +1,11 @@
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Testing Fastlane"
+  lane :test_lane do
+	puts("this is my first 🚀 lane")
+  end
+end

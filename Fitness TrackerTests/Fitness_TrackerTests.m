@@ -58,7 +58,6 @@
     [exercise increaseSets];
     [exercise increaseSets];
 
-    NSLog(@"AAAAA :%@",exercise.setsLabel.text);
     XCTAssertEqual(exercise.setCount, 2, @"set count is not 2");
     XCTAssertTrue([exercise.setsLabel.text isEqualToString:@"2 Sets"],@"sets label is not changed correctly");
 

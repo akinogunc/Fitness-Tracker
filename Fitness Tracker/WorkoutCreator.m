@@ -114,13 +114,13 @@
     
     if (isCardio) {
         
-        //Getting exercise values from json array
+        //Setting exercise values from json array
         cell.exerciseLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.restLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"cardio_minutes"];
 
     }else{
         
-        //Getting exercise values from json array
+        //Setting exercise values from json array
         cell.exerciseLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"name"];
         cell.setsLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"sets"];
         cell.repsLabel.text = [[exercisesArray objectAtIndex:indexPath.row] objectForKey:@"reps"];
