@@ -6,9 +6,25 @@ default_platform(:ios)
 platform :ios do
   desc "Codesigning and uploading to Testfligt"
   lane :beta do
-    cert
-    sigh
+    get_certificates(
+        username: "info@lovegun.co"
+    )
+    get_provisioning_profile(
+        username: "info@lovegun.co",
+        app_identifier: "akin.fitness.tracker"
+    )
     build_app(scheme: "Fitness Tracker")
-    upload_to_testflight
+    upload_to_testflight(
+        username: "info@lovegun.co",
+    )
   end
 end
+
+
+platform :ios do
+    desc "Run unit tests"
+    lane :tests do
+        run_tests(scheme: "Fitness Tracker")
+    end
+end
+
