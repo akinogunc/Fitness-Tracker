@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //Getting size of the device
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+
     //Customizing the navigation bar
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor blackColor], NSFontAttributeName:[UIFont fontWithName:@"Metropolis-Bold" size:20]}];
     self.navigationItem.title = @"Create Workout";
@@ -28,8 +31,19 @@
     UIBarButtonItem *plusButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(plusButtonHit)];
     self.navigationItem.rightBarButtonItem = plusButton;
 
+    //This button will save the workout
+    UIButton * createWorkoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [createWorkoutButton setTitle:@"Save Workout" forState:UIControlStateNormal];
+    [createWorkoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [createWorkoutButton.titleLabel setFont:[UIFont fontWithName:@"Metropolis-Medium" size:18.0]];
+    createWorkoutButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [createWorkoutButton setBackgroundColor:[UIColor colorWithRed:0 green:179.0/255.0 blue:85.0/255.0 alpha:1]];
+    createWorkoutButton.frame = CGRectMake(0, screenRect.size.height - 80, screenRect.size.width, 80);
+    [createWorkoutButton addTarget:self action:@selector(saveWorkout) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:createWorkoutButton];
+
     //Creating table view which will show workout items
-    exercisesTableView = [[UITableView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    exercisesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height - 80)];
     [exercisesTableView setBackgroundColor:[UIColor whiteColor]];
     exercisesTableView.delegate = self;
     exercisesTableView.dataSource = self;
@@ -41,6 +55,54 @@
     //delete previous temporary json file before creating a new workout
     [self deleteTempJSON];
 
+}
+
+-(void)saveWorkout{
+
+    if(exercisesArray.count <= 0){
+        
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"Please create an exercise" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+
+    }else{
+        
+        //Getting workouts array
+        NSMutableArray * savedWorkouts = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"savedWorkouts"] mutableCopy];
+        
+        if (!savedWorkouts) {
+            savedWorkouts = [[NSMutableArray alloc] init];
+        }
+        
+        //Creating new workout name
+        NSString * workoutName = [NSString stringWithFormat:@"workout%lu.json", savedWorkouts.count + 1];
+        
+        //Adding name of the file to array
+        [savedWorkouts addObject:workoutName];
+        
+        //Changing name of JSON file
+        [self changeJSONName:workoutName];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:savedWorkouts forKey:@"savedWorkouts"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+
+    }
+}
+
+//Giving a name to the workout JSON file
+-(void)changeJSONName:(NSString*)newName{
+    NSString* initFilePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* initFileName = @"temp.json";
+    NSString* initFileAtPath = [initFilePath stringByAppendingPathComponent:initFileName];
+
+    NSString* newFilePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* newFileName = newName;
+    NSString* newFileAtPath = [newFilePath stringByAppendingPathComponent:newFileName];
+
+    [[NSFileManager defaultManager] moveItemAtPath:initFileAtPath toPath:newFileAtPath error:nil];
 }
 
 -(void)deleteTempJSON{

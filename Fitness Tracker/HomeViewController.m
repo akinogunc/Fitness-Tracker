@@ -52,7 +52,7 @@
     
     //This button will open the history view controller
     UIButton * historyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [historyButton setTitle:@"History" forState:UIControlStateNormal];
+    [historyButton setTitle:@"Workout History" forState:UIControlStateNormal];
     [historyButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [historyButton.titleLabel setFont:[UIFont fontWithName:@"Metropolis-Medium" size:18.0]];
     historyButton.titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -61,12 +61,40 @@
     [historyButton addTarget:self action:@selector(showHistory) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:historyButton];
 
+    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedWorkouts"];
+    //[[NSUserDefaults standardUserDefaults] synchronize];
+
+    //Checking workouts array
+    NSMutableArray * savedWorkouts = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"savedWorkouts"] mutableCopy];
+    
+    if (savedWorkouts) {
+        NSLog(@"%@",savedWorkouts);
+        [self readWorkoutJSONbyName:[savedWorkouts objectAtIndex:0]];
+    }
+
 }
 
 -(void)createWorkout{
     WorkoutCreator *workoutCreator = [[WorkoutCreator alloc] init];
     [self.navigationController pushViewController:workoutCreator animated:YES];
 
+}
+
+-(void)readWorkoutJSONbyName:(NSString*)name{
+    
+    NSString* filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* fileName = name;
+    NSString* fileAtPath = [filePath stringByAppendingPathComponent:fileName];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:fileAtPath]) {
+        
+        //Fill the array with the exercises
+        NSMutableArray* exercisesArray = [[NSMutableArray alloc] init];
+        exercisesArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:fileAtPath] options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@",exercisesArray);
+    }else{
+        NSLog(@"File don't exist");
+    }
 }
 
 -(void)startWorkout{

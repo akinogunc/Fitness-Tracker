@@ -1,8 +1,7 @@
 Fitness Tracker is an app for tracking workout progress, creating workout plans and using Apple Watch app to complete your workout without missing anything.
 
 **Language:** Objective-C  
-**Continuous Integration:** Jenkins  
-**Continuous Delivery:** Fastlane  
+**Continuous Integration:** Jenkins/Fastlane 
 
 ## Screenshots
 
