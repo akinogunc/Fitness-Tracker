@@ -11,10 +11,7 @@
 #import "ExerciseCreator.h"
 #import "ExerciseCell.h"
 
-@implementation WorkoutCreator{
-    NSMutableArray * exercisesArray;
-}
-
+@implementation WorkoutCreator
 @synthesize exercisesTableView;
 
 - (void)viewDidLoad {
@@ -68,28 +65,49 @@
 
     }else{
         
-        //Getting workouts array
-        NSMutableArray * savedWorkouts = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"savedWorkouts"] mutableCopy];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Name your workout" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.placeholder = @"Chest Workout";
+        }];
         
-        if (!savedWorkouts) {
-            savedWorkouts = [[NSMutableArray alloc] init];
-        }
-        
-        //Creating new workout name
-        NSString * workoutName = [NSString stringWithFormat:@"workout%lu.json", savedWorkouts.count + 1];
-        
-        //Adding name of the file to array
-        [savedWorkouts addObject:workoutName];
-        
-        //Changing name of JSON file
-        [self changeJSONName:workoutName];
-        
-        [[NSUserDefaults standardUserDefaults] setObject:savedWorkouts forKey:@"savedWorkouts"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        [self.navigationController popViewControllerAnimated:YES];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString * textFieldString = [NSString stringWithFormat:@"%@.json",[[alertController textFields][0] text]];
+            
+            if (![textFieldString isEqualToString:@""]) {
+                [self saveWorkoutWithName:textFieldString];
+            }
+
+        }];
+        [alertController addAction:confirmAction];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            NSLog(@"Canelled");
+        }];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
 
     }
+}
+
+-(void)saveWorkoutWithName:(NSString*)workoutName{
+    
+    //Getting workouts array
+    NSMutableArray * savedWorkouts = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"savedWorkouts"] mutableCopy];
+    
+    if (!savedWorkouts) {
+        savedWorkouts = [[NSMutableArray alloc] init];
+    }
+    
+    //Adding name of the workout to array
+    [savedWorkouts addObject:workoutName];
+    
+    //Changing name of JSON file as workout name
+    [self changeJSONName:workoutName];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:savedWorkouts forKey:@"savedWorkouts"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
 }
 
 //Giving a name to the workout JSON file

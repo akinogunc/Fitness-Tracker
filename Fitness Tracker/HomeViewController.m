@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "WorkoutCreator.h"
+#import "WorkoutsList.h"
 
 @interface HomeViewController ()
 
@@ -61,16 +62,6 @@
     [historyButton addTarget:self action:@selector(showHistory) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:historyButton];
 
-    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedWorkouts"];
-    //[[NSUserDefaults standardUserDefaults] synchronize];
-
-    //Checking workouts array
-    NSMutableArray * savedWorkouts = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"savedWorkouts"] mutableCopy];
-    
-    if (savedWorkouts) {
-        NSLog(@"%@",savedWorkouts);
-        [self readWorkoutJSONbyName:[savedWorkouts objectAtIndex:0]];
-    }
 
 }
 
@@ -80,25 +71,9 @@
 
 }
 
--(void)readWorkoutJSONbyName:(NSString*)name{
-    
-    NSString* filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString* fileName = name;
-    NSString* fileAtPath = [filePath stringByAppendingPathComponent:fileName];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:fileAtPath]) {
-        
-        //Fill the array with the exercises
-        NSMutableArray* exercisesArray = [[NSMutableArray alloc] init];
-        exercisesArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:fileAtPath] options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"%@",exercisesArray);
-    }else{
-        NSLog(@"File don't exist");
-    }
-}
-
 -(void)startWorkout{
-    
+    WorkoutsList *workoutCreator = [[WorkoutsList alloc] init];
+    [self.navigationController pushViewController:workoutCreator animated:YES];
 }
 
 -(void)showHistory{
