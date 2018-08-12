@@ -12,5 +12,6 @@
 
 @property(strong, nonatomic) UILabel *workoutLabel;
 @property(strong, nonatomic) UIButton * startWorkoutButton;
+@property(strong, nonatomic) UILabel *workoutDuration;
 
 @end

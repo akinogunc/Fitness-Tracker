@@ -34,21 +34,57 @@
     workoutsTableView.dataSource = self;
     [self.view addSubview:workoutsTableView];
 
-    
-    ///////DELETE EVERYTHING////////
-    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"savedWorkouts"];
-    //[[NSUserDefaults standardUserDefaults] synchronize];
-    
     //getting workouts array from user defaults
     workoutsArray = [[[NSUserDefaults standardUserDefaults] arrayForKey:@"savedWorkouts"] mutableCopy];
     
     //refreshing table view
     [workoutsTableView reloadData];
-    
-    /*if (workoutsArray) {
-        NSLog(@"%@",workoutsArray);
-    }*/
 
+}
+
+-(NSMutableArray*)readWorkoutJSONbyName:(NSString*)name{
+    
+    NSString* filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString* fileName = name;
+    NSString* fileAtPath = [filePath stringByAppendingPathComponent:fileName];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:fileAtPath]) {
+        
+        //Fill the array with the exercises
+        NSMutableArray* exercisesArray = [[NSMutableArray alloc] init];
+        exercisesArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:fileAtPath] options:NSJSONReadingMutableContainers error:nil];
+        return exercisesArray;
+    }else{
+        NSLog(@"File don't exist");
+        return nil;
+    }
+}
+
+-(NSString*)calculateWorkoutDuration:(NSInteger)index{
+    
+    NSMutableArray* exercisesArray = [self readWorkoutJSONbyName:[workoutsArray objectAtIndex:index]];
+    NSString * duration = @"0";
+    int durationInSeconds = 0;
+
+    for (int i = 0; i < exercisesArray.count; i++) {
+        NSDictionary * exerciseDict = [exercisesArray objectAtIndex:i];
+
+        if([[exerciseDict objectForKey:@"isCardio"] boolValue]){
+            durationInSeconds += [[exerciseDict objectForKey:@"cardio_minutes"] intValue] * 60;
+        }else{
+            int sets = [[exerciseDict objectForKey:@"sets"] intValue];
+            durationInSeconds += [[exerciseDict objectForKey:@"rest"] intValue] * sets;//the time each set takes
+            durationInSeconds += [[exerciseDict objectForKey:@"rest"] intValue] * (sets - 1);//the time between sets
+        }
+        
+        //adding 90 seconds for rest and preparation
+        if (i != exercisesArray.count - 1) {//don't add rest time for last exercise
+            durationInSeconds += 90;
+        }
+    }
+    
+    duration = [NSString stringWithFormat:@"%.1f",(float)durationInSeconds/60.0];
+    return duration;
 }
 
 #pragma mark - Table View Data source
@@ -77,9 +113,10 @@
     //Setting exercise values from json array
     NSString * workoutNameWithoutExtension = [[workoutsArray objectAtIndex:indexPath.row] stringByDeletingPathExtension];
     cell.workoutLabel.text = workoutNameWithoutExtension;
+    cell.workoutDuration.text = [self calculateWorkoutDuration:indexPath.row];
     cell.startWorkoutButton.tag = indexPath.row;
     [cell.startWorkoutButton addTarget:self action:@selector(startSelectedWorkout:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     return cell;
 }
 
