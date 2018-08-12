@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4159D3821205DCC00E4CBF6 /* SeparatedExerciseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4159D3721205DCC00E4CBF6 /* SeparatedExerciseCell.m */; };
 		F42C5AC020EE2ACC006C8248 /* ExerciseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C5ABF20EE2ACC006C8248 /* ExerciseCell.m */; };
 		F42C5AC220EE3C04006C8248 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */; };
 		F45894D5211AED3C004ACEF6 /* WorkoutsList.m in Sources */ = {isa = PBXBuildFile; fileRef = F45894D4211AED3C004ACEF6 /* WorkoutsList.m */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F4159D3621205DCC00E4CBF6 /* SeparatedExerciseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparatedExerciseCell.h; sourceTree = "<group>"; };
+		F4159D3721205DCC00E4CBF6 /* SeparatedExerciseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatedExerciseCell.m; sourceTree = "<group>"; };
 		F42C5ABE20EE2ACC006C8248 /* ExerciseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseCell.h; sourceTree = "<group>"; };
 		F42C5ABF20EE2ACC006C8248 /* ExerciseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseCell.m; sourceTree = "<group>"; };
 		F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Bold.otf"; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 				F42C5ABF20EE2ACC006C8248 /* ExerciseCell.m */,
 				F45894D6211AF559004ACEF6 /* WorkoutCell.h */,
 				F45894D7211AF559004ACEF6 /* WorkoutCell.m */,
+				F4159D3621205DCC00E4CBF6 /* SeparatedExerciseCell.h */,
+				F4159D3721205DCC00E4CBF6 /* SeparatedExerciseCell.m */,
 				F47C081920ED22BF00591C29 /* HalfSizePresentationController.h */,
 				F47C081A20ED22BF00591C29 /* HalfSizePresentationController.m */,
 			);
@@ -343,6 +348,7 @@
 				F47C07EF20EB9E6600591C29 /* main.m in Sources */,
 				F47C07E120EB9E6400591C29 /* AppDelegate.m in Sources */,
 				F45894D8211AF559004ACEF6 /* WorkoutCell.m in Sources */,
+				F4159D3821205DCC00E4CBF6 /* SeparatedExerciseCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

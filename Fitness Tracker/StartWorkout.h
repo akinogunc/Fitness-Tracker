@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface StartWorkout : UIViewController<UITableViewDelegate, UITableViewDataSource>{
-    NSMutableArray * exercisesArray;
+    NSMutableArray * separatedExercisesArray;
 }
 
 @property int workoutNo;

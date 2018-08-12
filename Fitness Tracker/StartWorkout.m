@@ -7,6 +7,7 @@
 //
 
 #import "StartWorkout.h"
+#import "SeparatedExerciseCell.h"
 
 @implementation StartWorkout
 @synthesize workoutNo,exercisesTableView;
@@ -53,7 +54,7 @@
     [self.view addSubview:createWorkoutButton];
 
     //initialize exercises array
-    exercisesArray = [[NSMutableArray alloc] init];
+    separatedExercisesArray = [[NSMutableArray alloc] init];
 
     [self readWorkoutJSONbyName:[workoutsArray objectAtIndex:self.workoutNo]];
 
@@ -81,13 +82,54 @@
 }
 
 -(void)seperateExercisesBySetsAndRests:(NSMutableArray*)rawExercisesArray{
-    NSLog(@"%@",rawExercisesArray);
+    //NSLog(@"RAW%@",rawExercisesArray);
+    
+    for (int i = 0; i < rawExercisesArray.count; i++) {
+        NSDictionary * exerciseDict = [rawExercisesArray objectAtIndex:i];
+        
+        if([[exerciseDict objectForKey:@"isCardio"] boolValue]){
+            
+            NSDictionary * separatedExercise = [[NSDictionary alloc] init];
+            int cardioSeconds = [[exerciseDict objectForKey:@"cardio_minutes"] intValue] * 60;
+            separatedExercise = @{ @"name" : [exerciseDict objectForKey:@"name"], @"duration" : [NSString stringWithFormat:@"%d",cardioSeconds]};
+            [separatedExercisesArray addObject:separatedExercise];
+            
+        }else{
+            int sets = [[exerciseDict objectForKey:@"sets"] intValue];
+            
+            for (int i = 0; i < sets; i++) {
+                
+                NSDictionary * separatedExercise = [[NSDictionary alloc] init];
+                separatedExercise = @{ @"name" : [exerciseDict objectForKey:@"name"], @"duration" : [exerciseDict objectForKey:@"rest"]};
+                [separatedExercisesArray addObject:separatedExercise];
+
+                if (i != sets - 1) {//don't add rest time for last move
+                
+                    NSDictionary * separatedExercise = [[NSDictionary alloc] init];
+                    separatedExercise = @{ @"name" : @"Rest", @"duration" : [exerciseDict objectForKey:@"rest"]};
+                    [separatedExercisesArray addObject:separatedExercise];
+
+                }
+            }
+            
+        }
+        
+        //adding 90 seconds for rest and preparation
+        if (i != rawExercisesArray.count - 1) {//don't add rest time for last exercise
+            
+            NSDictionary * separatedExercise = [[NSDictionary alloc] init];
+            separatedExercise = @{ @"name" : @"Rest and Preparation", @"duration" : @"90"};
+            [separatedExercisesArray addObject:separatedExercise];
+        }
+    }
+    
+    //NSLog(@"SEP%@",separatedExercisesArray);
 
 }
 
 #pragma mark - Table View Data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return exercisesArray.count;
+    return separatedExercisesArray.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -101,13 +143,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"workoutCell";
+    static NSString *cellIdentifier = @"separatedCell";
     
-    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SeparatedExerciseCell *cell = (SeparatedExerciseCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[SeparatedExerciseCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
+    NSDictionary * separatedExerciseDict = [separatedExercisesArray objectAtIndex:indexPath.row];
+    int duration = [[separatedExerciseDict objectForKey:@"duration"] intValue];
+    int minutes = duration / 60;
+    int seconds = duration % 60;
+    cell.countdownLabel.text = [NSString stringWithFormat:@"%d:%02d", minutes, seconds];
+    cell.exerciseNameLabel.text = [separatedExerciseDict objectForKey:@"name"];
     
     return cell;
 }
