@@ -10,6 +10,9 @@
 
 @interface StartWorkout : UIViewController<UITableViewDelegate, UITableViewDataSource>{
     NSMutableArray * separatedExercisesArray;
+    NSTimer * countdownTimer;
+    UIButton * startPauseWorkoutButton;
+    BOOL isWorkoutActive;
 }
 
 @property int workoutNo;

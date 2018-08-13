@@ -12,6 +12,7 @@
 
 @property(strong, nonatomic) UILabel * countdownLabel;
 @property(strong, nonatomic) UILabel * exerciseNameLabel;
-@property(strong, nonatomic) UIImageView * statusImageView;
+@property(strong, nonatomic) UILabel * repsLabel;
+@property(strong, nonatomic) UILabel * repsStaticLabel;
 
 @end

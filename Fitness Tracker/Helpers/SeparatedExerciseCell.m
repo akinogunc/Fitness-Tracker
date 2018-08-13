@@ -9,7 +9,7 @@
 #import "SeparatedExerciseCell.h"
 
 @implementation SeparatedExerciseCell
-@synthesize countdownLabel,exerciseNameLabel,statusImageView;
+@synthesize countdownLabel,exerciseNameLabel,repsLabel,repsStaticLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -35,11 +35,22 @@
         exerciseNameLabel.numberOfLines = 2;
         [self addSubview:exerciseNameLabel];
         
-        //status imageview
-        statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4*screenRect.size.width/5, 0, screenRect.size.width/4 - 10, 70)];
-        statusImageView.backgroundColor = [UIColor clearColor];
-        [self addSubview:statusImageView];
+        //Label of reps
+        repsLabel = [[UILabel alloc] initWithFrame:CGRectMake(4*screenRect.size.width/5, 10, screenRect.size.width/5, 25)];
+        repsLabel.textColor = [UIColor blackColor];
+        repsLabel.backgroundColor = [UIColor clearColor];
+        repsLabel.font = [UIFont fontWithName: @"Metropolis-Bold" size: 20.0f];
+        repsLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:repsLabel];
         
+        repsStaticLabel = [[UILabel alloc] initWithFrame:CGRectMake(4*screenRect.size.width/5, 35, screenRect.size.width/5, 25)];
+        repsStaticLabel.textColor = [UIColor blackColor];
+        repsStaticLabel.backgroundColor = [UIColor clearColor];
+        repsStaticLabel.font = [UIFont fontWithName: @"Metropolis-Medium" size: 12.0f];
+        repsStaticLabel.text = @"reps";
+        repsStaticLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:repsStaticLabel];
+
     }
     return self;
 }
