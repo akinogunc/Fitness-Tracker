@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WorkoutsList : UIViewController <UITableViewDelegate, UITableViewDataSource>{
-    NSMutableArray * workoutsArray;
-}
+@interface WorkoutsList : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property UITableView * workoutsTableView;
+@property NSMutableArray * workoutsArray;
+
+-(NSMutableArray*)readWorkoutJSONbyName:(NSString*)name;
+-(NSString*)calculateWorkoutDuration:(NSInteger)index;
 
 @end

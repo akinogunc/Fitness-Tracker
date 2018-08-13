@@ -19,7 +19,6 @@
 		F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E820EB9E6600591C29 /* Assets.xcassets */; };
 		F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */; };
 		F47C07EF20EB9E6600591C29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07EE20EB9E6600591C29 /* main.m */; };
-		F47C07F920EB9E6600591C29 /* Fitness_TrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07F820EB9E6600591C29 /* Fitness_TrackerTests.m */; };
 		F47C080420EB9E6600591C29 /* Fitness_TrackerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C080320EB9E6600591C29 /* Fitness_TrackerUITests.m */; };
 		F47C081320EBE18A00591C29 /* WorkoutCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C081220EBE18A00591C29 /* WorkoutCreator.m */; };
 		F47C081520ED147C00591C29 /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F47C081420ED147B00591C29 /* Metropolis-Medium.otf */; };
@@ -28,6 +27,11 @@
 		F47C081E20ED250800591C29 /* ExerciseCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C081D20ED250800591C29 /* ExerciseCreator.m */; };
 		F47C082220ED3AAE00591C29 /* up.png in Resources */ = {isa = PBXBuildFile; fileRef = F47C082020ED3AAE00591C29 /* up.png */; };
 		F47C082320ED3AAE00591C29 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = F47C082120ED3AAE00591C29 /* down.png */; };
+		F4CA7D4221216CF700AE3E38 /* HomeViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CA7D4121216CF700AE3E38 /* HomeViewControllerTests.m */; };
+		F4CA7D4421216D1B00AE3E38 /* WorkoutsListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CA7D4321216D1B00AE3E38 /* WorkoutsListTests.m */; };
+		F4CA7D4621216D2C00AE3E38 /* StartWorkoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CA7D4521216D2C00AE3E38 /* StartWorkoutTests.m */; };
+		F4CA7D4821216D3F00AE3E38 /* WorkoutCreatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CA7D4721216D3F00AE3E38 /* WorkoutCreatorTests.m */; };
+		F4CA7D4A21216D4F00AE3E38 /* ExerciseCreatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F4CA7D4921216D4F00AE3E38 /* ExerciseCreatorTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +74,6 @@
 		F47C07ED20EB9E6600591C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F47C07EE20EB9E6600591C29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F47C07F420EB9E6600591C29 /* Fitness TrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fitness TrackerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F47C07F820EB9E6600591C29 /* Fitness_TrackerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fitness_TrackerTests.m; sourceTree = "<group>"; };
 		F47C07FA20EB9E6600591C29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F47C07FF20EB9E6600591C29 /* Fitness TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fitness TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47C080320EB9E6600591C29 /* Fitness_TrackerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fitness_TrackerUITests.m; sourceTree = "<group>"; };
@@ -85,6 +88,11 @@
 		F47C081D20ED250800591C29 /* ExerciseCreator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseCreator.m; sourceTree = "<group>"; };
 		F47C082020ED3AAE00591C29 /* up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = up.png; sourceTree = "<group>"; };
 		F47C082120ED3AAE00591C29 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		F4CA7D4121216CF700AE3E38 /* HomeViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewControllerTests.m; sourceTree = "<group>"; };
+		F4CA7D4321216D1B00AE3E38 /* WorkoutsListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutsListTests.m; sourceTree = "<group>"; };
+		F4CA7D4521216D2C00AE3E38 /* StartWorkoutTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartWorkoutTests.m; sourceTree = "<group>"; };
+		F4CA7D4721216D3F00AE3E38 /* WorkoutCreatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WorkoutCreatorTests.m; sourceTree = "<group>"; };
+		F4CA7D4921216D4F00AE3E38 /* ExerciseCreatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseCreatorTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +166,11 @@
 		F47C07F720EB9E6600591C29 /* Fitness TrackerTests */ = {
 			isa = PBXGroup;
 			children = (
-				F47C07F820EB9E6600591C29 /* Fitness_TrackerTests.m */,
+				F4CA7D4121216CF700AE3E38 /* HomeViewControllerTests.m */,
+				F4CA7D4321216D1B00AE3E38 /* WorkoutsListTests.m */,
+				F4CA7D4521216D2C00AE3E38 /* StartWorkoutTests.m */,
+				F4CA7D4721216D3F00AE3E38 /* WorkoutCreatorTests.m */,
+				F4CA7D4921216D4F00AE3E38 /* ExerciseCreatorTests.m */,
 				F47C07FA20EB9E6600591C29 /* Info.plist */,
 			);
 			path = "Fitness TrackerTests";
@@ -356,7 +368,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F47C07F920EB9E6600591C29 /* Fitness_TrackerTests.m in Sources */,
+				F4CA7D4A21216D4F00AE3E38 /* ExerciseCreatorTests.m in Sources */,
+				F4CA7D4221216CF700AE3E38 /* HomeViewControllerTests.m in Sources */,
+				F4CA7D4621216D2C00AE3E38 /* StartWorkoutTests.m in Sources */,
+				F4CA7D4421216D1B00AE3E38 /* WorkoutsListTests.m in Sources */,
+				F4CA7D4821216D3F00AE3E38 /* WorkoutCreatorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

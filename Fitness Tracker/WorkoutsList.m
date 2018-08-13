@@ -11,7 +11,7 @@
 #import "StartWorkout.h"
 
 @implementation WorkoutsList
-@synthesize workoutsTableView;
+@synthesize workoutsTableView, workoutsArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,13 +49,13 @@
     NSString* fileAtPath = [filePath stringByAppendingPathComponent:fileName];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:fileAtPath]) {
-        
+
         //Fill the array with the exercises
         NSMutableArray* exercisesArray = [[NSMutableArray alloc] init];
         exercisesArray = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:fileAtPath] options:NSJSONReadingMutableContainers error:nil];
         return exercisesArray;
+        
     }else{
-        NSLog(@"File don't exist");
         return nil;
     }
 }
