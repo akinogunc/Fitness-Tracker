@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F4158A1A2122EC8B00DEC513 /* SWHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4158A192122EC8B00DEC513 /* SWHomeViewController.swift */; };
 		F4159D3821205DCC00E4CBF6 /* SeparatedExerciseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F4159D3721205DCC00E4CBF6 /* SeparatedExerciseCell.m */; };
 		F42C5AC020EE2ACC006C8248 /* ExerciseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F42C5ABF20EE2ACC006C8248 /* ExerciseCell.m */; };
 		F42C5AC220EE3C04006C8248 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */; };
@@ -14,7 +15,6 @@
 		F45894D8211AF559004ACEF6 /* WorkoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F45894D7211AF559004ACEF6 /* WorkoutCell.m */; };
 		F45894DB211B7421004ACEF6 /* StartWorkout.m in Sources */ = {isa = PBXBuildFile; fileRef = F45894DA211B7421004ACEF6 /* StartWorkout.m */; };
 		F47C07E120EB9E6400591C29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07E020EB9E6400591C29 /* AppDelegate.m */; };
-		F47C07E420EB9E6400591C29 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C07E320EB9E6400591C29 /* HomeViewController.m */; };
 		F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E520EB9E6500591C29 /* Main.storyboard */; };
 		F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E820EB9E6600591C29 /* Assets.xcassets */; };
 		F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */; };
@@ -52,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F4158A182122EC8B00DEC513 /* Fitness Tracker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fitness Tracker-Bridging-Header.h"; sourceTree = "<group>"; };
+		F4158A192122EC8B00DEC513 /* SWHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWHomeViewController.swift; sourceTree = "<group>"; };
 		F4159D3621205DCC00E4CBF6 /* SeparatedExerciseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparatedExerciseCell.h; sourceTree = "<group>"; };
 		F4159D3721205DCC00E4CBF6 /* SeparatedExerciseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatedExerciseCell.m; sourceTree = "<group>"; };
 		F42C5ABE20EE2ACC006C8248 /* ExerciseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseCell.h; sourceTree = "<group>"; };
@@ -66,8 +68,6 @@
 		F47C07DC20EB9E6400591C29 /* Fitness Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47C07DF20EB9E6400591C29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F47C07E020EB9E6400591C29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F47C07E220EB9E6400591C29 /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
-		F47C07E320EB9E6400591C29 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		F47C07E620EB9E6500591C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47C07E820EB9E6600591C29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F47C07EB20EB9E6600591C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -145,8 +145,7 @@
 			children = (
 				F47C07DF20EB9E6400591C29 /* AppDelegate.h */,
 				F47C07E020EB9E6400591C29 /* AppDelegate.m */,
-				F47C07E220EB9E6400591C29 /* HomeViewController.h */,
-				F47C07E320EB9E6400591C29 /* HomeViewController.m */,
+				F4158A192122EC8B00DEC513 /* SWHomeViewController.swift */,
 				F45894D3211AED3C004ACEF6 /* WorkoutsList.h */,
 				F45894D4211AED3C004ACEF6 /* WorkoutsList.m */,
 				F45894D9211B7421004ACEF6 /* StartWorkout.h */,
@@ -159,6 +158,7 @@
 				F47C07ED20EB9E6600591C29 /* Info.plist */,
 				F47C081F20ED313B00591C29 /* Helpers */,
 				F47C081820ED18C800591C29 /* Files */,
+				F4158A182122EC8B00DEC513 /* Fitness Tracker-Bridging-Header.h */,
 			);
 			path = "Fitness Tracker";
 			sourceTree = "<group>";
@@ -282,6 +282,7 @@
 				TargetAttributes = {
 					F47C07DB20EB9E6400591C29 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 					F47C07F320EB9E6600591C29 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -355,8 +356,8 @@
 				F47C081B20ED22BF00591C29 /* HalfSizePresentationController.m in Sources */,
 				F45894D5211AED3C004ACEF6 /* WorkoutsList.m in Sources */,
 				F45894DB211B7421004ACEF6 /* StartWorkout.m in Sources */,
-				F47C07E420EB9E6400591C29 /* HomeViewController.m in Sources */,
 				F47C081E20ED250800591C29 /* ExerciseCreator.m in Sources */,
+				F4158A1A2122EC8B00DEC513 /* SWHomeViewController.swift in Sources */,
 				F47C07EF20EB9E6600591C29 /* main.m in Sources */,
 				F47C07E120EB9E6400591C29 /* AppDelegate.m in Sources */,
 				F45894D8211AF559004ACEF6 /* WorkoutCell.m in Sources */,
@@ -533,6 +534,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
@@ -546,6 +548,9 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Fitness Tracker/Fitness Tracker-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -554,6 +559,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
@@ -567,6 +573,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Fitness Tracker/Fitness Tracker-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -574,6 +582,7 @@
 		F47C080C20EB9E6600591C29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
@@ -593,6 +602,7 @@
 		F47C080D20EB9E6600591C29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
@@ -612,6 +622,7 @@
 		F47C080F20EB9E6600591C29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness TrackerUITests/Info.plist";
@@ -630,6 +641,7 @@
 		F47C081020EB9E6600591C29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness TrackerUITests/Info.plist";
