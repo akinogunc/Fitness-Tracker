@@ -7,10 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "WorkoutsList.h"
+#import "WorkoutsList2.h"
 
 @interface WorkoutsListTests : XCTestCase{
-    WorkoutsList * workoutsList;
+    WorkoutsList2 * workoutsList;
 }
 
 @end
@@ -19,7 +19,7 @@
 
 - (void)setUp {
     [super setUp];
-    workoutsList = [[WorkoutsList alloc] init];
+    workoutsList = [[WorkoutsList2 alloc] init];
     
     //Creating a test exercise
     NSDictionary * exerciseDictionary = [[NSDictionary alloc] init];

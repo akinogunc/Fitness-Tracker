@@ -8,16 +8,16 @@
 
 import UIKit
 
-class SWHomeViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
 
         //Customizing navigation bar
-        self.view.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationController?.navigationBar.topItem?.title = "Fitness Tracker"
-
+        
         //TODO:Creating custom back button which will ask a question before popping the view controller
         let newBackButton:UIBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = newBackButton;
@@ -29,7 +29,7 @@ class SWHomeViewController: UIViewController {
         let startWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
         startWorkoutButton.setImage(UIImage(named: "start_button"), for: UIControlState.normal)
         startWorkoutButton.frame = CGRect(x: (screenRect.size.width - 170)/2, y: screenRect.size.height*0.3, width: 170, height: 170)
-        startWorkoutButton.addTarget(self, action: #selector(SWHomeViewController.startWorkout), for: UIControlEvents.touchUpInside)
+        startWorkoutButton.addTarget(self, action: #selector(HomeViewController.startWorkout), for: UIControlEvents.touchUpInside)
         self.view.addSubview(startWorkoutButton)
         
         //This button will open the create workout view controller
@@ -40,7 +40,7 @@ class SWHomeViewController: UIViewController {
         createWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
         createWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
         createWorkoutButton.frame = CGRect(x: 0, y: screenRect.size.height*0.8, width: screenRect.size.width/2, height: screenRect.size.height*0.2)
-        createWorkoutButton.addTarget(self, action: #selector(SWHomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
+        createWorkoutButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
         self.view.addSubview(createWorkoutButton)
 
         //This button will open the history view controller
@@ -51,7 +51,7 @@ class SWHomeViewController: UIViewController {
         historyButton.titleLabel?.textAlignment = NSTextAlignment.center
         historyButton.backgroundColor = UIColor.init(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
         historyButton.frame = CGRect(x: screenRect.size.width/2, y: screenRect.size.height*0.8, width: screenRect.size.width/2, height: screenRect.size.height*0.2)
-        historyButton.addTarget(self, action: #selector(SWHomeViewController.showHistory), for: UIControlEvents.touchUpInside)
+        historyButton.addTarget(self, action: #selector(HomeViewController.showHistory), for: UIControlEvents.touchUpInside)
         self.view.addSubview(historyButton)
 
     }
