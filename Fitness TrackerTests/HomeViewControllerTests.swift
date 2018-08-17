@@ -25,13 +25,11 @@ class HomeViewControllerTests: XCTestCase {
     func testCreateWorkoutNavigation() {
         
         homeViewController.createWorkout()
-        XCTAssertTrue((UIApplication.shared.keyWindow?.rootViewController?.isKind(of: WorkoutCreator))!)
-        // [homeViewController createWorkout];
         
-        /*   dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-         XCTAssertTrue([UIApplication.sharedApplication.keyWindow.rootViewController isKindOfClass:[WorkoutCreator class]], @"Did not navigate to Workout Creator");
-         });*/
-
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {() -> Void in
+            XCTAssertTrue(UIApplication.shared.keyWindow?.rootViewController is WorkoutCreator)
+        })
+        
     }
     
     

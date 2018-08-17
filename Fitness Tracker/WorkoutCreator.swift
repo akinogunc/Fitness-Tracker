@@ -87,11 +87,13 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func saveWorkoutWithName(workoutName : String) -> Void {
      
-        //Getting workouts array
-        var savedWorkouts = UserDefaults.standard.object(forKey: "savedWorkouts") as? NSMutableArray
+        var savedWorkouts: NSMutableArray!
         
-        if(savedWorkouts == nil){
-            savedWorkouts = NSMutableArray.init()
+        //Getting workouts array
+        if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "savedWorkouts") as? NSArray{
+            savedWorkouts = savedWorkoutsObject.mutableCopy() as! NSMutableArray
+        }else{
+            savedWorkouts = NSMutableArray()
         }
         
         //Adding name of the workout to array
@@ -152,9 +154,10 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
         let exerciseCreator = ExerciseCreator()
         exerciseCreator.transitioningDelegate = self
         exerciseCreator.modalPresentationStyle = UIModalPresentationStyle.custom
-        exerciseCreator.onDoneBlock = {
+        exerciseCreator.onDoneBlock = {() -> Void in
             self.dismiss(animated: true, completion: {
                 self.readExercisesJSON()
+                self.exercisesTableView.reloadData()
             })
         }
         self.present(exerciseCreator, animated: true, completion: nil)

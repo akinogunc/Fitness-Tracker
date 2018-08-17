@@ -11,7 +11,7 @@ import UIKit
 class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var workoutsTableView: UITableView!
-    var workoutsArray: NSMutableArray = []
+    var workoutsArray: NSMutableArray!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +32,12 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.view.addSubview(workoutsTableView)
         
         //getting workouts array from user defaults
-        if(UserDefaults.standard.object(forKey: "savedWorkouts") != nil){
-            workoutsArray = UserDefaults.standard.object(forKey: "savedWorkouts") as! NSMutableArray
+        if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "savedWorkouts") as? NSArray{
+            workoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
+        }else{
+            workoutsArray = NSMutableArray()
         }
-
+        
         //refreshing table view
         workoutsTableView.reloadData()
 
@@ -64,7 +66,7 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         var duration = "0"
         var durationInSeconds = 0
         
-        for i in 0..<workoutsArray.count {
+        for i in 0..<exercisesArray!.count {
             let exerciseDict = exercisesArray?.object(at: i) as! NSDictionary
             
             if(exerciseDict["isCardio"] as! Bool){
@@ -121,7 +123,7 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
     func startSelectedWorkout(sender: UIButton) -> Void {
         
         let startWorkout = StartWorkout()
-        startWorkout.workoutNo = Int32(sender.tag)
+        startWorkout.workoutNo = sender.tag
         
         let navController = UINavigationController.init(rootViewController: startWorkout)
         self.present(navController, animated: true, completion: nil)

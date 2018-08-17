@@ -23,7 +23,7 @@ class WorkoutCell: UITableViewCell {
         //Label of the exercise name
         workoutLabel = UILabel(frame: CGRect(x: 10, y: 0, width: screenRect.size.width/2 - 10, height: 70))
         workoutLabel.textColor = UIColor.black
-        workoutLabel.backgroundColor = UIColor.white
+        workoutLabel.backgroundColor = UIColor.clear
         workoutLabel.font = UIFont(name: "Metropolis-Medium", size: 16.0)
         workoutLabel.numberOfLines = 2
         self.addSubview(workoutLabel)
@@ -31,14 +31,14 @@ class WorkoutCell: UITableViewCell {
         //Label of the minutes of workout duration
         workoutDuration = UILabel(frame: CGRect(x: screenRect.size.width/2, y: 10, width: screenRect.size.width/4, height: 25))
         workoutDuration.textColor = UIColor.black
-        workoutDuration.backgroundColor = UIColor.white
+        workoutDuration.backgroundColor = UIColor.clear
         workoutDuration.font = UIFont(name: "Metropolis-Bold", size: 20.0)
         workoutDuration.textAlignment = NSTextAlignment.center;
         self.addSubview(workoutDuration)
 
         let restStaticLabel = UILabel(frame: CGRect(x: screenRect.size.width/2, y: 35, width: screenRect.size.width/4, height: 25))
         restStaticLabel.textColor = UIColor.black
-        restStaticLabel.backgroundColor = UIColor.white
+        restStaticLabel.backgroundColor = UIColor.clear
         restStaticLabel.font = UIFont(name: "Metropolis-Medium", size: 12.0)
         restStaticLabel.text = "minutes";
         restStaticLabel.textAlignment = NSTextAlignment.center;

@@ -28,21 +28,21 @@ class ExerciseCell: UITableViewCell {
         
             exerciseLabel = UILabel(frame: CGRect(x: 10, y: 0, width: screenRect.size.width/2 - 10, height: 70))
             exerciseLabel.textColor = UIColor.black
-            exerciseLabel.backgroundColor = UIColor.white
+            exerciseLabel.backgroundColor = UIColor.clear
             exerciseLabel.font = UIFont(name: "Metropolis-Medium", size: 16.0)
             exerciseLabel.numberOfLines = 2
             self.addSubview(exerciseLabel)
 
             restLabel = UILabel(frame: CGRect(x: screenRect.size.width/2, y: 10, width: screenRect.size.width/2 - 10, height: 25))
             restLabel.textColor = UIColor.black
-            restLabel.backgroundColor = UIColor.white
+            restLabel.backgroundColor = UIColor.clear
             restLabel.font = UIFont(name: "Metropolis-Bold", size: 20.0)
             restLabel.textAlignment = NSTextAlignment.center;
             self.addSubview(restLabel)
 
             let restStaticLabel = UILabel(frame: CGRect(x: screenRect.size.width/2, y: 35, width: screenRect.size.width/2 - 10, height: 25))
             restStaticLabel.textColor = UIColor.black
-            restStaticLabel.backgroundColor = UIColor.white
+            restStaticLabel.backgroundColor = UIColor.clear
             restStaticLabel.font = UIFont(name: "Metropolis-Medium", size: 12.0)
             restStaticLabel.text = "minutes";
             restStaticLabel.textAlignment = NSTextAlignment.center;
@@ -52,21 +52,21 @@ class ExerciseCell: UITableViewCell {
             
             exerciseLabel = UILabel(frame: CGRect(x: 10, y: 0, width: screenRect.size.width/2 - 10, height: 70))
             exerciseLabel.textColor = UIColor.black
-            exerciseLabel.backgroundColor = UIColor.white
+            exerciseLabel.backgroundColor = UIColor.clear
             exerciseLabel.font = UIFont(name: "Metropolis-Medium", size: 16.0)
             exerciseLabel.numberOfLines = 2
             self.addSubview(exerciseLabel)
 
             setsLabel = UILabel(frame: CGRect(x: screenRect.size.width/2 - 10, y: 10, width: screenRect.size.width/6, height: 25))
             setsLabel.textColor = UIColor.black
-            setsLabel.backgroundColor = UIColor.white
+            setsLabel.backgroundColor = UIColor.clear
             setsLabel.font = UIFont(name: "Metropolis-Bold", size: 20.0)
             setsLabel.textAlignment = NSTextAlignment.center;
             self.addSubview(setsLabel)
             
             let setsStaticLabel = UILabel(frame: CGRect(x: screenRect.size.width/2, y: 35, width: screenRect.size.width/6, height: 25))
             setsStaticLabel.textColor = UIColor.black
-            setsStaticLabel.backgroundColor = UIColor.white
+            setsStaticLabel.backgroundColor = UIColor.clear
             setsStaticLabel.font = UIFont(name: "Metropolis-Medium", size: 12.0)
             setsStaticLabel.text = "sets";
             setsStaticLabel.textAlignment = NSTextAlignment.center;
@@ -79,14 +79,14 @@ class ExerciseCell: UITableViewCell {
             
             repsLabel = UILabel(frame: CGRect(x: screenRect.size.width/2 + screenRect.size.width/6 - 10, y: 10, width: screenRect.size.width/6, height: 25))
             repsLabel.textColor = UIColor.black
-            repsLabel.backgroundColor = UIColor.white
+            repsLabel.backgroundColor = UIColor.clear
             repsLabel.font = UIFont(name: "Metropolis-Bold", size: 20.0)
             repsLabel.textAlignment = NSTextAlignment.center;
             self.addSubview(repsLabel)
             
             let repsStaticLabel = UILabel(frame: CGRect(x: screenRect.size.width/2 + screenRect.size.width/6 - 10, y: 35, width: screenRect.size.width/6, height: 25))
             repsStaticLabel.textColor = UIColor.black
-            repsStaticLabel.backgroundColor = UIColor.white
+            repsStaticLabel.backgroundColor = UIColor.clear
             repsStaticLabel.font = UIFont(name: "Metropolis-Medium", size: 12.0)
             repsStaticLabel.text = "reps";
             repsStaticLabel.textAlignment = NSTextAlignment.center;
@@ -99,14 +99,14 @@ class ExerciseCell: UITableViewCell {
 
             restLabel = UILabel(frame: CGRect(x: screenRect.size.width/2 + 2*screenRect.size.width/6 - 10, y: 10, width: screenRect.size.width/6, height: 25))
             restLabel.textColor = UIColor.black
-            restLabel.backgroundColor = UIColor.white
+            restLabel.backgroundColor = UIColor.clear
             restLabel.font = UIFont(name: "Metropolis-Bold", size: 20.0)
             restLabel.textAlignment = NSTextAlignment.center;
             self.addSubview(restLabel)
             
             let restStaticLabel = UILabel(frame: CGRect(x: screenRect.size.width/2 + 2*screenRect.size.width/6 - 10, y: 35, width: screenRect.size.width/6, height: 25))
             restStaticLabel.textColor = UIColor.black
-            restStaticLabel.backgroundColor = UIColor.white
+            restStaticLabel.backgroundColor = UIColor.clear
             restStaticLabel.font = UIFont(name: "Metropolis-Medium", size: 12.0)
             restStaticLabel.text = "rest";
             restStaticLabel.textAlignment = NSTextAlignment.center;

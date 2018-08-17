@@ -54,4 +54,10 @@ class WorkoutListTests: XCTestCase {
         XCTAssertTrue(val == "12")
     }
     
+    func testCalculateWorkoutDuration() -> (){
+        
+        XCTAssertNotNil(workoutsList.calculateWorkoutDuration(index: 0));
+        XCTAssertTrue(workoutsList.calculateWorkoutDuration(index: 0) == "12.0");
+
+    }
 }

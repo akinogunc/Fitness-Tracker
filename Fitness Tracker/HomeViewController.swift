@@ -41,6 +41,7 @@ class HomeViewController: UIViewController {
         createWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
         createWorkoutButton.frame = CGRect(x: 0, y: screenRect.size.height*0.8, width: screenRect.size.width/2, height: screenRect.size.height*0.2)
         createWorkoutButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
+        createWorkoutButton.accessibilityIdentifier = "Create Workout"
         self.view.addSubview(createWorkoutButton)
 
         //This button will open the history view controller
