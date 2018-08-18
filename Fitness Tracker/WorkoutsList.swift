@@ -18,7 +18,7 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.view.backgroundColor = UIColor.white
 
         //Customizing navigation bar
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: "Metropolis-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationItem.title = "Workouts"
         
         //Getting size of the device
@@ -120,7 +120,7 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         return cell!
     }
     
-    func startSelectedWorkout(sender: UIButton) -> Void {
+    @objc func startSelectedWorkout(sender: UIButton) -> Void {
         
         let startWorkout = StartWorkout()
         startWorkout.workoutNo = sender.tag

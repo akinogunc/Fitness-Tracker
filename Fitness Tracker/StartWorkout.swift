@@ -16,7 +16,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
     var isWorkoutActive = false
     var workoutNo = 0
     var exercisesTableView: UITableView!
-
+    var workoutNameWithoutExtension: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +29,10 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         let workoutsArray = UserDefaults.standard.object(forKey: "savedWorkouts") as! NSArray
         
         //removing .json extension
-        let workoutNameWithoutExtension = (workoutsArray.object(at: self.workoutNo) as! NSString).deletingPathExtension
+        workoutNameWithoutExtension = (workoutsArray.object(at: self.workoutNo) as! NSString).deletingPathExtension
 
         //Customizing navigation bar
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: "Metropolis-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationItem.title = workoutNameWithoutExtension
         
         //Creating cancel button which will close the modal
@@ -62,7 +62,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
 
     }
 
-    func startPauseWorkout() -> () {
+    @objc func startPauseWorkout() -> () {
         
         if (isWorkoutActive) {
             isWorkoutActive = false;
@@ -101,9 +101,22 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         return -1
     }
     
-    func updateTimer() -> () {
+    @objc func updateTimer() -> () {
         
         let indexOfObject = self.getIndexOfFirstUncompletedExercise()
+        
+        if (indexOfObject == -1) {
+            countdownTimer.invalidate()
+
+            let alertController = UIAlertController(title: ("You have completed the " + workoutNameWithoutExtension), message: "You can check your completed workouts on History page", preferredStyle: UIAlertControllerStyle.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: { (action) in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+            
+            return
+        }
         
         //Reducing duration of the exercise
         let separatedExerciseDict = separatedExercisesArray.object(at: indexOfObject) as! NSDictionary
@@ -235,7 +248,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
 
     }
 
-    func cancelButtonHit() -> () {
+    @objc func cancelButtonHit() -> () {
         self.dismiss(animated: true, completion: nil)
     }
     

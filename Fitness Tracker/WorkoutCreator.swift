@@ -20,7 +20,7 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
         let screenRect = UIScreen.main.bounds
 
         //Customizing navigation bar
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: "Metropolis-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationItem.title = "Create Workout"
         
         //Creating plus button which will open workout item view controller
@@ -50,7 +50,7 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
 
-    func saveWorkout() -> () {
+    @objc func saveWorkout() -> () {
         
         if(exercisesArray.count <= 0){
             
@@ -150,7 +150,7 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     }
     
-    func plusButtonHit() -> Void {
+    @objc func plusButtonHit() -> Void {
         let exerciseCreator = ExerciseCreator()
         exerciseCreator.transitioningDelegate = self
         exerciseCreator.modalPresentationStyle = UIModalPresentationStyle.custom

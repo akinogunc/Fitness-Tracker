@@ -40,7 +40,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
 
         //Adding navigation bar with items
         let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenRect.size.width, height: 50))
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: "Metropolis-Medium", size: 18)!]
+        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Medium", size: 18)!]
 
         let cancelItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ExerciseCreator.closeModal))
         let doneItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ExerciseCreator.saveExercise))
@@ -214,7 +214,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         restUpButton.isHidden = false
     }
 
-    func segmentControlAction(segment: UISegmentedControl) -> () {
+    @objc func segmentControlAction(segment: UISegmentedControl) -> () {
         if(segment.selectedSegmentIndex == 0){
             self.hideCardioUI()
             self.showWeightsUI()
@@ -224,59 +224,59 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         }
     }
 
-    func decreaseSets () -> (){
+    @objc func decreaseSets () -> (){
         if(setCount>0){
             setCount -= 1
             setsLabel.text = String(format: "%d Sets", setCount)
         }
     }
     
-    func increaseSets () -> (){
+    @objc func increaseSets () -> (){
         setCount += 1
         setsLabel.text = String(format: "%d Sets", setCount)
     }
 
-    func decreaseReps () -> (){
+    @objc func decreaseReps () -> (){
         if(repsCount>0){
             repsCount -= 1
             repsLabel.text = String(format: "%d Reps", repsCount)
         }
     }
     
-    func increaseReps () -> (){
+    @objc func increaseReps () -> (){
         repsCount += 1
         repsLabel.text = String(format: "%d Reps", repsCount)
     }
 
-    func decreaseRest () -> (){
+    @objc func decreaseRest () -> (){
         if(restSeconds>0){
             restSeconds -= 15
             restLabel.text = String(format: "%d Seconds Rest", restSeconds)
         }
     }
     
-    func increaseRest () -> (){
+    @objc func increaseRest () -> (){
         restSeconds += 15
         restLabel.text = String(format: "%d Seconds Rest", restSeconds)
     }
 
-    func decreaseCardioMinutes () -> (){
+    @objc func decreaseCardioMinutes () -> (){
         if(cardioMinutes>1){
             cardioMinutes -= 1
             cardioTimeLabel.text = String(format: "%d Minutes", cardioMinutes)
         }
     }
     
-    func increaseCardioMinutes () -> (){
+    @objc func increaseCardioMinutes () -> (){
         cardioMinutes += 1
         cardioTimeLabel.text = String(format: "%d Minutes", cardioMinutes)
     }
     
-    func closeModal() -> () {
+    @objc func closeModal() -> () {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func saveExercise() -> () {
+    @objc func saveExercise() -> () {
         print("ananan")
         if(exerciseNameTextField.text == ""){
             let alertController = UIAlertController(title: "Please enter an exercise name", message: nil, preferredStyle: UIAlertControllerStyle.alert)

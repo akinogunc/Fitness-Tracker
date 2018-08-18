@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = UIColor.white
 
         //Customizing navigation bar
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black, NSFontAttributeName: UIFont(name: "Metropolis-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationController?.navigationBar.topItem?.title = "Fitness Tracker"
         
         //TODO:Creating custom back button which will ask a question before popping the view controller
@@ -57,17 +57,17 @@ class HomeViewController: UIViewController {
 
     }
 
-    func startWorkout() -> Void {
+    @objc func startWorkout() -> Void {
         let workoutList = WorkoutsList();
         self.navigationController?.pushViewController(workoutList, animated: true)
     }
     
-    func createWorkout() -> Void {
+    @objc func createWorkout() -> Void {
         let workoutCreator = WorkoutCreator();
         self.navigationController?.pushViewController(workoutCreator, animated: true)
     }
 
-    func showHistory() -> Void {
+    @objc func showHistory() -> Void {
     }
 
     override func didReceiveMemoryWarning() {
