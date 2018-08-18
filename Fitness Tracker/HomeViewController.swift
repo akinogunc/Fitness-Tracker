@@ -55,6 +55,12 @@ class HomeViewController: UIViewController {
         historyButton.addTarget(self, action: #selector(HomeViewController.showHistory), for: UIControlEvents.touchUpInside)
         self.view.addSubview(historyButton)
 
+        let startWeek = Date().startOfWeek
+        let endWeek = Date().endOfWeek
+        
+        print(startWeek ?? "not found start date")
+        print(endWeek ?? "not found end date")
+
     }
 
     @objc func startWorkout() -> Void {
@@ -75,6 +81,19 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-
 }
+
+extension Date {
+    var startOfWeek: Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
+        return gregorian.date(byAdding: .day, value: 2, to: sunday)
+    }
+    
+    var endOfWeek: Date? {
+        let gregorian = Calendar(identifier: .gregorian)
+        guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
+        return gregorian.date(byAdding: .day, value: 8, to: sunday)
+    }
+}
+

@@ -230,6 +230,7 @@
 				F47C07D820EB9E6400591C29 /* Sources */,
 				F47C07D920EB9E6400591C29 /* Frameworks */,
 				F47C07DA20EB9E6400591C29 /* Resources */,
+				AF7265FCD56325757073D623 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -354,6 +355,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AF7265FCD56325757073D623 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Fitness Tracker/Pods-Fitness Tracker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fitness Tracker/Pods-Fitness Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BF7686AE895CCB3B1B4D038C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
