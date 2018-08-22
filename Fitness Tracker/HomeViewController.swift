@@ -55,12 +55,40 @@ class HomeViewController: UIViewController {
         historyButton.addTarget(self, action: #selector(HomeViewController.showHistory), for: UIControlEvents.touchUpInside)
         self.view.addSubview(historyButton)
 
-        let startWeek = Date().startOfWeek
-        let endWeek = Date().endOfWeek
         
-        print(startWeek ?? "not found start date")
-        print(endWeek ?? "not found end date")
+        let navigationHeight = (self.navigationController?.navigationBar.frame.size.height)!
+        let dateButtonHeight = (screenRect.size.height*0.8 - navigationHeight) / 7
+        
+        for i in 0...6 {
+            let createWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
+            createWorkoutButton.backgroundColor = UIColor(red: CGFloat(i)*30.0/255.0, green: CGFloat(i)*30.0/255.0, blue: CGFloat(i)*30.0/255.0, alpha: 1)
+            createWorkoutButton.frame = CGRect(x: 0, y: navigationHeight + CGFloat(i)*dateButtonHeight, width: screenRect.size.width/3, height: dateButtonHeight)
+            createWorkoutButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
+            self.view.addSubview(createWorkoutButton)
+            
+            
+            
+            let splitLine = UIView(frame: CGRect(x: CGFloat(i)*screenRect.size.width/7, y: (self.navigationController?.navigationBar.frame.size.height)!, width: 1, height: screenRect.size.width/7))
+            splitLine.backgroundColor = UIColor.black
+            splitLine.alpha = 0.4
+            //self.view.addSubview(splitLine)
 
+        }
+        
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+
+        
+        for i in 0...6{
+            let gregorian = Calendar(identifier: .gregorian)
+            let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+            let date = gregorian.date(byAdding: .day, value: 1 + i, to: sunday!)
+            print(String(calendar.component(.day, from: date!)) + formatter.string(from: date!))
+        }
+        
+
+        
     }
 
     @objc func startWorkout() -> Void {
@@ -87,13 +115,8 @@ extension Date {
     var startOfWeek: Date? {
         let gregorian = Calendar(identifier: .gregorian)
         guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
-        return gregorian.date(byAdding: .day, value: 2, to: sunday)
+        return gregorian.date(byAdding: .day, value: gregorian.firstWeekday, to: sunday)
     }
     
-    var endOfWeek: Date? {
-        let gregorian = Calendar(identifier: .gregorian)
-        guard let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
-        return gregorian.date(byAdding: .day, value: 8, to: sunday)
-    }
 }
 
