@@ -30,6 +30,13 @@
 		F4235E072127466B00E15B09 /* SeparatedExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B0542125C776005ED12A /* SeparatedExerciseCell.swift */; };
 		F4235E082127466B00E15B09 /* HalfSizePresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EC2783212595FF009391EC /* HalfSizePresentationController.swift */; };
 		F42C5AC220EE3C04006C8248 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */; };
+		F4394485212F21D200EAC17F /* body_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394483212F21D200EAC17F /* body_back.png */; };
+		F4394486212F21D200EAC17F /* body_front.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394484212F21D200EAC17F /* body_front.png */; };
+		F439448A212F27A300EAC17F /* chest.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394489212F27A300EAC17F /* chest.png */; };
+		F439448C212F2C2B00EAC17F /* abs.png in Resources */ = {isa = PBXBuildFile; fileRef = F439448B212F2C2B00EAC17F /* abs.png */; };
+		F439448E212F44AB00EAC17F /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = F439448D212F44AB00EAC17F /* back.png */; };
+		F4394490212F460800EAC17F /* shoulder_front.png in Resources */ = {isa = PBXBuildFile; fileRef = F439448F212F460800EAC17F /* shoulder_front.png */; };
+		F4394492212F463E00EAC17F /* shoulder_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394491212F463E00EAC17F /* shoulder_back.png */; };
 		F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E520EB9E6500591C29 /* Main.storyboard */; };
 		F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E820EB9E6600591C29 /* Assets.xcassets */; };
 		F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */; };
@@ -74,6 +81,13 @@
 		F4235E002126B4ED00E15B09 /* ExerciseCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCreator.swift; sourceTree = "<group>"; };
 		F4235E022127297200E15B09 /* StartWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkout.swift; sourceTree = "<group>"; };
 		F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Bold.otf"; sourceTree = "<group>"; };
+		F4394483212F21D200EAC17F /* body_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_back.png; sourceTree = "<group>"; };
+		F4394484212F21D200EAC17F /* body_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_front.png; sourceTree = "<group>"; };
+		F4394489212F27A300EAC17F /* chest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chest.png; sourceTree = "<group>"; };
+		F439448B212F2C2B00EAC17F /* abs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = abs.png; sourceTree = "<group>"; };
+		F439448D212F44AB00EAC17F /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		F439448F212F460800EAC17F /* shoulder_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoulder_front.png; sourceTree = "<group>"; };
+		F4394491212F463E00EAC17F /* shoulder_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoulder_back.png; sourceTree = "<group>"; };
 		F47C07DC20EB9E6400591C29 /* Fitness Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47C07E620EB9E6500591C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47C07E820EB9E6600591C29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -204,6 +218,13 @@
 				F47C081420ED147B00591C29 /* Metropolis-Medium.otf */,
 				F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */,
 				F47C081620ED18C200591C29 /* start_button.png */,
+				F4394483212F21D200EAC17F /* body_back.png */,
+				F4394484212F21D200EAC17F /* body_front.png */,
+				F4394489212F27A300EAC17F /* chest.png */,
+				F439448B212F2C2B00EAC17F /* abs.png */,
+				F439448D212F44AB00EAC17F /* back.png */,
+				F439448F212F460800EAC17F /* shoulder_front.png */,
+				F4394491212F463E00EAC17F /* shoulder_back.png */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -327,14 +348,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F439448C212F2C2B00EAC17F /* abs.png in Resources */,
 				F47C082220ED3AAE00591C29 /* up.png in Resources */,
 				F47C081720ED18C200591C29 /* start_button.png in Resources */,
 				F47C082320ED3AAE00591C29 /* down.png in Resources */,
 				F47C081520ED147C00591C29 /* Metropolis-Medium.otf in Resources */,
+				F4394485212F21D200EAC17F /* body_back.png in Resources */,
+				F439448E212F44AB00EAC17F /* back.png in Resources */,
 				F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */,
 				F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */,
 				F42C5AC220EE3C04006C8248 /* Metropolis-Bold.otf in Resources */,
 				F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */,
+				F439448A212F27A300EAC17F /* chest.png in Resources */,
+				F4394492212F463E00EAC17F /* shoulder_back.png in Resources */,
+				F4394486212F21D200EAC17F /* body_front.png in Resources */,
+				F4394490212F460800EAC17F /* shoulder_front.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,7 +622,10 @@
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = akin.fitness.tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -619,7 +650,10 @@
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = akin.fitness.tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -641,7 +675,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness TrackerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "akin.Fitness-TrackerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -661,7 +699,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness TrackerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "akin.Fitness-TrackerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -679,7 +721,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness TrackerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "akin.Fitness-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -698,7 +744,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness TrackerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "akin.Fitness-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
