@@ -37,6 +37,10 @@
 		F439448E212F44AB00EAC17F /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = F439448D212F44AB00EAC17F /* back.png */; };
 		F4394490212F460800EAC17F /* shoulder_front.png in Resources */ = {isa = PBXBuildFile; fileRef = F439448F212F460800EAC17F /* shoulder_front.png */; };
 		F4394492212F463E00EAC17F /* shoulder_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394491212F463E00EAC17F /* shoulder_back.png */; };
+		F439449421301DE300EAC17F /* biceps.png in Resources */ = {isa = PBXBuildFile; fileRef = F439449321301DE200EAC17F /* biceps.png */; };
+		F439449621301EB000EAC17F /* triceps.png in Resources */ = {isa = PBXBuildFile; fileRef = F439449521301EB000EAC17F /* triceps.png */; };
+		F43944982130211B00EAC17F /* legs_front.png in Resources */ = {isa = PBXBuildFile; fileRef = F43944972130211B00EAC17F /* legs_front.png */; };
+		F439449A213021DF00EAC17F /* legs_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394499213021DF00EAC17F /* legs_back.png */; };
 		F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E520EB9E6500591C29 /* Main.storyboard */; };
 		F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E820EB9E6600591C29 /* Assets.xcassets */; };
 		F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */; };
@@ -88,6 +92,10 @@
 		F439448D212F44AB00EAC17F /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		F439448F212F460800EAC17F /* shoulder_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoulder_front.png; sourceTree = "<group>"; };
 		F4394491212F463E00EAC17F /* shoulder_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoulder_back.png; sourceTree = "<group>"; };
+		F439449321301DE200EAC17F /* biceps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = biceps.png; sourceTree = "<group>"; };
+		F439449521301EB000EAC17F /* triceps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triceps.png; sourceTree = "<group>"; };
+		F43944972130211B00EAC17F /* legs_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legs_front.png; sourceTree = "<group>"; };
+		F4394499213021DF00EAC17F /* legs_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legs_back.png; sourceTree = "<group>"; };
 		F47C07DC20EB9E6400591C29 /* Fitness Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47C07E620EB9E6500591C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47C07E820EB9E6600591C29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -225,6 +233,10 @@
 				F439448D212F44AB00EAC17F /* back.png */,
 				F439448F212F460800EAC17F /* shoulder_front.png */,
 				F4394491212F463E00EAC17F /* shoulder_back.png */,
+				F439449321301DE200EAC17F /* biceps.png */,
+				F439449521301EB000EAC17F /* triceps.png */,
+				F43944972130211B00EAC17F /* legs_front.png */,
+				F4394499213021DF00EAC17F /* legs_back.png */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -351,11 +363,15 @@
 				F439448C212F2C2B00EAC17F /* abs.png in Resources */,
 				F47C082220ED3AAE00591C29 /* up.png in Resources */,
 				F47C081720ED18C200591C29 /* start_button.png in Resources */,
+				F439449421301DE300EAC17F /* biceps.png in Resources */,
+				F439449621301EB000EAC17F /* triceps.png in Resources */,
 				F47C082320ED3AAE00591C29 /* down.png in Resources */,
 				F47C081520ED147C00591C29 /* Metropolis-Medium.otf in Resources */,
+				F439449A213021DF00EAC17F /* legs_back.png in Resources */,
 				F4394485212F21D200EAC17F /* body_back.png in Resources */,
 				F439448E212F44AB00EAC17F /* back.png in Resources */,
 				F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */,
+				F43944982130211B00EAC17F /* legs_front.png in Resources */,
 				F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */,
 				F42C5AC220EE3C04006C8248 /* Metropolis-Bold.otf in Resources */,
 				F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */,

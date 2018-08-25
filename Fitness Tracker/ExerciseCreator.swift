@@ -102,7 +102,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
 
         setsUpButton = UIButton(type: UIButtonType.custom)
         setsUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
-        setsUpButton.frame = CGRect(x: screenRect.size.width - 35, y: 170, width: 30, height: 30)
+        setsUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 170, width: 30, height: 30)
         setsUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseSets), for: UIControlEvents.touchUpInside)
         self.view.addSubview(setsUpButton)
 
@@ -125,7 +125,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         
         repsUpButton = UIButton(type: UIButtonType.custom)
         repsUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
-        repsUpButton.frame = CGRect(x: screenRect.size.width - 35, y: 220, width: 30, height: 30)
+        repsUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 220, width: 30, height: 30)
         repsUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseReps), for: UIControlEvents.touchUpInside)
         self.view.addSubview(repsUpButton)
 
@@ -147,7 +147,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         
         restUpButton = UIButton(type: UIButtonType.custom)
         restUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
-        restUpButton.frame = CGRect(x: screenRect.size.width - 35, y: 270, width: 30, height: 30)
+        restUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 270, width: 30, height: 30)
         restUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseRest), for: UIControlEvents.touchUpInside)
         self.view.addSubview(restUpButton)
 
@@ -170,7 +170,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         
         cardioUpButton = UIButton(type: UIButtonType.custom)
         cardioUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
-        cardioUpButton.frame = CGRect(x: screenRect.size.width - 35, y: 180, width: 30, height: 30)
+        cardioUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 180, width: 30, height: 30)
         cardioUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseCardioMinutes), for: UIControlEvents.touchUpInside)
         self.view.addSubview(cardioUpButton)
 

@@ -14,11 +14,15 @@ class HomeViewController: UIViewController {
     let blue = UIColor(red: 113.0/255.0, green: 201.0/255.0, blue: 246.0/255.0, alpha: 1)
     let red = UIColor(red: 200.0/255.0, green: 61.0/255.0, blue: 76.0/255.0, alpha: 1)
     let green = UIColor(red: 77.0/255.0, green: 210.0/255.0, blue: 164.0/255.0, alpha: 1)
-
+    let orange = UIColor.init(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
+    let darkBlue = UIColor.init(red: 32.0/255.0, green: 72.0/255.0, blue: 190.0/255.0, alpha: 1)
+    let darkGreen = UIColor.init(red: 18.0/255.0, green: 121.0/255.0, blue: 21.0/255.0, alpha: 1)
+    var colors: NSMutableArray = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-
+        
         //Customizing navigation bar
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationController?.navigationBar.topItem?.title = "Fitness Tracker"
@@ -54,12 +58,21 @@ class HomeViewController: UIViewController {
         self.view.addSubview(historyButton)
 
         
+        colors = [yellow, blue, red, green, orange, darkBlue, darkGreen]
+
         self.initializeWeeklyCalendar()
         self.initializeBodyFrame()
-        self.addWorkedBodyPartWithColor(partName: "chest", color: yellow)
-        self.addWorkedBodyPartWithColor(partName: "abs", color: blue)
-        self.addWorkedBodyPartWithColor(partName: "back", color: red)
-        self.addWorkedBodyPartWithColor(partName: "shoulders", color: green)
+        
+        self.addWorkedBodyPartWithColor(partName: "shoulders", color: yellow)
+        self.addWorkedBodyPartWithColor(partName: "abs", color: yellow)
+
+        self.addWorkedBodyPartWithColor(partName: "back", color: blue)
+        self.addWorkedBodyPartWithColor(partName: "biceps", color: blue)
+        
+        self.addWorkedBodyPartWithColor(partName: "chest", color: red)
+        self.addWorkedBodyPartWithColor(partName: "triceps", color: red)
+
+        self.addWorkedBodyPartWithColor(partName: "legs", color: green)
 
     }
 
@@ -94,15 +107,50 @@ class HomeViewController: UIViewController {
                 createWorkoutButton.backgroundColor = UIColor(red: 194.0/255.0, green: 194.0/255.0, blue: 194.0/255.0, alpha: 1)
             }
             
-            let dateLabel = UILabel(frame: CGRect(x: 0, y: 0, width: createWorkoutButton.frame.size.width, height: createWorkoutButton.frame.size.height*0.4))
-            dateLabel.textColor = UIColor(red: 120.0/255.0, green: 120.0/255.0, blue: 120.0/255.0, alpha: 1)
-            dateLabel.backgroundColor = UIColor.clear
-            dateLabel.font = UIFont(name: "Metropolis-Medium", size: 14.0)
-            dateLabel.numberOfLines = 1
-            dateLabel.textAlignment = NSTextAlignment.center
-            dateLabel.text = formatter.string(from: date!)
-            createWorkoutButton.addSubview(dateLabel)
+            let dayLabel = UILabel(frame: CGRect(x: 0, y: 0, width: createWorkoutButton.frame.size.width, height: createWorkoutButton.frame.size.height*0.4))
+            dayLabel.textColor = UIColor(red: 120.0/255.0, green: 120.0/255.0, blue: 120.0/255.0, alpha: 1)
+            dayLabel.backgroundColor = UIColor.clear
+            dayLabel.font = UIFont(name: "Metropolis-Medium", size: 14.0)
+            dayLabel.numberOfLines = 1
+            dayLabel.textAlignment = NSTextAlignment.center
+            dayLabel.text = formatter.string(from: date!)
+            createWorkoutButton.addSubview(dayLabel)
             
+            
+            
+            
+            if(i == 0){
+                let workoutCircle = UIView(frame: CGRect(x: dateButtonWidth/4, y: dateButtonWidth*1.3, width: dateButtonWidth/2, height: dateButtonWidth/2))
+                workoutCircle.backgroundColor = colors[0] as? UIColor
+                workoutCircle.layer.cornerRadius = workoutCircle.frame.size.width/2
+                workoutCircle.clipsToBounds = true
+                createWorkoutButton.addSubview(workoutCircle)
+            }
+            
+            if(i == 2){
+                let workoutCircle = UIView(frame: CGRect(x: dateButtonWidth/4, y: dateButtonWidth*1.3, width: dateButtonWidth/2, height: dateButtonWidth/2))
+                workoutCircle.backgroundColor = colors[1] as? UIColor
+                workoutCircle.layer.cornerRadius = workoutCircle.frame.size.width/2
+                workoutCircle.clipsToBounds = true
+                createWorkoutButton.addSubview(workoutCircle)
+            }
+
+            if(i == 3){
+                let workoutCircle = UIView(frame: CGRect(x: dateButtonWidth/4, y: dateButtonWidth*1.3, width: dateButtonWidth/2, height: dateButtonWidth/2))
+                workoutCircle.backgroundColor = colors[2] as? UIColor
+                workoutCircle.layer.cornerRadius = workoutCircle.frame.size.width/2
+                workoutCircle.clipsToBounds = true
+                createWorkoutButton.addSubview(workoutCircle)
+            }
+
+            if(i == 5){
+                let workoutCircle = UIView(frame: CGRect(x: dateButtonWidth/4, y: dateButtonWidth*1.3, width: dateButtonWidth/2, height: dateButtonWidth/2))
+                workoutCircle.backgroundColor = colors[3] as? UIColor
+                workoutCircle.layer.cornerRadius = workoutCircle.frame.size.width/2
+                workoutCircle.clipsToBounds = true
+                createWorkoutButton.addSubview(workoutCircle)
+            }
+
         }
 
     }
@@ -131,7 +179,7 @@ class HomeViewController: UIViewController {
         let bodyImagesY = (self.navigationController?.navigationBar.frame.maxY)! + 2*screenRect.size.width/7
         let bottomBarHeight = screenRect.size.height*0.2
 
-        if partName == "chest" || partName == "abs" {
+        if partName == "chest" || partName == "abs" || partName == "biceps"{
             let bodyFront = UIImageView(frame: CGRect(x: 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
             bodyFront.image = UIImage(named: partName)
             bodyFront.image = bodyFront.image?.withRenderingMode(.alwaysTemplate)
@@ -140,7 +188,7 @@ class HomeViewController: UIViewController {
             self.view.addSubview(bodyFront)
         }
         
-        if partName == "back" {
+        if partName == "back" || partName == "triceps"{
             let bodyBack = UIImageView(frame: CGRect(x: screenRect.size.width/2 + 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
             bodyBack.image = UIImage(named: partName)
             bodyBack.image = bodyBack.image?.withRenderingMode(.alwaysTemplate)
@@ -165,6 +213,24 @@ class HomeViewController: UIViewController {
             self.view.addSubview(bodyBack)
 
         }
+        
+        if partName == "legs" {
+            let bodyFront = UIImageView(frame: CGRect(x: 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
+            bodyFront.image = UIImage(named: "legs_front")
+            bodyFront.image = bodyFront.image?.withRenderingMode(.alwaysTemplate)
+            bodyFront.tintColor = color
+            bodyFront.contentMode = UIViewContentMode.scaleAspectFit
+            self.view.addSubview(bodyFront)
+            
+            let bodyBack = UIImageView(frame: CGRect(x: screenRect.size.width/2 + 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
+            bodyBack.image = UIImage(named: "legs_back")
+            bodyBack.image = bodyBack.image?.withRenderingMode(.alwaysTemplate)
+            bodyBack.tintColor = color
+            bodyBack.contentMode = UIViewContentMode.scaleAspectFit
+            self.view.addSubview(bodyBack)
+            
+        }
+
     }
     
     @objc func startWorkout() -> Void {

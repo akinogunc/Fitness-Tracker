@@ -16,5 +16,7 @@ Progress tracker will show you which parts of your body you worked and how many 
 
 <p align="center">
   <img src="/screenshots/ss1.png?raw=true" width="300"/>
-  <img src="/screenshots/ss2v2.png?raw=true" width="300"/>
+  <img src="/screenshots/ss2.png?raw=true" width="300"/>
+  <img src="/screenshots/ss3.png?raw=true" width="300"/>
+  <img src="/screenshots/ss4.png?raw=true" width="300"/>
 </p>
