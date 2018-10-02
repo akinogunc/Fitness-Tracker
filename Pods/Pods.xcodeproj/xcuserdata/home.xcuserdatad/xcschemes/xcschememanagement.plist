@@ -4,12 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>PKHUD.xcscheme</key>
+		<key>Pods-Fitness Tracker-Fitness TrackerTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-Fitness Tracker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>xModalController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>xRadioButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

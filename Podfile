@@ -3,5 +3,11 @@
 
 target 'Fitness Tracker' do
     use_frameworks!
-    pod 'PKHUD', '~> 5.0'
+    pod 'xModalController'
+    pod 'xRadioButton'
+    
+    target 'Fitness TrackerTests' do
+        inherit! :complete
+    end
+
 end

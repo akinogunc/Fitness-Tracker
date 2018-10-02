@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import xModalController
 
-class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSource, UIViewControllerTransitioningDelegate {
+class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutSaverDelegate {
 
     var exercisesArray: NSMutableArray  = []
     var exercisesTableView: UITableView!
-    
+    let screenRect = UIScreen.main.bounds
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //Getting size of the device
-        let screenRect = UIScreen.main.bounds
 
         //Customizing navigation bar
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
@@ -61,57 +62,24 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
             
         }else{
             
-            let alertController = UIAlertController(title: "Name your workout", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addTextField(configurationHandler: {(textField : UITextField!) -> Void in
-                textField.placeholder = "Chest Workout"
-            })
-            
-            let confirmAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { alert -> () in
-                let textField = alertController.textFields![0] as UITextField
-                
-                if(textField.text != ""){
-                    self.saveWorkoutWithName(workoutName: textField.text!)
-                }
-                
-            })
-            alertController.addAction(confirmAction)
-
-            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-            alertController.addAction(cancelAction)
-
-            self.present(alertController, animated: true, completion: nil)
+            let modalVc = WorkoutSaver()
+            modalVc.delegate = self
+            let modalFrame = CGRect(x: 20, y: (screenRect.size.height-350)/2, width: screenRect.size.width - 40, height: 350)
+            let modalController = xModalController(parentViewController: self, modalViewController: modalVc, modalFrame: modalFrame)
+            modalController.showModal()
 
         }
 
     }
 
-    func saveWorkoutWithName(workoutName : String) -> Void {
-     
-        var savedWorkouts: NSMutableArray!
-        
-        //Getting workouts array
-        if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "savedWorkouts") as? NSArray{
-            savedWorkouts = savedWorkoutsObject.mutableCopy() as! NSMutableArray
-        }else{
-            savedWorkouts = NSMutableArray()
-        }
-        
-        //Adding name of the workout to array
-        savedWorkouts?.add(workoutName)
-        
-        //Changing name of JSON file as workout name
-        self.changeJSONName(newName: workoutName)
-        
-        UserDefaults.standard.set(savedWorkouts, forKey: "savedWorkouts")
-        UserDefaults.standard.synchronize()
-
+    func saveCompleted(workoutName : String) {
+        self.changeJSONName(newName: workoutName + ".json")
         self.navigationController?.popViewController(animated: true)
-
     }
     
-    //Giving a name to the workout JSON file
+    //Giving a name to the workout JSON file and saving it
     func changeJSONName(newName : String) -> Void {
-        
+
         let filePath = NSString(string: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
         var fileAtPath = filePath.strings(byAppendingPaths: ["temp.json"])
 
@@ -151,16 +119,19 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @objc func plusButtonHit() -> Void {
+
         let exerciseCreator = ExerciseCreator()
-        exerciseCreator.transitioningDelegate = self
-        exerciseCreator.modalPresentationStyle = UIModalPresentationStyle.custom
         exerciseCreator.onDoneBlock = {() -> Void in
             self.dismiss(animated: true, completion: {
                 self.readExercisesJSON()
                 self.exercisesTableView.reloadData()
             })
         }
-        self.present(exerciseCreator, animated: true, completion: nil)
+
+        let modalFrame = CGRect(x: 0, y: self.view.bounds.height / 2, width: self.view.bounds.width, height: self.view.bounds.height / 2)
+        let modalController = xModalController(parentViewController: self, modalViewController: exerciseCreator, modalFrame: modalFrame)
+        modalController.showModal()
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -204,11 +175,6 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell!
 
-    }
-
-    //This delegate method is needed for half-sized modal view controller
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return HalfSizePresentationController(presentedViewController: presented, presenting: presenting)
     }
     
     override func didReceiveMemoryWarning() {

@@ -29,7 +29,8 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         let workoutsArray = UserDefaults.standard.object(forKey: "savedWorkouts") as! NSArray
         
         //removing .json extension
-        workoutNameWithoutExtension = (workoutsArray.object(at: self.workoutNo) as! NSString).deletingPathExtension
+        let workoutDict = workoutsArray.object(at: self.workoutNo) as! NSDictionary
+        workoutNameWithoutExtension = (workoutDict["name"] as! NSString).deletingPathExtension
 
         //Customizing navigation bar
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
@@ -58,7 +59,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.view.addSubview(startPauseWorkoutButton)
 
         //Get the json data with name of the file
-        self.readWorkoutJSONbyName(name: (workoutsArray.object(at: self.workoutNo) as! String))
+        self.readWorkoutJSONbyName(name: workoutDict["name"] as! String)
 
     }
 

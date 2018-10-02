@@ -277,7 +277,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
     }
     
     @objc func saveExercise() -> () {
-        print("ananan")
+
         if(exerciseNameTextField.text == ""){
             let alertController = UIAlertController(title: "Please enter an exercise name", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)

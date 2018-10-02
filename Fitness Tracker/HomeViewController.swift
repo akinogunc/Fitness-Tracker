@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import xModalController
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     let yellow = UIColor(red: 248.0/255.0, green: 229.0/255.0, blue: 28.0/255.0, alpha: 1)
     let blue = UIColor(red: 113.0/255.0, green: 201.0/255.0, blue: 246.0/255.0, alpha: 1)
@@ -73,6 +74,16 @@ class HomeViewController: UIViewController {
         self.addWorkedBodyPartWithColor(partName: "triceps", color: red)
 
         self.addWorkedBodyPartWithColor(partName: "legs", color: green)
+
+        
+        /*DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            
+            let modalVc = WorkoutSaver()
+            let modalFrame = CGRect(x: 20, y: 300, width: self.view.bounds.width - 40, height: 350)
+            let modalController = xModalController(parentViewController: self, modalViewController: modalVc, modalFrame: modalFrame)
+            modalController.showModal()
+            
+        })*/
 
     }
 

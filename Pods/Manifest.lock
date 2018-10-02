@@ -1,16 +1,20 @@
 PODS:
-  - PKHUD (5.0.0)
+  - xModalController (0.2.0)
+  - xRadioButton (0.1.0)
 
 DEPENDENCIES:
-  - PKHUD (~> 5.0)
+  - xModalController
+  - xRadioButton
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - PKHUD
+    - xModalController
+    - xRadioButton
 
 SPEC CHECKSUMS:
-  PKHUD: 3c001512c6e002091184197a8de7a20420786e3b
+  xModalController: 501e428ae280aaac5f7a9f94e9e491c2ce26b19a
+  xRadioButton: af91f05e4a3bd2bbcf8dc8b77df393e945103323
 
-PODFILE CHECKSUM: ba14c2425c0cc9ee612d8eef8ac2111de122967d
+PODFILE CHECKSUM: 32fd528408780c8a1bd14b3f33e4f5e0f43e98d3
 
 COCOAPODS: 1.5.3

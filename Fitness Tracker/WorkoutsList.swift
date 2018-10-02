@@ -33,10 +33,12 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         //getting workouts array from user defaults
         if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "savedWorkouts") as? NSArray{
-            workoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
+            workoutsArray = savedWorkoutsObject.mutableCopy() as? NSMutableArray
         }else{
             workoutsArray = NSMutableArray()
         }
+        
+        print(workoutsArray)
         
         //refreshing table view
         workoutsTableView.reloadData()
@@ -62,7 +64,8 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
 
     func calculateWorkoutDuration(index : NSInteger) -> String {
         
-        let exercisesArray = self.readWorkoutJSONbyName(name: workoutsArray.object(at: index) as! NSString)
+        let workoutDict = workoutsArray.object(at: index) as! NSDictionary
+        let exercisesArray = self.readWorkoutJSONbyName(name: workoutDict["name"] as! NSString)
         var duration = "0"
         var durationInSeconds = 0
         
@@ -109,8 +112,8 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         
         //Setting exercise values from json array
-        let workoutName = workoutsArray.object(at: indexPath.row) as! NSString
-        let workoutNameWithoutExtension = workoutName.deletingPathExtension
+        let workoutName = workoutsArray.object(at: indexPath.row) as! NSDictionary
+        let workoutNameWithoutExtension = (workoutName["name"] as! NSString).deletingPathExtension
         cell?.workoutLabel.text = workoutNameWithoutExtension
         cell?.workoutDuration.text = self.calculateWorkoutDuration(index: indexPath.row)
         cell?.startWorkoutButton.tag = indexPath.row
