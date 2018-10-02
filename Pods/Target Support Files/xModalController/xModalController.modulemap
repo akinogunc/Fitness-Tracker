@@ -1,0 +1,6 @@
+framework module xModalController {
+  umbrella header "xModalController-umbrella.h"
+
+  export *
+  module * { export * }
+}
