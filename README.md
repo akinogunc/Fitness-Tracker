@@ -3,7 +3,7 @@
 Fitness Tracker is an app with three main features:
 
 **1. Creating workouts:**
-The most important thing on the creating workout feature is rest times. When you create your workout, you enter duration of the rest and while doing your workout, you will rest exact same time between sets.
+The most important thing on the creating workout feature is rest times. When you create your workout, you enter duration of the rest and while doing your workout, you will rest exact same time between sets and this will increase your productivity.
 
 **2. Workout Assistant:**
 Workout assistant will guide you through your workout and warn you to work or rest. This will reduce your workout duration and increase workout quality.
