@@ -38,8 +38,6 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
             workoutsArray = NSMutableArray()
         }
         
-        print(workoutsArray)
-        
         //refreshing table view
         workoutsTableView.reloadData()
 

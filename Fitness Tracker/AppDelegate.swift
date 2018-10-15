@@ -6,17 +6,69 @@
 //  Copyright © 2018 Maruf Nebil Ogunc. All rights reserved.
 //
 import UIKit
+import WatchConnectivity
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        if WCSession.isSupported() {
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
+
         return true
     }
     
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        
+        if (message["message"] as! String == "send_workout_list"){
+            
+            var workoutsArray = NSMutableArray()
+            
+            if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "savedWorkouts") as? NSArray{
+                workoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
+            }
+
+            replyHandler(["message": workoutsArray])
+            
+        }else if((message["message"] as! NSString).pathExtension == "json"){
+            
+            let workoutArray = readWorkoutJSONbyName(name: message["message"] as! String)
+            replyHandler(["message": workoutArray])
+
+        }
+        
+    }
+    
+    func readWorkoutJSONbyName(name: String) -> NSMutableArray {
+        
+        let filePath = NSString(string: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
+        var fileAtPath = filePath.strings(byAppendingPaths: [name])
+        
+        if (FileManager.default.fileExists(atPath: fileAtPath[0])) {
+            
+            let fileData = try! Data.init(contentsOf: URL.init(fileURLWithPath: fileAtPath[0]))
+            let jsonObject = try! JSONSerialization.jsonObject(with: fileData, options: JSONSerialization.ReadingOptions.mutableContainers)
+            let rawExercisesArray = jsonObject as! NSMutableArray
+            return rawExercisesArray
+        }else{
+            print("File don't exist")
+            return NSMutableArray()
+        }
+        
+    }
+
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) { }
+    
+    func sessionDidDeactivate(_ session: WCSession) { }
+
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

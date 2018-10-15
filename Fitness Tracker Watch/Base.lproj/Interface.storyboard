@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14313.18" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Uvb-gS-F3P">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14238.10"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Metropolis-Bold.otf">
+            <string>Metropolis-Bold</string>
+        </array>
+        <array key="Metropolis-Medium.otf">
+            <string>Metropolis-Medium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--workout-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="workout" hidesWhenLoading="NO" id="AgC-eL-Hgc" customClass="WorkoutController" customModule="Fitness_Tracker_Watch_Extension">
+                    <items>
+                        <label width="1" height="41" alignment="left" text="00:00" textAlignment="center" id="5hL-wY-QYl">
+                            <color key="textColor" red="0.98039215690000003" green="0.066666666669999999" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" name="Metropolis-Medium" family="Metropolis" pointSize="32"/>
+                        </label>
+                        <label width="1" height="41" alignment="left" text="Bench press" textAlignment="center" numberOfLines="2" id="pef-hz-rmj">
+                            <fontDescription key="font" name="Metropolis-Medium" family="Metropolis" pointSize="18"/>
+                        </label>
+                        <group alignment="center" verticalAlignment="center" spacing="14" id="4bK-Tm-ymN">
+                            <items>
+                                <button width="60" height="60" alignment="center" verticalAlignment="center" backgroundImage="start" id="zFi-tl-96G">
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <connections>
+                                        <action selector="startAction" destination="AgC-eL-Hgc" id="Xzc-xB-8fS"/>
+                                    </connections>
+                                </button>
+                                <button width="60" height="60" alignment="left" backgroundImage="cancel" id="y9K-gx-8Fv">
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                    <connections>
+                                        <action selector="cancelAction" destination="AgC-eL-Hgc" id="3jd-rl-g2w"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                        </group>
+                        <group alignment="center" verticalAlignment="center" hidden="YES" spacing="14" id="x7n-qS-0Iv">
+                            <items>
+                                <button width="1" height="50" alignment="center" verticalAlignment="bottom" title="Done" id="xtg-vQ-gld">
+                                    <color key="backgroundColor" red="0.52383803309999999" green="1" blue="0.27524084840000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" name="Metropolis-Bold" family="Metropolis" pointSize="18"/>
+                                    <connections>
+                                        <action selector="doneAction" destination="AgC-eL-Hgc" id="YnC-Dr-FQn"/>
+                                    </connections>
+                                </button>
+                            </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="10" bottom="0.0"/>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="cancelButton" destination="y9K-gx-8Fv" id="pOu-Ya-Qke"/>
+                        <outlet property="doneButton" destination="xtg-vQ-gld" id="e4h-9E-BJn"/>
+                        <outlet property="doneGroup" destination="x7n-qS-0Iv" id="PiU-bt-MoF"/>
+                        <outlet property="exerciseName" destination="pef-hz-rmj" id="acu-Dg-tMf"/>
+                        <outlet property="startButton" destination="zFi-tl-96G" id="lyC-wN-KEK"/>
+                        <outlet property="startGroup" destination="4bK-Tm-ymN" id="ahP-WT-06r"/>
+                        <outlet property="timerLabel" destination="5hL-wY-QYl" id="wnQ-oj-zWK"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="4" y="248"/>
+        </scene>
+        <!--home-->
+        <scene sceneID="4Y4-Tf-gbE">
+            <objects>
+                <controller identifier="home" id="Uvb-gS-F3P" customClass="InterfaceController" customModule="Fitness_Tracker_Watch_Extension">
+                    <items>
+                        <table alignment="left" id="CSW-Kn-6iA">
+                            <items>
+                                <tableRow identifier="WorkoutRow" id="ail-Fj-OrZ" customClass="WorkoutRowController" customModule="Fitness_Tracker_Watch_Extension">
+                                    <group key="rootItem" width="1" height="50" alignment="left" layout="vertical" spacing="6" id="rNu-Wu-XwR">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Chest workout" numberOfLines="2" id="o9b-Rq-6lI">
+                                                <fontDescription key="font" type="system" weight="medium" pointSize="17"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="workoutName" destination="o9b-Rq-6lI" id="mR3-lp-abj"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="workoutsTable" destination="CSW-Kn-6iA" id="UX2-09-7DV"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-280" y="248"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="151" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Fitness_Tracker_Watch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="Niz-AI-uX2">
+            <objects>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="Fitness_Tracker_Watch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
+        </scene>
+    </scenes>
+</document>

@@ -21,6 +21,14 @@
 		E7EC278221257C14009391EC /* WorkoutsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EC277E21246CD2009391EC /* WorkoutsList.swift */; };
 		E7EC278621259BBD009391EC /* WorkoutCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EC278521259BBD009391EC /* WorkoutCreator.swift */; };
 		E7EC27882125C2DD009391EC /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EC27872125C2DD009391EC /* WorkoutCell.swift */; };
+		F40C94022166809C0032E397 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F40C94002166809C0032E397 /* Interface.storyboard */; };
+		F40C94042166809D0032E397 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F40C94032166809D0032E397 /* Assets.xcassets */; };
+		F40C940B2166809E0032E397 /* Fitness Tracker Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F40C940A2166809E0032E397 /* Fitness Tracker Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F40C94102166809E0032E397 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C940F2166809E0032E397 /* InterfaceController.swift */; };
+		F40C94122166809E0032E397 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C94112166809E0032E397 /* ExtensionDelegate.swift */; };
+		F40C94142166809E0032E397 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C94132166809E0032E397 /* NotificationController.swift */; };
+		F40C94162166809E0032E397 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F40C94152166809E0032E397 /* Assets.xcassets */; };
+		F40C941B2166809E0032E397 /* Fitness Tracker Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F40C93FE2166809C0032E397 /* Fitness Tracker Watch.app */; };
 		F4158A1A2122EC8B00DEC513 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4158A192122EC8B00DEC513 /* HomeViewController.swift */; };
 		F4211B432163E56A00101992 /* WorkoutSaverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4211B422163E56A00101992 /* WorkoutSaverTests.swift */; };
 		F4211B442163E5D800101992 /* WorkoutSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F459D04B2135C5700095609F /* WorkoutSaver.swift */; };
@@ -30,7 +38,12 @@
 		F4235E052127466B00E15B09 /* ExerciseCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4235E002126B4ED00E15B09 /* ExerciseCreator.swift */; };
 		F4235E062127466B00E15B09 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B05B2125CCEA005ED12A /* ExerciseCell.swift */; };
 		F4235E072127466B00E15B09 /* SeparatedExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E726B0542125C776005ED12A /* SeparatedExerciseCell.swift */; };
+		F42976DC21738DB9005A0F1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F40C94032166809D0032E397 /* Assets.xcassets */; };
+		F42976DD2173BA7E005A0F1D /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F47C081420ED147B00591C29 /* Metropolis-Medium.otf */; };
+		F42976DE2173BA7F005A0F1D /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F47C081420ED147B00591C29 /* Metropolis-Medium.otf */; };
 		F42C5AC220EE3C04006C8248 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */; };
+		F42D5131216F301B00CA70EB /* WorkoutRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D5130216F301B00CA70EB /* WorkoutRowController.swift */; };
+		F42D51332170895600CA70EB /* WorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D51322170895600CA70EB /* WorkoutController.swift */; };
 		F4394485212F21D200EAC17F /* body_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394483212F21D200EAC17F /* body_back.png */; };
 		F4394486212F21D200EAC17F /* body_front.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394484212F21D200EAC17F /* body_front.png */; };
 		F439448A212F27A300EAC17F /* chest.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394489212F27A300EAC17F /* chest.png */; };
@@ -55,6 +68,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F40C940C2166809E0032E397 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47C07D420EB9E6400591C29 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F40C94092166809E0032E397;
+			remoteInfo = "Fitness Tracker Watch Extension";
+		};
+		F40C94192166809E0032E397 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F47C07D420EB9E6400591C29 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F40C93FD2166809C0032E397;
+			remoteInfo = "Fitness Tracker Watch";
+		};
 		F47C07F520EB9E6600591C29 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F47C07D420EB9E6400591C29 /* Project object */;
@@ -71,6 +98,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F40C94212166809E0032E397 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F40C940B2166809E0032E397 /* Fitness Tracker Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F40C94232166809E0032E397 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				F40C941B2166809E0032E397 /* Fitness Tracker Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		026045D8557D19D93A60944B /* Pods-Fitness Tracker-Fitness TrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fitness Tracker-Fitness TrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fitness Tracker-Fitness TrackerTests/Pods-Fitness Tracker-Fitness TrackerTests.release.xcconfig"; sourceTree = "<group>"; };
 		04742CCE59C23BD16FBF2535 /* Pods-Fitness Tracker-Fitness TrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fitness Tracker-Fitness TrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fitness Tracker-Fitness TrackerTests/Pods-Fitness Tracker-Fitness TrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,11 +137,24 @@
 		E7EC278021257B7F009391EC /* WorkoutListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListTests.swift; sourceTree = "<group>"; };
 		E7EC278521259BBD009391EC /* WorkoutCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCreator.swift; sourceTree = "<group>"; };
 		E7EC27872125C2DD009391EC /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
+		F40C93FE2166809C0032E397 /* Fitness Tracker Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness Tracker Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F40C94012166809C0032E397 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		F40C94032166809D0032E397 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F40C94052166809D0032E397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F40C940A2166809E0032E397 /* Fitness Tracker Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Fitness Tracker Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F40C940F2166809E0032E397 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		F40C94112166809E0032E397 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		F40C94132166809E0032E397 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		F40C94152166809E0032E397 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F40C94172166809E0032E397 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F40C94182166809E0032E397 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		F4158A192122EC8B00DEC513 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F4211B422163E56A00101992 /* WorkoutSaverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSaverTests.swift; sourceTree = "<group>"; };
 		F4235E002126B4ED00E15B09 /* ExerciseCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCreator.swift; sourceTree = "<group>"; };
 		F4235E022127297200E15B09 /* StartWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkout.swift; sourceTree = "<group>"; };
 		F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Bold.otf"; sourceTree = "<group>"; };
+		F42D5130216F301B00CA70EB /* WorkoutRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRowController.swift; sourceTree = "<group>"; };
+		F42D51322170895600CA70EB /* WorkoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutController.swift; sourceTree = "<group>"; };
 		F4394483212F21D200EAC17F /* body_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_back.png; sourceTree = "<group>"; };
 		F4394484212F21D200EAC17F /* body_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_front.png; sourceTree = "<group>"; };
 		F4394489212F27A300EAC17F /* chest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chest.png; sourceTree = "<group>"; };
@@ -117,10 +182,20 @@
 		F47C082120ED3AAE00591C29 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		F48039352127611200D08AAE /* ExerciseCreatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCreatorTests.swift; sourceTree = "<group>"; };
 		F48039372127630800D08AAE /* TestCreateExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCreateExercise.swift; sourceTree = "<group>"; };
+		F4CCF5D7216B4BA40028F653 /* Fitness Tracker Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker Watch.entitlements"; sourceTree = "<group>"; };
+		F4CCF5D8216B4BC70028F653 /* Fitness Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker.entitlements"; sourceTree = "<group>"; };
+		F4CCF5D9216B4BCE0028F653 /* Fitness Tracker Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker Watch Extension.entitlements"; sourceTree = "<group>"; };
 		FFFA5814F8DA9D3A492996E8 /* Pods-Fitness Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fitness Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fitness Tracker/Pods-Fitness Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F40C94072166809E0032E397 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F47C07D920EB9E6400591C29 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,12 +242,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F40C93FF2166809C0032E397 /* Fitness Tracker Watch */ = {
+			isa = PBXGroup;
+			children = (
+				F4CCF5D7216B4BA40028F653 /* Fitness Tracker Watch.entitlements */,
+				F40C94002166809C0032E397 /* Interface.storyboard */,
+				F40C94032166809D0032E397 /* Assets.xcassets */,
+				F40C94052166809D0032E397 /* Info.plist */,
+			);
+			path = "Fitness Tracker Watch";
+			sourceTree = "<group>";
+		};
+		F40C940E2166809E0032E397 /* Fitness Tracker Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F4CCF5D9216B4BCE0028F653 /* Fitness Tracker Watch Extension.entitlements */,
+				F40C940F2166809E0032E397 /* InterfaceController.swift */,
+				F42D51322170895600CA70EB /* WorkoutController.swift */,
+				F40C94112166809E0032E397 /* ExtensionDelegate.swift */,
+				F40C94132166809E0032E397 /* NotificationController.swift */,
+				F42D5130216F301B00CA70EB /* WorkoutRowController.swift */,
+				F40C94152166809E0032E397 /* Assets.xcassets */,
+				F40C94172166809E0032E397 /* Info.plist */,
+				F40C94182166809E0032E397 /* PushNotificationPayload.apns */,
+			);
+			path = "Fitness Tracker Watch Extension";
+			sourceTree = "<group>";
+		};
 		F47C07D320EB9E6400591C29 = {
 			isa = PBXGroup;
 			children = (
 				F47C07DE20EB9E6400591C29 /* Fitness Tracker */,
 				F47C07F720EB9E6600591C29 /* Fitness TrackerTests */,
 				F47C080220EB9E6600591C29 /* Fitness TrackerUITests */,
+				F40C93FF2166809C0032E397 /* Fitness Tracker Watch */,
+				F40C940E2166809E0032E397 /* Fitness Tracker Watch Extension */,
 				F47C07DD20EB9E6400591C29 /* Products */,
 				02CE6ED3FF3F17550AD8F27C /* Pods */,
 				B442A5C36D56613EDA6B28CF /* Frameworks */,
@@ -185,6 +289,8 @@
 				F47C07DC20EB9E6400591C29 /* Fitness Tracker.app */,
 				F47C07F420EB9E6600591C29 /* Fitness TrackerTests.xctest */,
 				F47C07FF20EB9E6600591C29 /* Fitness TrackerUITests.xctest */,
+				F40C93FE2166809C0032E397 /* Fitness Tracker Watch.app */,
+				F40C940A2166809E0032E397 /* Fitness Tracker Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,6 +298,7 @@
 		F47C07DE20EB9E6400591C29 /* Fitness Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				F4CCF5D8216B4BC70028F653 /* Fitness Tracker.entitlements */,
 				E7EC277B21246BB9009391EC /* AppDelegate.swift */,
 				F4158A192122EC8B00DEC513 /* HomeViewController.swift */,
 				E7EC277E21246CD2009391EC /* WorkoutsList.swift */,
@@ -266,6 +373,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F40C93FD2166809C0032E397 /* Fitness Tracker Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F40C94222166809E0032E397 /* Build configuration list for PBXNativeTarget "Fitness Tracker Watch" */;
+			buildPhases = (
+				F40C93FC2166809C0032E397 /* Resources */,
+				F40C94212166809E0032E397 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F40C940D2166809E0032E397 /* PBXTargetDependency */,
+			);
+			name = "Fitness Tracker Watch";
+			productName = "Fitness Tracker Watch";
+			productReference = F40C93FE2166809C0032E397 /* Fitness Tracker Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		F40C94092166809E0032E397 /* Fitness Tracker Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F40C94202166809E0032E397 /* Build configuration list for PBXNativeTarget "Fitness Tracker Watch Extension" */;
+			buildPhases = (
+				F40C94062166809E0032E397 /* Sources */,
+				F40C94072166809E0032E397 /* Frameworks */,
+				F40C94082166809E0032E397 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fitness Tracker Watch Extension";
+			productName = "Fitness Tracker Watch Extension";
+			productReference = F40C940A2166809E0032E397 /* Fitness Tracker Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		F47C07DB20EB9E6400591C29 /* Fitness Tracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F47C080820EB9E6600591C29 /* Build configuration list for PBXNativeTarget "Fitness Tracker" */;
@@ -275,10 +416,12 @@
 				F47C07D920EB9E6400591C29 /* Frameworks */,
 				F47C07DA20EB9E6400591C29 /* Resources */,
 				9C3412B6013012EDE1F4F4E4 /* [CP] Embed Pods Frameworks */,
+				F40C94232166809E0032E397 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F40C941A2166809E0032E397 /* PBXTargetDependency */,
 			);
 			name = "Fitness Tracker";
 			productName = "Fitness Tracker";
@@ -329,12 +472,34 @@
 		F47C07D420EB9E6400591C29 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Maruf Nebil Ogunc";
 				TargetAttributes = {
+					F40C93FD2166809C0032E397 = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					F40C94092166809E0032E397 = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					F47C07DB20EB9E6400591C29 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					F47C07F320EB9E6600591C29 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -364,11 +529,33 @@
 				F47C07DB20EB9E6400591C29 /* Fitness Tracker */,
 				F47C07F320EB9E6600591C29 /* Fitness TrackerTests */,
 				F47C07FE20EB9E6600591C29 /* Fitness TrackerUITests */,
+				F40C93FD2166809C0032E397 /* Fitness Tracker Watch */,
+				F40C94092166809E0032E397 /* Fitness Tracker Watch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F40C93FC2166809C0032E397 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F40C94042166809D0032E397 /* Assets.xcassets in Resources */,
+				F42976DD2173BA7E005A0F1D /* Metropolis-Medium.otf in Resources */,
+				F40C94022166809C0032E397 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F40C94082166809E0032E397 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F42976DC21738DB9005A0F1D /* Assets.xcassets in Resources */,
+				F42976DE2173BA7F005A0F1D /* Metropolis-Medium.otf in Resources */,
+				F40C94162166809E0032E397 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F47C07DA20EB9E6400591C29 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -491,6 +678,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F40C94062166809E0032E397 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F42D5131216F301B00CA70EB /* WorkoutRowController.swift in Sources */,
+				F40C94142166809E0032E397 /* NotificationController.swift in Sources */,
+				F40C94122166809E0032E397 /* ExtensionDelegate.swift in Sources */,
+				F40C94102166809E0032E397 /* InterfaceController.swift in Sources */,
+				F42D51332170895600CA70EB /* WorkoutController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F47C07D820EB9E6400591C29 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -539,6 +738,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F40C940D2166809E0032E397 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F40C94092166809E0032E397 /* Fitness Tracker Watch Extension */;
+			targetProxy = F40C940C2166809E0032E397 /* PBXContainerItemProxy */;
+		};
+		F40C941A2166809E0032E397 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F40C93FD2166809C0032E397 /* Fitness Tracker Watch */;
+			targetProxy = F40C94192166809E0032E397 /* PBXContainerItemProxy */;
+		};
 		F47C07F620EB9E6600591C29 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F47C07DB20EB9E6400591C29 /* Fitness Tracker */;
@@ -552,6 +761,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F40C94002166809C0032E397 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F40C94012166809C0032E397 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		F47C07E520EB9E6500591C29 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -571,6 +788,108 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F40C941C2166809E0032E397 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Fitness Tracker Watch/Fitness Tracker Watch.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFGPKV3K8S;
+				IBSC_MODULE = Fitness_Tracker_Watch_Extension;
+				INFOPLIST_FILE = "Fitness Tracker Watch/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = akin.fitness.tracker.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+			};
+			name = Debug;
+		};
+		F40C941D2166809E0032E397 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Fitness Tracker Watch/Fitness Tracker Watch.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFGPKV3K8S;
+				IBSC_MODULE = Fitness_Tracker_Watch_Extension;
+				INFOPLIST_FILE = "Fitness Tracker Watch/Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = akin.fitness.tracker.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+			};
+			name = Release;
+		};
+		F40C941E2166809E0032E397 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Fitness Tracker Watch Extension/Fitness Tracker Watch Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFGPKV3K8S;
+				INFOPLIST_FILE = "Fitness Tracker Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = akin.fitness.tracker.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+			};
+			name = Debug;
+		};
+		F40C941F2166809E0032E397 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_ENTITLEMENTS = "Fitness Tracker Watch Extension/Fitness Tracker Watch Extension.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFGPKV3K8S;
+				INFOPLIST_FILE = "Fitness Tracker Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = akin.fitness.tracker.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.0;
+			};
+			name = Release;
+		};
 		F47C080620EB9E6600591C29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -687,12 +1006,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Fitness Tracker/Fitness Tracker.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = akin.fitness.tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -712,12 +1035,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Fitness Tracker/Fitness Tracker.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = akin.fitness.tracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -741,7 +1068,11 @@
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Fitness TrackerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "akin.Fitness-TrackerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -763,7 +1094,11 @@
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Fitness TrackerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "akin.Fitness-TrackerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -781,7 +1116,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness TrackerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "akin.Fitness-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -800,7 +1139,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness TrackerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "akin.Fitness-TrackerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -813,6 +1156,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F40C94202166809E0032E397 /* Build configuration list for PBXNativeTarget "Fitness Tracker Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F40C941E2166809E0032E397 /* Debug */,
+				F40C941F2166809E0032E397 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F40C94222166809E0032E397 /* Build configuration list for PBXNativeTarget "Fitness Tracker Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F40C941C2166809E0032E397 /* Debug */,
+				F40C941D2166809E0032E397 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F47C07D720EB9E6400591C29 /* Build configuration list for PBXProject "Fitness Tracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
