@@ -36,27 +36,39 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let screenRect = UIScreen.main.bounds
         
         //This button will open the start workout view controller
+        let startWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
+        startWorkoutButton.setTitle("Start Workout", for: UIControlState.normal)
+        startWorkoutButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        startWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
+        startWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
+        startWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
+        startWorkoutButton.frame = CGRect(x: 0, y: screenRect.size.height*0.8, width: screenRect.size.width, height: screenRect.size.height*0.1)
+        startWorkoutButton.addTarget(self, action: #selector(HomeViewController.startWorkout), for: UIControlEvents.touchUpInside)
+        startWorkoutButton.accessibilityIdentifier = "Create Workout"
+        self.view.addSubview(startWorkoutButton)
+
+        //This button will open create workout view controller
         let createWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
-        createWorkoutButton.setTitle("Start Workout", for: UIControlState.normal)
+        createWorkoutButton.setTitle("Create Workout", for: UIControlState.normal)
         createWorkoutButton.setTitleColor(UIColor.white, for: UIControlState.normal)
         createWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         createWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
-        createWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
-        createWorkoutButton.frame = CGRect(x: 0, y: screenRect.size.height*0.8, width: screenRect.size.width/2, height: screenRect.size.height*0.2)
-        createWorkoutButton.addTarget(self, action: #selector(HomeViewController.startWorkout), for: UIControlEvents.touchUpInside)
-        createWorkoutButton.accessibilityIdentifier = "Create Workout"
+        createWorkoutButton.backgroundColor = UIColor.init(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
+        createWorkoutButton.frame = CGRect(x: 0, y: screenRect.size.height*0.9, width: screenRect.size.width/2, height: screenRect.size.height*0.1)
+        createWorkoutButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
         self.view.addSubview(createWorkoutButton)
 
+        
         //This button will open create workout view controller
-        let historyButton:UIButton = UIButton(type: UIButtonType.custom)
-        historyButton.setTitle("Create Workout", for: UIControlState.normal)
-        historyButton.setTitleColor(UIColor.white, for: UIControlState.normal)
-        historyButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
-        historyButton.titleLabel?.textAlignment = NSTextAlignment.center
-        historyButton.backgroundColor = UIColor.init(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
-        historyButton.frame = CGRect(x: screenRect.size.width/2, y: screenRect.size.height*0.8, width: screenRect.size.width/2, height: screenRect.size.height*0.2)
-        historyButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(historyButton)
+        let showHistoryButton:UIButton = UIButton(type: UIButtonType.custom)
+        showHistoryButton.setTitle("Workout History", for: UIControlState.normal)
+        showHistoryButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        showHistoryButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
+        showHistoryButton.titleLabel?.textAlignment = NSTextAlignment.center
+        showHistoryButton.backgroundColor = UIColor.init(red: 97.0/255.0, green: 131.0/255.0, blue: 218.0/255.0, alpha: 1)
+        showHistoryButton.frame = CGRect(x: screenRect.size.width/2, y: screenRect.size.height*0.9, width: screenRect.size.width/2, height: screenRect.size.height*0.1)
+        showHistoryButton.addTarget(self, action: #selector(HomeViewController.showHistory), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(showHistoryButton)
 
         
         colors = [yellow, blue, red, green, orange, darkBlue, darkGreen]
@@ -255,6 +267,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     }
 
     @objc func showHistory() -> Void {
+        let workoutHistory = WorkoutHistory();
+        self.navigationController?.pushViewController(workoutHistory, animated: true)
     }
 
     override func didReceiveMemoryWarning() {

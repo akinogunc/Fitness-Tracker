@@ -17,7 +17,8 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
     var workoutNo = 0
     var exercisesTableView: UITableView!
     var workoutNameWithoutExtension: String!
-
+    var workoutDict: NSDictionary!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -29,7 +30,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         let workoutsArray = UserDefaults.standard.object(forKey: "savedWorkouts") as! NSArray
         
         //removing .json extension
-        let workoutDict = workoutsArray.object(at: self.workoutNo) as! NSDictionary
+        workoutDict = workoutsArray.object(at: self.workoutNo) as! NSDictionary
         workoutNameWithoutExtension = (workoutDict["name"] as! NSString).deletingPathExtension
 
         //Customizing navigation bar
@@ -108,7 +109,10 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         if (indexOfObject == -1) {
             countdownTimer.invalidate()
-
+            
+            //save the workout info to the user defaults
+            self.saveCompletedWorkout()
+            
             let alertController = UIAlertController(title: ("You have completed the " + workoutNameWithoutExtension), message: "You can check your completed workouts on History page", preferredStyle: UIAlertControllerStyle.alert)
             let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: { (action) in
                 self.dismiss(animated: true, completion: nil)
@@ -249,6 +253,28 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
 
     }
 
+    func saveCompletedWorkout() -> Void {
+        
+        var completedWorkoutsArray = NSMutableArray()
+        
+        //getting completed workouts array from user defaults
+        if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "completedWorkouts") as? NSArray{
+            completedWorkoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
+        }
+        
+        let completedWorkoutDict = NSMutableDictionary()
+        completedWorkoutDict["name"] = workoutNameWithoutExtension
+        completedWorkoutDict["muscle_groups"] = workoutDict["muscle_groups"]
+        completedWorkoutDict["date"] = Date()
+
+        //Adding the completed workout to array
+        completedWorkoutsArray.add(completedWorkoutDict)
+        
+        UserDefaults.standard.set(completedWorkoutsArray, forKey: "completedWorkouts")
+        UserDefaults.standard.synchronize()
+        
+    }
+    
     @objc func cancelButtonHit() -> () {
         self.dismiss(animated: true, completion: nil)
     }

@@ -44,6 +44,8 @@
 		F42C5AC220EE3C04006C8248 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */; };
 		F42D5131216F301B00CA70EB /* WorkoutRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D5130216F301B00CA70EB /* WorkoutRowController.swift */; };
 		F42D51332170895600CA70EB /* WorkoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42D51322170895600CA70EB /* WorkoutController.swift */; };
+		F43238852177AD1700FCC2B4 /* WorkoutHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43238842177AD1700FCC2B4 /* WorkoutHistory.swift */; };
+		F43238872177AEFE00FCC2B4 /* WorkoutHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43238862177AEFE00FCC2B4 /* WorkoutHistoryCell.swift */; };
 		F4394485212F21D200EAC17F /* body_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394483212F21D200EAC17F /* body_back.png */; };
 		F4394486212F21D200EAC17F /* body_front.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394484212F21D200EAC17F /* body_front.png */; };
 		F439448A212F27A300EAC17F /* chest.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394489212F27A300EAC17F /* chest.png */; };
@@ -155,6 +157,8 @@
 		F42C5AC120EE3C04006C8248 /* Metropolis-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metropolis-Bold.otf"; sourceTree = "<group>"; };
 		F42D5130216F301B00CA70EB /* WorkoutRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRowController.swift; sourceTree = "<group>"; };
 		F42D51322170895600CA70EB /* WorkoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutController.swift; sourceTree = "<group>"; };
+		F43238842177AD1700FCC2B4 /* WorkoutHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistory.swift; sourceTree = "<group>"; };
+		F43238862177AEFE00FCC2B4 /* WorkoutHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryCell.swift; sourceTree = "<group>"; };
 		F4394483212F21D200EAC17F /* body_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_back.png; sourceTree = "<group>"; };
 		F4394484212F21D200EAC17F /* body_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = body_front.png; sourceTree = "<group>"; };
 		F4394489212F27A300EAC17F /* chest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chest.png; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				E7EC278521259BBD009391EC /* WorkoutCreator.swift */,
 				F459D04B2135C5700095609F /* WorkoutSaver.swift */,
 				F4235E002126B4ED00E15B09 /* ExerciseCreator.swift */,
+				F43238842177AD1700FCC2B4 /* WorkoutHistory.swift */,
 				F47C07E820EB9E6600591C29 /* Assets.xcassets */,
 				F47C07ED20EB9E6600591C29 /* Info.plist */,
 				F47C081F20ED313B00591C29 /* Helpers */,
@@ -365,6 +370,7 @@
 			children = (
 				E726B05B2125CCEA005ED12A /* ExerciseCell.swift */,
 				E7EC27872125C2DD009391EC /* WorkoutCell.swift */,
+				F43238862177AEFE00FCC2B4 /* WorkoutHistoryCell.swift */,
 				E726B0542125C776005ED12A /* SeparatedExerciseCell.swift */,
 			);
 			path = Helpers;
@@ -698,7 +704,9 @@
 				E7EC278621259BBD009391EC /* WorkoutCreator.swift in Sources */,
 				E726B05C2125CCEA005ED12A /* ExerciseCell.swift in Sources */,
 				F459D04C2135C5700095609F /* WorkoutSaver.swift in Sources */,
+				F43238872177AEFE00FCC2B4 /* WorkoutHistoryCell.swift in Sources */,
 				E7EC27882125C2DD009391EC /* WorkoutCell.swift in Sources */,
+				F43238852177AD1700FCC2B4 /* WorkoutHistory.swift in Sources */,
 				F4235E032127297200E15B09 /* StartWorkout.swift in Sources */,
 				F4158A1A2122EC8B00DEC513 /* HomeViewController.swift in Sources */,
 				F4235E012126B4ED00E15B09 /* ExerciseCreator.swift in Sources */,
