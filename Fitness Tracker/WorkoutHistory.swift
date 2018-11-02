@@ -35,9 +35,11 @@ class WorkoutHistory: UIViewController, UITableViewDelegate, UITableViewDataSour
             completedWorkoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
         }
 
+        //reverse array for showing last completed workout at first
+        completedWorkoutsArray = NSMutableArray(array: completedWorkoutsArray.reversed())
+        
         //refreshing table view
         workoutsTableView.reloadData()
-
 
     }
     
@@ -53,7 +55,7 @@ class WorkoutHistory: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let cellIdentifier = "workoutHistoryCell"
         
-        var cell: WorkoutHistoryCell? = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? WorkoutHistoryCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? WorkoutHistoryCell
         if(cell == nil){
             cell = WorkoutHistoryCell.init(style: UITableViewCellStyle.default, reuseIdentifier: cellIdentifier)
         }

@@ -38,7 +38,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             let messageDict = ["message": "send_workout_list"]
             
             WCSession.default.sendMessage(messageDict, replyHandler: { (replyDict) -> Void in
-                self.workoutsArray = (replyDict["message"] as! NSArray).mutableCopy() as! NSMutableArray
+                self.workoutsArray = ((replyDict["message"] as! NSArray).mutableCopy() as! NSMutableArray)
                 self.loadTableData()
             }, errorHandler: { (error) -> Void in
                 print(error)
@@ -71,12 +71,14 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
         let dict = workoutsArray[rowIndex] as! NSDictionary
         let workoutName = dict["name"] as! NSString
-        
         let messageDict = ["message": workoutName]
 
         WCSession.default.sendMessage(messageDict, replyHandler: { (replyDict) -> Void in
             
-            self.presentController(withName: "workout", context: replyDict["message"])
+            let arr = (replyDict["message"] as! NSArray).mutableCopy() as! NSMutableArray
+            arr.insert(dict, at: 0)
+            
+            self.presentController(withName: "workout", context: arr)
             
         }, errorHandler: { (error) -> Void in
             print(error)

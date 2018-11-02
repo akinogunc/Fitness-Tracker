@@ -41,10 +41,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             let workoutArray = readWorkoutJSONbyName(name: message["message"] as! String)
             replyHandler(["message": workoutArray])
 
+        }else if(message["message"] as! String == "completed"){
+            
+            let workoutDictionary = message["workout"] as! [String : Any]
+            saveCompletedWorkout(workoutDictionary: workoutDictionary)
+            replyHandler(["message": "ok"])
+
         }
         
     }
     
+    func saveCompletedWorkout(workoutDictionary: [String : Any]) -> Void {
+        
+        var completedWorkoutsArray = NSMutableArray()
+        
+        //getting completed workouts array from user defaults
+        if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "completedWorkouts") as? NSArray{
+            completedWorkoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
+        }
+        
+        let completedWorkoutDict = NSMutableDictionary()
+        let workoutNameWithoutExtension = (workoutDictionary["name"] as! NSString).deletingPathExtension
+
+        completedWorkoutDict["name"] = workoutNameWithoutExtension
+        completedWorkoutDict["muscle_groups"] = workoutDictionary["muscle_groups"]
+        completedWorkoutDict["date"] = Date()
+        
+        //Adding the completed workout to array
+        completedWorkoutsArray.add(completedWorkoutDict)
+        
+        UserDefaults.standard.set(completedWorkoutsArray, forKey: "completedWorkouts")
+        UserDefaults.standard.synchronize()
+        
+    }
+
     func readWorkoutJSONbyName(name: String) -> NSMutableArray {
         
         let filePath = NSString(string: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])

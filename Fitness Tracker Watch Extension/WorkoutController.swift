@@ -8,6 +8,7 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
 
 class WorkoutController: WKInterfaceController {
@@ -24,12 +25,18 @@ class WorkoutController: WKInterfaceController {
     var seconds = 60
     var countdownTimer: Timer!
     var separatedExercisesArray: NSMutableArray = []
+    var workoutDictionary: [String : AnyObject]!
 
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
         //Getting workout json and converting it to a NSMutableArray
         let arr = (context as! NSArray).mutableCopy() as! NSMutableArray
+        
+        //Getting workout info from array and removing it
+        workoutDictionary = arr[0] as! Dictionary
+        arr.removeObject(at: 0)
         
         //Separating exercises by each set and adding rest between them
         seperateExercisesBySetsAndRests(rawExercisesArray: arr)
@@ -46,7 +53,6 @@ class WorkoutController: WKInterfaceController {
     }
 
     @IBAction func startAction(){
-        print("start")
         
         if isTimerActive{
             countdownTimer.invalidate()
@@ -85,18 +91,10 @@ class WorkoutController: WKInterfaceController {
         if (indexOfObject == -1) {
             countdownTimer.invalidate()
             
-            /*let alertController = UIAlertController(title: ("You have completed the " + workoutNameWithoutExtension), message: "You can check your completed workouts on History page", preferredStyle: UIAlertControllerStyle.alert)
-            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: { (action) in
-                self.dismiss(animated: true, completion: nil)
-            })
-            alertController.addAction(cancelAction)
-            self.present(alertController, animated: true, completion: nil)*/
-            
             timerLabel.setText("00:00")
             exerciseName.setText("Completed")
             startGroup.setHidden(true)
-            doneGroup.setHidden(false)
-
+            sendCompletedMessage()
             
             return
         }
@@ -124,6 +122,24 @@ class WorkoutController: WKInterfaceController {
         }
     }
 
+    func sendCompletedMessage() -> Void {
+        
+        if WCSession.default.isReachable {
+            let messageDict = ["message": "completed", "workout" : workoutDictionary] as [String : Any]
+            
+            WCSession.default.sendMessage(messageDict, replyHandler: { (replyDict) -> Void in
+                
+                if(replyDict["message"] as! String == "ok"){
+                    self.doneGroup.setHidden(false)
+                }
+                
+            }, errorHandler: { (error) -> Void in
+                print(error)
+            })
+        }
+
+    }
+    
     func reloadCountdownLabel(index: Int) -> Void {
         
         if(separatedExercisesArray.count > 0){

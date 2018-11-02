@@ -11,10 +11,11 @@ import xModalController
 
 class HomeViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
+    let screenRect = UIScreen.main.bounds
     let yellow = UIColor(red: 248.0/255.0, green: 229.0/255.0, blue: 28.0/255.0, alpha: 1)
-    let blue = UIColor(red: 113.0/255.0, green: 201.0/255.0, blue: 246.0/255.0, alpha: 1)
+    let blue = UIColor.init(red: 97.0/255.0, green: 131.0/255.0, blue: 218.0/255.0, alpha: 1)
     let red = UIColor(red: 200.0/255.0, green: 61.0/255.0, blue: 76.0/255.0, alpha: 1)
-    let green = UIColor(red: 77.0/255.0, green: 210.0/255.0, blue: 164.0/255.0, alpha: 1)
+    let green = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
     let orange = UIColor.init(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
     let darkBlue = UIColor.init(red: 32.0/255.0, green: 72.0/255.0, blue: 190.0/255.0, alpha: 1)
     let darkGreen = UIColor.init(red: 18.0/255.0, green: 121.0/255.0, blue: 21.0/255.0, alpha: 1)
@@ -31,9 +32,6 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         //TODO:Creating custom back button which will ask a question before popping the view controller
         let newBackButton:UIBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = newBackButton;
-        
-        //Getting size of the device
-        let screenRect = UIScreen.main.bounds
         
         //This button will open the start workout view controller
         let startWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
@@ -71,38 +69,103 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.view.addSubview(showHistoryButton)
 
         
-        colors = [yellow, blue, red, green, orange, darkBlue, darkGreen]
+        colors = [yellow, blue, green, orange, darkBlue, darkGreen, UIColor.magenta]
 
-        self.initializeWeeklyCalendar()
         self.initializeBodyFrame()
-        
-        self.addWorkedBodyPartWithColor(partName: "shoulders", color: yellow)
-        self.addWorkedBodyPartWithColor(partName: "abs", color: yellow)
-
-        self.addWorkedBodyPartWithColor(partName: "back", color: blue)
-        self.addWorkedBodyPartWithColor(partName: "biceps", color: blue)
-        
-        self.addWorkedBodyPartWithColor(partName: "chest", color: red)
-        self.addWorkedBodyPartWithColor(partName: "triceps", color: red)
-
-        self.addWorkedBodyPartWithColor(partName: "legs", color: green)
-
-        
-        /*DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            
-            let modalVc = WorkoutSaver()
-            let modalFrame = CGRect(x: 20, y: 300, width: self.view.bounds.width - 40, height: 350)
-            let modalController = xModalController(parentViewController: self, modalViewController: modalVc, modalFrame: modalFrame)
-            modalController.showModal()
-            
-        })*/
+        self.getThisWeeksCompletedWorkouts()
 
     }
 
-    func initializeWeeklyCalendar() -> () {
+    
+    //This function gets all completed workouts and returns current weeks workouts
+    func getThisWeeksCompletedWorkouts() -> Void {
         
-        let screenRect = UIScreen.main.bounds
+        var completedWorkoutsArray = NSMutableArray()
+        let thisWeekCompletedWorkoutsArray = NSMutableArray()
 
+        //getting completed workouts array from user defaults
+        if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "completedWorkouts") as? NSArray{
+            completedWorkoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
+        }
+        
+        //reversing workout to make newest at first
+        completedWorkoutsArray = NSMutableArray(array: completedWorkoutsArray.reversed())
+        
+        let calendar = Calendar(identifier: .gregorian)
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day]
+        formatter.unitsStyle = .full
+        
+        //sunday of the current week
+        let sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+
+        
+        for i in 0..<completedWorkoutsArray.count{
+            
+            let completedWorkoutDict = completedWorkoutsArray.object(at: i) as! NSDictionary
+            let date = completedWorkoutDict["date"] as! Date
+            let string = formatter.string(from: sunday!, to: date)!//2 days, -1 days
+            let arr = string.components(separatedBy:" ")//["2", "days"]
+
+            //if the workout completed at current week, add it
+            if(Int(arr[0])! > 0){
+                thisWeekCompletedWorkoutsArray.add(completedWorkoutDict)
+            }
+            
+        }
+
+        mergeCompletedWorkoutsAtSameDay(completedWorkouts: thisWeekCompletedWorkoutsArray)
+    }
+    
+    //This function merges workouts which completed at same day
+    func mergeCompletedWorkoutsAtSameDay(completedWorkouts: NSMutableArray) -> Void {
+        
+        let mergedCompletedWorkoutsArray = NSMutableArray()
+
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day]
+        formatter.unitsStyle = .full
+
+        for i in 0..<completedWorkouts.count{
+            
+            if(mergedCompletedWorkoutsArray.count == 0){
+                mergedCompletedWorkoutsArray.add(completedWorkouts.object(at: i))
+            }else{
+                
+                let dict1 = completedWorkouts.object(at: i) as! NSDictionary
+                let date1 = dict1["date"] as! Date
+                let dict2 = mergedCompletedWorkoutsArray.lastObject as! NSDictionary
+                let date2 = dict2["date"] as! Date
+                
+                let string = formatter.string(from: date1, to: date2)!//2 days, -1 days
+                let arr = string.components(separatedBy:" ")//["2", "days"]
+                
+                //if the workouts are at the same day
+                if(Int(arr[0])! == 0){
+                    
+                    let date = dict1["date"] as! Date
+                    let arr1 = dict1["muscle_groups"] as! NSArray
+                    let arr2 = dict2["muscle_groups"] as! NSArray
+                    let muscleGroups = arr1.addingObjects(from: arr2 as! [Any])
+                    let mergedDict = ["name" : "merged", "date" : date, "muscle_groups" : muscleGroups] as [String : Any]
+                    
+                    mergedCompletedWorkoutsArray.removeLastObject()
+                    mergedCompletedWorkoutsArray.add(mergedDict)
+                    
+                }else{
+                    mergedCompletedWorkoutsArray.add(completedWorkouts.object(at: i))
+                }
+
+            }
+            
+        }
+        
+        initializeWeeklyCalendar(mergedWorkouts: mergedCompletedWorkoutsArray)
+        showTrainedBodyPartsLabel(mergedWorkouts: mergedCompletedWorkoutsArray)
+    }
+    
+    func initializeWeeklyCalendar(mergedWorkouts: NSMutableArray) -> () {
+        
         let navigationHeight = self.navigationController?.navigationBar.frame.maxY
         let dateButtonWidth = screenRect.size.width/7
         
@@ -111,6 +174,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         formatter.dateFormat = "EE"
         
         let sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+        var dotColorCounter = 0
+        let workedMuscleGroups = NSMutableArray()
         
         for i in 0...6 {
             
@@ -119,7 +184,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let createWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
             createWorkoutButton.backgroundColor = UIColor(red: 234.0/255.0, green: 234.0/255.0, blue: 234.0/255.0, alpha: 1)
             createWorkoutButton.frame = CGRect(x: CGFloat(i)*dateButtonWidth, y: navigationHeight!, width: dateButtonWidth, height: dateButtonWidth*2)
-            createWorkoutButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
+            //createWorkoutButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
             createWorkoutButton.setTitle(String(calendar.component(.day, from: date!)), for: UIControlState.normal)
             createWorkoutButton.setTitleColor(UIColor.black, for: UIControlState.normal)
             createWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 16.0)
@@ -140,49 +205,87 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             createWorkoutButton.addSubview(dayLabel)
             
             
-            
-            
-            if(i == 0){
-                let workoutCircle = UIView(frame: CGRect(x: dateButtonWidth/4, y: dateButtonWidth*1.3, width: dateButtonWidth/2, height: dateButtonWidth/2))
-                workoutCircle.backgroundColor = colors[0] as? UIColor
-                workoutCircle.layer.cornerRadius = workoutCircle.frame.size.width/2
-                workoutCircle.clipsToBounds = true
-                createWorkoutButton.addSubview(workoutCircle)
-            }
-            
-            if(i == 2){
-                let workoutCircle = UIView(frame: CGRect(x: dateButtonWidth/4, y: dateButtonWidth*1.3, width: dateButtonWidth/2, height: dateButtonWidth/2))
-                workoutCircle.backgroundColor = colors[1] as? UIColor
-                workoutCircle.layer.cornerRadius = workoutCircle.frame.size.width/2
-                workoutCircle.clipsToBounds = true
-                createWorkoutButton.addSubview(workoutCircle)
-            }
+            for j in 0..<mergedWorkouts.count{
+                
+                let dict = mergedWorkouts.object(at: j) as! NSDictionary
+                let workoutDate = dict["date"] as! Date
+                let muscleGroups = dict["muscle_groups"] as! NSArray
+                
+                if(Calendar.current.isDate(workoutDate, inSameDayAs:date!)){
 
-            if(i == 3){
-                let workoutCircle = UIView(frame: CGRect(x: dateButtonWidth/4, y: dateButtonWidth*1.3, width: dateButtonWidth/2, height: dateButtonWidth/2))
-                workoutCircle.backgroundColor = colors[2] as? UIColor
-                workoutCircle.layer.cornerRadius = workoutCircle.frame.size.width/2
-                workoutCircle.clipsToBounds = true
-                createWorkoutButton.addSubview(workoutCircle)
-            }
+                    let workoutCircle = UIView(frame: CGRect(x: dateButtonWidth/4, y: dateButtonWidth*1.3, width: dateButtonWidth/2, height: dateButtonWidth/2))
+                    workoutCircle.backgroundColor = colors[dotColorCounter] as? UIColor
+                    workoutCircle.layer.cornerRadius = workoutCircle.frame.size.width/2
+                    workoutCircle.clipsToBounds = true
+                    createWorkoutButton.addSubview(workoutCircle)
+                    
+                    for muscle in muscleGroups {
+                        if !workedMuscleGroups.contains(muscle){
+                            addWorkedBodyPartWithColor(partName: muscle as! String , color: colors[dotColorCounter] as! UIColor)
+                        }
 
-            if(i == 5){
-                let workoutCircle = UIView(frame: CGRect(x: dateButtonWidth/4, y: dateButtonWidth*1.3, width: dateButtonWidth/2, height: dateButtonWidth/2))
-                workoutCircle.backgroundColor = colors[3] as? UIColor
-                workoutCircle.layer.cornerRadius = workoutCircle.frame.size.width/2
-                workoutCircle.clipsToBounds = true
-                createWorkoutButton.addSubview(workoutCircle)
-            }
+                    }
 
+                    dotColorCounter += 1
+                    workedMuscleGroups.addObjects(from: muscleGroups as! [Any])
+                }
+
+            }
+            
         }
-
+        
     }
     
+    func showTrainedBodyPartsLabel(mergedWorkouts: NSMutableArray) -> (){
+        
+        //creating dictionary for worked muscle groups
+        var dictionary = [String: Int]()
+        
+        //counting each muscle group worked how many times
+        for i in 0..<mergedWorkouts.count{
+            
+            let completedWorkoutDict = mergedWorkouts.object(at: i) as! NSDictionary
+            let muscleGroupsArray = completedWorkoutDict["muscle_groups"] as! NSArray
+            
+            for item in muscleGroupsArray {
+                if(dictionary[item as! String] == nil){
+                    dictionary[item as! String] = 1
+                }else{
+                    dictionary[item as! String] = dictionary[item as! String]! + 1
+                }
+            }
+            
+        }
+        
+        let allStrings = NSMutableAttributedString()
+        
+        let boldText  = "Worked Muscles: "
+        let attrs = [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 16)]
+        let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
+        
+        let normalText = "Back(x\(dictionary["back"] ?? 0)), Chest(x\(dictionary["chest"] ?? 0)), Biceps(x\(dictionary["biceps"] ?? 0)), Triceps(x\(dictionary["triceps"] ?? 0)), Legs(x\(dictionary["legs"] ?? 0)), Shoulders(x\(dictionary["shoulders"] ?? 0)), Abs(x\(dictionary["back"] ?? 0))"
+        let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15)]
+        let normalString = NSMutableAttributedString(string:normalText, attributes:attrs2)
+        
+        allStrings.append(attributedString)
+        allStrings.append(normalString)
+
+        let workedParts = UILabel(frame: CGRect(x: 10, y: screenRect.size.height*0.7, width: screenRect.size.width - 20, height: screenRect.size.height*0.1))
+        workedParts.textColor = UIColor.black
+        workedParts.backgroundColor = UIColor.clear
+        workedParts.font = UIFont(name: "Metropolis-Medium", size: 14.0)
+        workedParts.numberOfLines = 3
+        workedParts.textAlignment = NSTextAlignment.left
+        workedParts.attributedText = allStrings
+        self.view.addSubview(workedParts)
+
+
+    }
+
     func initializeBodyFrame() -> () {
         
-        let screenRect = UIScreen.main.bounds
-        let bodyImagesY = (self.navigationController?.navigationBar.frame.maxY)! + 2*screenRect.size.width/7
-        let bottomBarHeight = screenRect.size.height*0.2
+        let bodyImagesY = (self.navigationController?.navigationBar.frame.maxY)! + 2*screenRect.size.width/7 + 10
+        let bottomBarHeight = screenRect.size.height*0.3
         
         let bodyFront = UIImageView(frame: CGRect(x: 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
         bodyFront.image = UIImage(named: "body_front")
@@ -198,9 +301,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     
     func addWorkedBodyPartWithColor(partName: String, color: UIColor) -> () {
         
-        let screenRect = UIScreen.main.bounds
-        let bodyImagesY = (self.navigationController?.navigationBar.frame.maxY)! + 2*screenRect.size.width/7
-        let bottomBarHeight = screenRect.size.height*0.2
+        let bodyImagesY = (self.navigationController?.navigationBar.frame.maxY)! + 2*screenRect.size.width/7 + 10
+        let bottomBarHeight = screenRect.size.height*0.3
 
         if partName == "chest" || partName == "abs" || partName == "biceps"{
             let bodyFront = UIImageView(frame: CGRect(x: 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
