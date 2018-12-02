@@ -13,15 +13,15 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
     var setsLabel: UILabel!
     var setsDownButton: UIButton!
     var setsUpButton: UIButton!
-    var setCount = 0;
+    var setCount = 1;
     var repsLabel: UILabel!
     var repsDownButton: UIButton!
     var repsUpButton: UIButton!
-    var repsCount = 0;
+    var repsCount = 1;
     var restLabel: UILabel!
     var restDownButton: UIButton!
     var restUpButton: UIButton!
-    var restSeconds = 15;
+    var restSeconds = 30;
     var cardioTimeLabel: UILabel!
     var cardioDownButton: UIButton!
     var cardioUpButton: UIButton!
@@ -88,7 +88,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         setsLabel.textColor = UIColor.black
         setsLabel.backgroundColor = UIColor.clear
         setsLabel.font = UIFont(name: "Metropolis-Medium", size: 16.0)
-        setsLabel.text = "0 Sets";
+        setsLabel.text = "1 Set";
         setsLabel.numberOfLines = 0;
         setsLabel.textAlignment = NSTextAlignment.center;
         setsLabel.accessibilityIdentifier = "SetsLabel"
@@ -111,7 +111,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         repsLabel.textColor = UIColor.black
         repsLabel.backgroundColor = UIColor.clear
         repsLabel.font = UIFont(name: "Metropolis-Medium", size: 16.0)
-        repsLabel.text = "0 Reps";
+        repsLabel.text = "1 Rep";
         repsLabel.numberOfLines = 0;
         repsLabel.textAlignment = NSTextAlignment.center;
         repsLabel.accessibilityIdentifier = "RepsLabel"
@@ -134,7 +134,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         restLabel.textColor = UIColor.black
         restLabel.backgroundColor = UIColor.clear
         restLabel.font = UIFont(name: "Metropolis-Medium", size: 16.0)
-        restLabel.text = "15 Seconds Rest";
+        restLabel.text = "Duration: 30 Seconds";
         restLabel.numberOfLines = 0;
         restLabel.textAlignment = NSTextAlignment.center;
         self.view.addSubview(restLabel)
@@ -225,7 +225,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
     }
 
     @objc func decreaseSets () -> (){
-        if(setCount>0){
+        if(setCount>1){
             setCount -= 1
             setsLabel.text = String(format: "%d Sets", setCount)
         }
@@ -237,7 +237,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
     }
 
     @objc func decreaseReps () -> (){
-        if(repsCount>0){
+        if(repsCount>1){
             repsCount -= 1
             repsLabel.text = String(format: "%d Reps", repsCount)
         }
@@ -249,15 +249,15 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
     }
 
     @objc func decreaseRest () -> (){
-        if(restSeconds>0){
-            restSeconds -= 15
-            restLabel.text = String(format: "%d Seconds Rest", restSeconds)
+        if(restSeconds>10){
+            restSeconds -= 10
+            restLabel.text = String(format: "Duration: %d Seconds", restSeconds)
         }
     }
     
     @objc func increaseRest () -> (){
-        restSeconds += 15
-        restLabel.text = String(format: "%d Seconds Rest", restSeconds)
+        restSeconds += 10
+        restLabel.text = String(format: "Duration: %d Seconds", restSeconds)
     }
 
     @objc func decreaseCardioMinutes () -> (){
@@ -291,7 +291,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         var exerciseDictionary: NSDictionary!
         
         if (segmentedControl.selectedSegmentIndex == 0) {
-            exerciseDictionary =  ["name" : exerciseNameTextField.text!, "sets" : String(format: "%d", setCount), "reps" : String(format: "%d", repsCount), "rest" : String(format: "%d", restSeconds), "isCardio" : false]
+            exerciseDictionary =  ["name" : exerciseNameTextField.text!, "sets" : String(format: "%d", setCount), "reps" : String(format: "%d", repsCount), "duration" : String(format: "%d", restSeconds), "isCardio" : false]
         }else{
             exerciseDictionary =  ["name" : exerciseNameTextField.text!, "cardio_minutes" : String(format: "%d", cardioMinutes), "isCardio" : true]
         }

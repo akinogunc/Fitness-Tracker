@@ -20,7 +20,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     let darkBlue = UIColor.init(red: 32.0/255.0, green: 72.0/255.0, blue: 190.0/255.0, alpha: 1)
     let darkGreen = UIColor.init(red: 18.0/255.0, green: 121.0/255.0, blue: 21.0/255.0, alpha: 1)
     var colors: NSMutableArray = []
-    
+    var refreshableUI: NSMutableArray = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -29,7 +30,6 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationController?.navigationBar.topItem?.title = "Fitness Tracker"
         
-        //TODO:Creating custom back button which will ask a question before popping the view controller
         let newBackButton:UIBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = newBackButton;
         
@@ -71,9 +71,6 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         colors = [yellow, blue, green, orange, darkBlue, darkGreen, UIColor.magenta]
 
-        self.initializeBodyFrame()
-        self.getThisWeeksCompletedWorkouts()
-
     }
 
     
@@ -96,8 +93,13 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         formatter.allowedUnits = [.day]
         formatter.unitsStyle = .full
         
-        //sunday of the current week
-        let sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+        var sunday:Date!
+        
+        if(Calendar.current.dateComponents([.weekday], from: Date()).weekday == 1){//if today is Sunday, go to previous sunday
+            sunday = calendar.date(byAdding: .day, value: -7, to: Date())
+        }else{
+            sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+        }
 
         
         for i in 0..<completedWorkoutsArray.count{
@@ -173,7 +175,14 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let formatter = DateFormatter()
         formatter.dateFormat = "EE"
         
-        let sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+        var sunday:Date!
+        
+        if(Calendar.current.dateComponents([.weekday], from: Date()).weekday == 1){//if today is Sunday, go to previous sunday
+            sunday = calendar.date(byAdding: .day, value: -7, to: Date())
+        }else{
+            sunday = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date()))
+        }
+        
         var dotColorCounter = 0
         let workedMuscleGroups = NSMutableArray()
         
@@ -189,7 +198,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             createWorkoutButton.setTitleColor(UIColor.black, for: UIControlState.normal)
             createWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 16.0)
             self.view.addSubview(createWorkoutButton)
-            
+            refreshableUI.add(createWorkoutButton)
+
             //Highlight today
             if(Calendar.current.isDate(date!, inSameDayAs:Date())){
                 createWorkoutButton.backgroundColor = UIColor(red: 194.0/255.0, green: 194.0/255.0, blue: 194.0/255.0, alpha: 1)
@@ -278,6 +288,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         workedParts.textAlignment = NSTextAlignment.left
         workedParts.attributedText = allStrings
         self.view.addSubview(workedParts)
+        refreshableUI.add(workedParts)
 
 
     }
@@ -297,6 +308,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         bodyBack.contentMode = UIViewContentMode.scaleAspectFit
         self.view.addSubview(bodyBack)
 
+        refreshableUI.addObjects(from: [bodyBack,bodyFront])
     }
     
     func addWorkedBodyPartWithColor(partName: String, color: UIColor) -> () {
@@ -311,6 +323,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyFront.tintColor = color
             bodyFront.contentMode = UIViewContentMode.scaleAspectFit
             self.view.addSubview(bodyFront)
+            refreshableUI.add(bodyFront)
         }
         
         if partName == "back" || partName == "triceps"{
@@ -320,6 +333,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyBack.tintColor = color
             bodyBack.contentMode = UIViewContentMode.scaleAspectFit
             self.view.addSubview(bodyBack)
+            refreshableUI.add(bodyBack)
         }
 
         if partName == "shoulders" {
@@ -329,6 +343,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyFront.tintColor = color
             bodyFront.contentMode = UIViewContentMode.scaleAspectFit
             self.view.addSubview(bodyFront)
+            refreshableUI.add(bodyFront)
 
             let bodyBack = UIImageView(frame: CGRect(x: screenRect.size.width/2 + 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
             bodyBack.image = UIImage(named: "shoulder_back")
@@ -336,6 +351,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyBack.tintColor = color
             bodyBack.contentMode = UIViewContentMode.scaleAspectFit
             self.view.addSubview(bodyBack)
+            refreshableUI.add(bodyBack)
 
         }
         
@@ -346,14 +362,16 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyFront.tintColor = color
             bodyFront.contentMode = UIViewContentMode.scaleAspectFit
             self.view.addSubview(bodyFront)
-            
+            refreshableUI.add(bodyFront)
+
             let bodyBack = UIImageView(frame: CGRect(x: screenRect.size.width/2 + 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
             bodyBack.image = UIImage(named: "legs_back")
             bodyBack.image = bodyBack.image?.withRenderingMode(.alwaysTemplate)
             bodyBack.tintColor = color
             bodyBack.contentMode = UIViewContentMode.scaleAspectFit
             self.view.addSubview(bodyBack)
-            
+            refreshableUI.add(bodyBack)
+
         }
 
     }
@@ -373,6 +391,18 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.navigationController?.pushViewController(workoutHistory, animated: true)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+
+        for subview in refreshableUI{
+            (subview as! UIView).removeFromSuperview()
+        }
+        refreshableUI.removeAllObjects()
+        
+        self.initializeBodyFrame()
+        self.getThisWeeksCompletedWorkouts()
+
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

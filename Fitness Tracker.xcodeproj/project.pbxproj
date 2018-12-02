@@ -67,6 +67,8 @@
 		F47C082320ED3AAE00591C29 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = F47C082120ED3AAE00591C29 /* down.png */; };
 		F48039362127611200D08AAE /* ExerciseCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48039352127611200D08AAE /* ExerciseCreatorTests.swift */; };
 		F48039382127630800D08AAE /* TestCreateExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48039372127630800D08AAE /* TestCreateExercise.swift */; };
+		F4A6D99621B1C20600EA98F0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A6D99521B1C20600EA98F0 /* HealthKit.framework */; };
+		F4A6D99821B1C21400EA98F0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A6D99721B1C21400EA98F0 /* HealthKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,6 +188,8 @@
 		F47C082120ED3AAE00591C29 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		F48039352127611200D08AAE /* ExerciseCreatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCreatorTests.swift; sourceTree = "<group>"; };
 		F48039372127630800D08AAE /* TestCreateExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCreateExercise.swift; sourceTree = "<group>"; };
+		F4A6D99521B1C20600EA98F0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		F4A6D99721B1C21400EA98F0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		F4CCF5D7216B4BA40028F653 /* Fitness Tracker Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker Watch.entitlements"; sourceTree = "<group>"; };
 		F4CCF5D8216B4BC70028F653 /* Fitness Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker.entitlements"; sourceTree = "<group>"; };
 		F4CCF5D9216B4BCE0028F653 /* Fitness Tracker Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker Watch Extension.entitlements"; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4A6D99821B1C21400EA98F0 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F0AB82461DEE67898C56C99 /* Pods_Fitness_Tracker.framework in Frameworks */,
+				F4A6D99621B1C20600EA98F0 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +246,8 @@
 		B442A5C36D56613EDA6B28CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F4A6D99721B1C21400EA98F0 /* HealthKit.framework */,
+				F4A6D99521B1C20600EA98F0 /* HealthKit.framework */,
 				475357710B5E17428D43F869 /* Pods_Fitness_Tracker.framework */,
 				2044219A29A71F2590AD5B3F /* Pods_Fitness_Tracker_Fitness_TrackerTests.framework */,
 			);
@@ -496,6 +504,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.HealthKit.watchos = {
+								enabled = 1;
+							};
 						};
 					};
 					F47C07DB20EB9E6400591C29 = {
@@ -503,6 +514,9 @@
 						LastSwiftMigration = 0940;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
 								enabled = 1;
 							};
 						};

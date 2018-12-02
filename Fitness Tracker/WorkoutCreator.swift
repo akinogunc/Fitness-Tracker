@@ -64,7 +64,7 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             let modalVc = WorkoutSaver()
             modalVc.delegate = self
-            let modalFrame = CGRect(x: 20, y: (screenRect.size.height-350)/2, width: screenRect.size.width - 40, height: 350)
+            let modalFrame = CGRect(x: 20, y: (screenRect.size.height-450)/2, width: screenRect.size.width - 40, height: 450)
             let modalController = xModalController(parentViewController: self, modalViewController: modalVc, modalFrame: modalFrame)
             modalController.showModal()
 
@@ -168,7 +168,7 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell?.repsLabel.text = (exercisesArray.object(at: indexPath.row) as! NSDictionary)["reps"] as? String
             
             //Adding "s" letter to end of the rest seconds
-            let restSeconds = (exercisesArray.object(at: indexPath.row) as! NSDictionary)["rest"] as! String + "s"
+            let restSeconds = (exercisesArray.object(at: indexPath.row) as! NSDictionary)["duration"] as! String + "s"
             cell?.restLabel.text = restSeconds;
 
         }

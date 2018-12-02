@@ -66,7 +66,7 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         let exercisesArray = self.readWorkoutJSONbyName(name: workoutDict["name"] as! NSString)
         var duration = "0"
         var durationInSeconds = 0
-        
+
         for i in 0..<exercisesArray!.count {
             let exerciseDict = exercisesArray?.object(at: i) as! NSDictionary
             
@@ -74,13 +74,13 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
                 durationInSeconds += Int(exerciseDict["cardio_minutes"] as! String)! * 60
             }else{
                 let sets = Int(exerciseDict["sets"] as! String)!
-                durationInSeconds += Int(exerciseDict["rest"] as! String)! * sets//the time each set takes
-                durationInSeconds += Int(exerciseDict["rest"] as! String)! * (sets-1)//the time between sets
+                durationInSeconds += Int(exerciseDict["duration"] as! String)! * sets//the time each set takes
+                durationInSeconds += (workoutDict["rest"] as! NSNumber).intValue * (sets-1)//the time between sets
             }
             
             //adding 90 seconds for rest and preparation
             if (i != (exercisesArray?.count)! - 1) {//don't add rest time for last exercise
-                durationInSeconds += 90;
+                durationInSeconds += (workoutDict["rest"] as! NSNumber).intValue
             }
 
         }
@@ -109,6 +109,8 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
             cell = WorkoutCell.init(style: UITableViewCellStyle.default, reuseIdentifier: cellIdentifier)
         }
         
+        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+
         //Setting exercise values from json array
         let workoutName = workoutsArray.object(at: indexPath.row) as! NSDictionary
         let workoutNameWithoutExtension = (workoutName["name"] as! NSString).deletingPathExtension

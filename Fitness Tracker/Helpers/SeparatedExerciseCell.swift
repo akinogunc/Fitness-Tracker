@@ -36,10 +36,10 @@ class SeparatedExerciseCell: UITableViewCell {
         exerciseNameLabel.numberOfLines = 2
         self.addSubview(exerciseNameLabel)
         
-        repsLabel = UILabel(frame: CGRect(x: 4*screenRect.size.width/5, y: 10, width: screenRect.size.width/5, height: 25))
+        repsLabel = UILabel(frame: CGRect(x: 4*screenRect.size.width/5, y: 15, width: screenRect.size.width/5, height: 20))
         repsLabel.textColor = UIColor.black
         repsLabel.backgroundColor = UIColor.clear
-        repsLabel.font = UIFont(name: "Metropolis-Bold", size: 20.0)
+        repsLabel.font = UIFont(name: "Metropolis-Bold", size: 22.0)
         repsLabel.textAlignment = NSTextAlignment.center;
         self.addSubview(repsLabel)
 

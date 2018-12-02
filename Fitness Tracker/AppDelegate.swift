@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        application.isIdleTimerDisabled = true
+        
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self

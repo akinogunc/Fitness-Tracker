@@ -14,25 +14,35 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     @IBOutlet weak var workoutsTable: WKInterfaceTable!
     var workoutsArray: NSMutableArray!
+    var isActivated = false
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
-    }
-    
-    override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
-        super.willActivate()
         
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
             session.activate()
         }
-        
+
+    }
+    
+    override func willActivate() {
+        // This method is called when watch view controller is about to be visible to user
+        super.willActivate()
+
+        if isActivated{
+            getWorkoutList()
+        }
+
     }
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        isActivated = true
+        getWorkoutList()
+    }
+    
+    func getWorkoutList() -> Void {
         
         if WCSession.default.isReachable {
             let messageDict = ["message": "send_workout_list"]

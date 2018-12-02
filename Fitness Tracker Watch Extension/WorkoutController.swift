@@ -9,9 +9,9 @@
 import WatchKit
 import Foundation
 import WatchConnectivity
+import HealthKit
 
-
-class WorkoutController: WKInterfaceController {
+class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
 
     @IBOutlet weak var timerLabel: WKInterfaceLabel!
     @IBOutlet weak var exerciseName: WKInterfaceLabel!
@@ -27,7 +27,9 @@ class WorkoutController: WKInterfaceController {
     var separatedExercisesArray: NSMutableArray = []
     var workoutDictionary: [String : AnyObject]!
 
-    
+    private let healthStore = HKHealthStore()
+    private var workoutSession: HKWorkoutSession?
+
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -57,13 +59,28 @@ class WorkoutController: WKInterfaceController {
         if isTimerActive{
             countdownTimer.invalidate()
             isTimerActive = false
-            startButton.setBackgroundImage(UIImage(named: "pause.png"))
-        }else{
-            countdownTimer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
             startButton.setBackgroundImage(UIImage(named: "start.png"))
+        }else{
+            countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+            startButton.setBackgroundImage(UIImage(named: "pause.png"))
             isTimerActive = true
+            startHKWorkout()
         }
 
+    }
+
+    func startHKWorkout() -> Void {
+        
+        let workoutConfiguration = HKWorkoutConfiguration()
+        workoutConfiguration.activityType = .other
+        
+        do {
+            workoutSession = try HKWorkoutSession(healthStore: healthStore, configuration: workoutConfiguration)
+            workoutSession?.delegate = self
+            workoutSession?.startActivity(with: Date())
+        } catch {
+            print(error)
+        }
     }
 
     func getIndexOfFirstUncompletedExercise() -> Int {
@@ -85,7 +102,7 @@ class WorkoutController: WKInterfaceController {
     }
 
     @objc func updateTimer() -> () {
-        
+
         let indexOfObject = self.getIndexOfFirstUncompletedExercise()
         
         if (indexOfObject == -1) {
@@ -189,11 +206,20 @@ class WorkoutController: WKInterfaceController {
     }
 
     @IBAction func cancelAction(){
+        endWorkout()
         self.dismiss()
     }
 
     @IBAction func doneAction(){
+        endWorkout()
         self.dismiss()
+    }
+    
+    func endWorkout() -> Void {
+        countdownTimer?.invalidate()
+        countdownTimer = nil
+        workoutSession?.stopActivity(with: Date())
+        workoutSession?.end()
     }
     
     override func willActivate() {
@@ -205,5 +231,11 @@ class WorkoutController: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
+
+    func workoutSession(_ workoutSession: HKWorkoutSession, didFailWithError error: Error) {}
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didGenerate event: HKWorkoutEvent) {}
+    
+    func workoutSession(_ workoutSession: HKWorkoutSession, didChangeTo toState: HKWorkoutSessionState, from fromState: HKWorkoutSessionState, date: Date){}
 
 }

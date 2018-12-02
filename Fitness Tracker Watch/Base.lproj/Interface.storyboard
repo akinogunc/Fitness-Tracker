@@ -74,7 +74,7 @@
         <!--home-->
         <scene sceneID="4Y4-Tf-gbE">
             <objects>
-                <controller identifier="home" hidesWhenLoading="NO" id="Uvb-gS-F3P" customClass="InterfaceController" customModule="Fitness_Tracker_Watch_Extension">
+                <controller identifier="home" id="Uvb-gS-F3P" customClass="InterfaceController" customModule="Fitness_Tracker_Watch_Extension">
                     <items>
                         <table alignment="left" id="CSW-Kn-6iA">
                             <items>

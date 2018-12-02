@@ -27,7 +27,11 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
     var tricepsRadioButton: xRadioButton!
     var absRadioButton: xRadioButton!
     var shouldersRadioButton: xRadioButton!
-    
+    var restLabel: UILabel!
+    var restDownButton: UIButton!
+    var restUpButton: UIButton!
+    var restSeconds = 45;
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -55,7 +59,7 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         workoutNameTextField.delegate = self
         self.view.addSubview(workoutNameTextField)
 
-        //Name your workout label
+        //Choose worked muscle groups label
         let chooseBodyParts = UILabel(frame: CGRect(x: 20, y: 90, width: screenRect.size.width - 80, height: 30))
         chooseBodyParts.textColor = UIColor.black
         chooseBodyParts.backgroundColor = UIColor.clear
@@ -91,6 +95,40 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         shouldersRadioButton = xRadioButton(title: "Shoulders", frame: CGRect(x: 30 + radioButtonWidth, y: 230, width: radioButtonWidth, height: 30), font: UIFont(name: "Metropolis-Medium", size: 14.0)!, color: green)
         self.view.addSubview(shouldersRadioButton)
 
+        
+        //Rest between sets label
+        let restBetweenSets = UILabel(frame: CGRect(x: 20, y: 290, width: screenRect.size.width - 80, height: 30))
+        restBetweenSets.textColor = UIColor.black
+        restBetweenSets.backgroundColor = UIColor.clear
+        restBetweenSets.font = UIFont(name: "Metropolis-Medium", size: 16.0)
+        restBetweenSets.text = "Rest between sets";
+        restBetweenSets.numberOfLines = 1;
+        restBetweenSets.textAlignment = NSTextAlignment.center;
+        self.view.addSubview(restBetweenSets)
+
+        //Rest UI setup
+        restLabel = UILabel(frame: CGRect(x: 80, y: 325, width: screenRect.size.width - 200, height: 30))
+        restLabel.textColor = UIColor.black
+        restLabel.backgroundColor = UIColor.clear
+        restLabel.font = UIFont(name: "Metropolis-Medium", size: 15.0)
+        restLabel.text = "45 Seconds";
+        restLabel.numberOfLines = 0;
+        restLabel.textAlignment = NSTextAlignment.center;
+        self.view.addSubview(restLabel)
+        
+        restDownButton = UIButton(type: UIButtonType.custom)
+        restDownButton.setImage(UIImage(named: "down"), for: UIControlState.normal)
+        restDownButton.frame = CGRect(x: 20, y: 325, width: 30, height: 30)
+        restDownButton.addTarget(self, action: #selector(self.decreaseRest), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(restDownButton)
+        
+        restUpButton = UIButton(type: UIButtonType.custom)
+        restUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
+        restUpButton.frame = CGRect(x: screenRect.size.width - 90, y: 325, width: 30, height: 30)
+        restUpButton.addTarget(self, action: #selector(self.increaseRest), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(restUpButton)
+
+        //Cancel and save buttons UI
         let bottomButtonsWidth = (screenRect.size.width - 100)/2
         
         //This button will save the workout
@@ -100,7 +138,7 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         saveWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         saveWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
         saveWorkoutButton.backgroundColor = green
-        saveWorkoutButton.frame = CGRect(x: 40 + bottomButtonsWidth, y: 285, width: bottomButtonsWidth, height: 45)
+        saveWorkoutButton.frame = CGRect(x: 40 + bottomButtonsWidth, y: 385, width: bottomButtonsWidth, height: 45)
         saveWorkoutButton.addTarget(self, action: #selector(self.saveWorkout), for: UIControlEvents.touchUpInside)
         self.view.addSubview(saveWorkoutButton)
 
@@ -111,7 +149,7 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         cancelButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         cancelButton.titleLabel?.textAlignment = NSTextAlignment.center
         cancelButton.backgroundColor = orange
-        cancelButton.frame = CGRect(x: 20, y: 285, width: bottomButtonsWidth, height: 45)
+        cancelButton.frame = CGRect(x: 20, y: 385, width: bottomButtonsWidth, height: 45)
         cancelButton.addTarget(self, action: #selector(self.dismissPopup), for: UIControlEvents.touchUpInside)
         self.view.addSubview(cancelButton)
 
@@ -148,7 +186,7 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
             
             //Creating a dictionary from the exercise values
             var workoutDictionary: NSDictionary!
-            workoutDictionary =  ["name" : workoutNameTextField.text! + ".json", "muscle_groups" : self.createMuscleGroupsArray()]
+            workoutDictionary =  ["name" : workoutNameTextField.text! + ".json", "muscle_groups" : self.createMuscleGroupsArray(), "rest" : restSeconds]
 
             //Adding name of the workout to array
             savedWorkouts?.add(workoutDictionary)
@@ -179,6 +217,44 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         return result
     }
     
+    @objc func decreaseRest () -> (){
+        if(restSeconds>15){
+            restSeconds -= 15
+            
+            let minutes = restSeconds/60
+            let seconds = restSeconds%60
+            
+            if(minutes>0){
+                if(seconds>0){
+                    restLabel.text = String(format: "%d Min %02d Secs", minutes, seconds)
+                }else{
+                    restLabel.text = String(format: "%d Min", minutes)
+                }
+            }else{
+                restLabel.text = String(format: "%d Seconds", restSeconds)
+            }
+
+        }
+    }
+    
+    @objc func increaseRest () -> (){
+        restSeconds += 15
+
+        let minutes = restSeconds/60
+        let seconds = restSeconds%60
+        
+        if(minutes>0){
+            if(seconds>0){
+                restLabel.text = String(format: "%d Min %02d Secs", minutes, seconds)
+            }else{
+                restLabel.text = String(format: "%d Min", minutes)
+            }
+        }else{
+            restLabel.text = String(format: "%d Seconds", restSeconds)
+        }
+
+    }
+
     @objc func dismissPopup() -> Void {
         self.dismiss(animated: true, completion: nil)
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -84,7 +85,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
             isWorkoutActive = true;
             startPauseWorkoutButton.backgroundColor = UIColor(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
             startPauseWorkoutButton.setTitle("PAUSE", for: UIControlState.normal)
-            countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(StartWorkout.updateTimer), userInfo: nil, repeats: true)
+            countdownTimer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(StartWorkout.updateTimer), userInfo: nil, repeats: true)
         }
 
     }
@@ -93,8 +94,9 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         for i in 0..<separatedExercisesArray.count{
             let separatedExerciseDict = separatedExercisesArray.object(at: i) as! NSDictionary
-            let duration = Int(separatedExerciseDict["duration"] as! String)!
-            
+            let durationAsString:String = String(format: "%@", separatedExerciseDict["duration"] as! CVarArg)
+            let duration = Int(durationAsString)!
+
             if(duration>0){
                 return i;
             }
@@ -125,7 +127,8 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         //Reducing duration of the exercise
         let separatedExerciseDict = separatedExercisesArray.object(at: indexOfObject) as! NSDictionary
-        var duration = Int(separatedExerciseDict["duration"] as! String)!
+        let durationAsString:String = String(format: "%@", separatedExerciseDict["duration"] as! CVarArg)
+        var duration = Int(durationAsString)!
         duration -= 1
         
         if(duration>0){
@@ -139,6 +142,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
 
         }else{
             
+            AudioServicesPlaySystemSound(1520)
             separatedExercisesArray.removeObject(at: indexOfObject)
             exercisesTableView.reloadData()
 
@@ -166,7 +170,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         for i in 0..<rawExercisesArray.count {
             let exerciseDict = rawExercisesArray.object(at: i) as! NSDictionary
-            
+
             if(exerciseDict["isCardio"] as! Bool){
                 let cardioSeconds = Int(exerciseDict["cardio_minutes"] as! String)! * 60
                 let separatedExercise = ["name" : exerciseDict["name"], "duration" : String(format: "%d", cardioSeconds), "status" : "0"]
@@ -175,20 +179,20 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
                 let sets = Int(exerciseDict["sets"] as! String)!
                 
                 for j in 0..<sets {
-                    let separatedExercise = ["name" : exerciseDict["name"], "duration" : exerciseDict["rest"], "reps" : exerciseDict["reps"], "status" : "0"]
+                    let separatedExercise = ["name" : exerciseDict["name"], "duration" : exerciseDict["duration"], "reps" : exerciseDict["reps"], "status" : "0"]
                     separatedExercisesArray.add(separatedExercise)
                     
                     if (j != sets-1){
-                        let separatedExercise = ["name" : "Rest", "duration" : exerciseDict["rest"], "status" : "0"]
+                        let separatedExercise = ["name" : "Rest", "duration" : workoutDict["rest"], "status" : "0"]
                         separatedExercisesArray.add(separatedExercise)
                     }
                 }
             }
             
-            //adding 90 seconds for rest and preparation
+            //rest between exercises
             if (i != rawExercisesArray.count - 1) {//don't add rest time for last exercise
                 
-                let separatedExercise: NSDictionary = ["name" : "Rest and Preparation", "duration" : "90", "status" : "0"]
+                let separatedExercise = ["name" : "Rest", "duration" : workoutDict["rest"], "status" : "0"]
                 separatedExercisesArray.add(separatedExercise)
 
             }
@@ -215,9 +219,10 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         
         cell?.selectionStyle = UITableViewCellSelectionStyle.none
-        
+
         let separatedExerciseDict = separatedExercisesArray.object(at: indexPath.row) as! NSDictionary
-        let duration = Int(separatedExerciseDict["duration"] as! String)!
+        let durationAsString:String = String(format: "%@", separatedExerciseDict["duration"] as! CVarArg)
+        let duration = Int(durationAsString)!
         let minutes = duration/60
         let seconds = duration%60
         cell?.countdownLabel.text = String(format: "%d:%02d", minutes, seconds)
@@ -236,17 +241,23 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
             cell?.backgroundColor = UIColor.white
             cell?.countdownLabel.textColor = UIColor.black
             cell?.exerciseNameLabel.textColor = UIColor.black
-            cell?.exerciseNameLabel.font = UIFont(name: "Metropolis-Medium", size: 20.0)
+            cell?.exerciseNameLabel.font = UIFont(name: "Metropolis-Medium", size: 22.0)
+            cell?.repsLabel.textColor = UIColor.black
+            cell?.repsStaticLabel.textColor = UIColor.black
         }else if (Int(separatedExerciseDict["status"] as! String)! == 1){//active
             cell?.backgroundColor = UIColor(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
             cell?.countdownLabel.textColor = UIColor.white
             cell?.exerciseNameLabel.textColor = UIColor.white
-            cell?.exerciseNameLabel.font = UIFont(name: "Metropolis-Bold", size: 20.0)
+            cell?.exerciseNameLabel.font = UIFont(name: "Metropolis-Bold", size: 22.0)
+            cell?.repsLabel.textColor = UIColor.white
+            cell?.repsStaticLabel.textColor = UIColor.white
         }else if (Int(separatedExerciseDict["status"] as! String)! == 2){//paused
             cell?.backgroundColor = UIColor(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
             cell?.countdownLabel.textColor = UIColor.white
             cell?.exerciseNameLabel.textColor = UIColor.white
-            cell?.exerciseNameLabel.font = UIFont(name: "Metropolis-Bold", size: 20.0)
+            cell?.exerciseNameLabel.font = UIFont(name: "Metropolis-Bold", size: 22.0)
+            cell?.repsLabel.textColor = UIColor.white
+            cell?.repsStaticLabel.textColor = UIColor.white
         }
 
         return cell!
@@ -276,6 +287,9 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @objc func cancelButtonHit() -> () {
+        if (isWorkoutActive) {
+            countdownTimer.invalidate()
+        }
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -64,7 +64,7 @@ class ExerciseCell: UITableViewCell {
             setsLabel.textAlignment = NSTextAlignment.center;
             self.addSubview(setsLabel)
             
-            let setsStaticLabel = UILabel(frame: CGRect(x: screenRect.size.width/2, y: 35, width: screenRect.size.width/6, height: 25))
+            let setsStaticLabel = UILabel(frame: CGRect(x: screenRect.size.width/2 - 10, y: 35, width: screenRect.size.width/6, height: 25))
             setsStaticLabel.textColor = UIColor.black
             setsStaticLabel.backgroundColor = UIColor.clear
             setsStaticLabel.font = UIFont(name: "Metropolis-Medium", size: 12.0)
@@ -108,7 +108,7 @@ class ExerciseCell: UITableViewCell {
             restStaticLabel.textColor = UIColor.black
             restStaticLabel.backgroundColor = UIColor.clear
             restStaticLabel.font = UIFont(name: "Metropolis-Medium", size: 12.0)
-            restStaticLabel.text = "rest";
+            restStaticLabel.text = "duration";
             restStaticLabel.textAlignment = NSTextAlignment.center;
             self.addSubview(restStaticLabel)
 
