@@ -85,7 +85,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
             isWorkoutActive = true;
             startPauseWorkoutButton.backgroundColor = UIColor(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
             startPauseWorkoutButton.setTitle("PAUSE", for: UIControlState.normal)
-            countdownTimer = Timer.scheduledTimer(timeInterval: 1/30, target: self, selector: #selector(StartWorkout.updateTimer), userInfo: nil, repeats: true)
+            countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(StartWorkout.updateTimer), userInfo: nil, repeats: true)
         }
 
     }
@@ -142,7 +142,8 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
 
         }else{
             
-            AudioServicesPlaySystemSound(1520)
+            AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate, {});
+            
             separatedExercisesArray.removeObject(at: indexOfObject)
             exercisesTableView.reloadData()
 

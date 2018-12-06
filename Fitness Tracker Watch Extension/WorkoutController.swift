@@ -37,7 +37,7 @@ class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
         let arr = (context as! NSArray).mutableCopy() as! NSMutableArray
         
         //Getting workout info from array and removing it
-        workoutDictionary = arr[0] as! Dictionary
+        workoutDictionary = (arr[0] as! Dictionary)
         arr.removeObject(at: 0)
         
         //Separating exercises by each set and adding rest between them
@@ -50,7 +50,13 @@ class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
         let minutes = duration/60
         let seconds = duration%60
         timerLabel.setText(String(format: "%d:%02d", minutes, seconds))
-        exerciseName.setText(separatedExerciseDict["name"] as? String)
+        
+        if ((separatedExerciseDict["reps"] as? String) != nil){
+            exerciseName.setText((separatedExerciseDict["name"] as! String) + " x " + (separatedExerciseDict["reps"] as! String))
+        }else{
+            exerciseName.setText((separatedExerciseDict["name"] as! String))
+        }
+        
 
     }
 
@@ -91,8 +97,9 @@ class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
         
         for i in 0..<separatedExercisesArray.count{
             let separatedExerciseDict = separatedExercisesArray.object(at: i) as! NSDictionary
-            let duration = Int(separatedExerciseDict["duration"] as! String)!
-            
+            let durationAsString:String = String(format: "%@", separatedExerciseDict["duration"] as! CVarArg)
+            let duration = Int(durationAsString)!
+
             if(duration>0){
                 return i;
             }
@@ -118,7 +125,8 @@ class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
         
         //Reducing duration of the exercise
         let separatedExerciseDict = separatedExercisesArray.object(at: indexOfObject) as! NSDictionary
-        var duration = Int(separatedExerciseDict["duration"] as! String)!
+        let durationAsString:String = String(format: "%@", separatedExerciseDict["duration"] as! CVarArg)
+        var duration = Int(durationAsString)!
         duration -= 1
         
         if(duration>0){
@@ -161,11 +169,43 @@ class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
         
         if(separatedExercisesArray.count > 0){
             let separatedExerciseDict = separatedExercisesArray.object(at: index) as! NSDictionary
-            let duration = Int(separatedExerciseDict["duration"] as! String)!
+            let durationAsString:String = String(format: "%@", separatedExerciseDict["duration"] as! CVarArg)
+            let duration = Int(durationAsString)!
             let minutes = duration/60
             let seconds = duration%60
             timerLabel.setText(String(format: "%d:%02d", minutes, seconds))
-            exerciseName.setText(separatedExerciseDict["name"] as? String)
+
+            if(separatedExerciseDict["name"] as! String == "Rest"){
+
+                if let nextExerciseDict = separatedExercisesArray.object(at: index + 1) as? NSDictionary{
+
+                    let allStrings = NSMutableAttributedString()
+                    
+                    let bigText  = separatedExerciseDict["name"] as! String
+                    let attrs = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 20.0)]
+                    let s1 = NSMutableAttributedString(string:bigText, attributes:attrs as [NSAttributedString.Key : Any])
+                    
+                    let smallText = "\nNext: " + (nextExerciseDict["name"] as! String)
+                    let attrs2 = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 13.0)]
+                    let s2 = NSMutableAttributedString(string:smallText, attributes:attrs2 as [NSAttributedString.Key : Any])
+                    
+                    allStrings.append(s1)
+                    allStrings.append(s2)
+
+                    exerciseName.setAttributedText(allStrings)
+                }else{
+                    exerciseName.setText((separatedExerciseDict["name"] as! String) + " x " + (separatedExerciseDict["reps"] as! String))
+                }
+                
+            }else{
+                
+                if ((separatedExerciseDict["reps"] as? String) != nil){
+                    exerciseName.setText((separatedExerciseDict["name"] as! String) + " x " + (separatedExerciseDict["reps"] as! String))
+                }else{
+                    exerciseName.setText((separatedExerciseDict["name"] as! String))
+                }
+                
+            }
         }
 
     }
@@ -183,26 +223,25 @@ class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
                 let sets = Int(exerciseDict["sets"] as! String)!
                 
                 for j in 0..<sets {
-                    let separatedExercise = ["name" : exerciseDict["name"], "duration" : exerciseDict["rest"], "reps" : exerciseDict["reps"], "status" : "0"]
+                    let separatedExercise = ["name" : exerciseDict["name"], "duration" : exerciseDict["duration"], "reps" : exerciseDict["reps"], "status" : "0"]
                     separatedExercisesArray.add(separatedExercise)
                     
                     if (j != sets-1){
-                        let separatedExercise = ["name" : "Rest", "duration" : exerciseDict["rest"], "status" : "0"]
+                        let separatedExercise = ["name" : "Rest", "duration" : workoutDictionary["rest"]!, "status" : "0"] as [String : Any]
                         separatedExercisesArray.add(separatedExercise)
                     }
                 }
             }
             
-            //adding 90 seconds for rest and preparation
+            //rest between exercises
             if (i != rawExercisesArray.count - 1) {//don't add rest time for last exercise
                 
-                let separatedExercise: NSDictionary = ["name" : "Rest and Preparation", "duration" : "90", "status" : "0"]
+                let separatedExercise = ["name" : "Rest", "duration" : workoutDictionary["rest"]!, "status" : "0"] as [String : Any]
                 separatedExercisesArray.add(separatedExercise)
                 
             }
             
         }
-
     }
 
     @IBAction func cancelAction(){

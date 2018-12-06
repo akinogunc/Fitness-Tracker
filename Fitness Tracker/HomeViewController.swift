@@ -70,6 +70,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
 
         
         colors = [yellow, blue, green, orange, darkBlue, darkGreen, UIColor.magenta]
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
 
     }
 
@@ -124,6 +125,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         let mergedCompletedWorkoutsArray = NSMutableArray()
 
+        let calendar = Calendar(identifier: .gregorian)
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.day]
         formatter.unitsStyle = .full
@@ -141,9 +143,12 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 
                 let string = formatter.string(from: date1, to: date2)!//2 days, -1 days
                 let arr = string.components(separatedBy:" ")//["2", "days"]
-                
+
+                let day1 = calendar.component(.day, from: date1)
+                let day2 = calendar.component(.day, from: date2)
+
                 //if the workouts are at the same day
-                if(Int(arr[0])! == 0){
+                if(Int(arr[0])! == 0 && day1 == day2){
                     
                     let date = dict1["date"] as! Date
                     let arr1 = dict1["muscle_groups"] as! NSArray
@@ -161,7 +166,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             }
             
         }
-        
+
         initializeWeeklyCalendar(mergedWorkouts: mergedCompletedWorkoutsArray)
         showTrainedBodyPartsLabel(mergedWorkouts: mergedCompletedWorkoutsArray)
     }
@@ -391,8 +396,16 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.navigationController?.pushViewController(workoutHistory, animated: true)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    @objc func willEnterForeground() -> Void {
+        refreshUI()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        refreshUI()
+    }
+    
+    func refreshUI() -> Void {
+        
         for subview in refreshableUI{
             (subview as! UIView).removeFromSuperview()
         }
