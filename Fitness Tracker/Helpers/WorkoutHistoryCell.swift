@@ -16,7 +16,7 @@ class WorkoutHistoryCell: UITableViewCell {
     var dayLabel: UILabel!
 
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         //Getting size of the device

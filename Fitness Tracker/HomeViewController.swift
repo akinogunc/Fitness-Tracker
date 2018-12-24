@@ -28,50 +28,50 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         self.view.backgroundColor = UIColor.white
         
         //Customizing navigation bar
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationController?.navigationBar.topItem?.title = "Fitness Tracker"
         
-        let newBackButton:UIBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: nil)
+        let newBackButton:UIBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = newBackButton;
         
         //This button will open the start workout view controller
-        let startWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
-        startWorkoutButton.setTitle("Start Workout", for: UIControlState.normal)
-        startWorkoutButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        let startWorkoutButton:UIButton = UIButton(type: UIButton.ButtonType.custom)
+        startWorkoutButton.setTitle("Start Workout", for: UIControl.State.normal)
+        startWorkoutButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         startWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         startWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
         startWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
         startWorkoutButton.frame = CGRect(x: 0, y: screenRect.size.height*0.8, width: screenRect.size.width, height: screenRect.size.height*0.1)
-        startWorkoutButton.addTarget(self, action: #selector(HomeViewController.startWorkout), for: UIControlEvents.touchUpInside)
+        startWorkoutButton.addTarget(self, action: #selector(HomeViewController.startWorkout), for: UIControl.Event.touchUpInside)
         startWorkoutButton.accessibilityIdentifier = "Create Workout"
         self.view.addSubview(startWorkoutButton)
 
         //This button will open create workout view controller
-        let createWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
-        createWorkoutButton.setTitle("Create Workout", for: UIControlState.normal)
-        createWorkoutButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        let createWorkoutButton:UIButton = UIButton(type: UIButton.ButtonType.custom)
+        createWorkoutButton.setTitle("Create Workout", for: UIControl.State.normal)
+        createWorkoutButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         createWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         createWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
         createWorkoutButton.backgroundColor = UIColor.init(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
         createWorkoutButton.frame = CGRect(x: 0, y: screenRect.size.height*0.9, width: screenRect.size.width/2, height: screenRect.size.height*0.1)
-        createWorkoutButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
+        createWorkoutButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControl.Event.touchUpInside)
         self.view.addSubview(createWorkoutButton)
 
         
         //This button will open create workout view controller
-        let showHistoryButton:UIButton = UIButton(type: UIButtonType.custom)
-        showHistoryButton.setTitle("Workout History", for: UIControlState.normal)
-        showHistoryButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        let showHistoryButton:UIButton = UIButton(type: UIButton.ButtonType.custom)
+        showHistoryButton.setTitle("Workout History", for: UIControl.State.normal)
+        showHistoryButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         showHistoryButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         showHistoryButton.titleLabel?.textAlignment = NSTextAlignment.center
         showHistoryButton.backgroundColor = UIColor.init(red: 97.0/255.0, green: 131.0/255.0, blue: 218.0/255.0, alpha: 1)
         showHistoryButton.frame = CGRect(x: screenRect.size.width/2, y: screenRect.size.height*0.9, width: screenRect.size.width/2, height: screenRect.size.height*0.1)
-        showHistoryButton.addTarget(self, action: #selector(HomeViewController.showHistory), for: UIControlEvents.touchUpInside)
+        showHistoryButton.addTarget(self, action: #selector(HomeViewController.showHistory), for: UIControl.Event.touchUpInside)
         self.view.addSubview(showHistoryButton)
 
         
         colors = [yellow, blue, green, orange, darkBlue, darkGreen, UIColor.magenta]
-        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
 
     }
 
@@ -192,12 +192,12 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             
             let date = calendar.date(byAdding: .day, value: 1 + i, to: sunday!)
             
-            let createWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
+            let createWorkoutButton:UIButton = UIButton(type: UIButton.ButtonType.custom)
             createWorkoutButton.backgroundColor = UIColor(red: 234.0/255.0, green: 234.0/255.0, blue: 234.0/255.0, alpha: 1)
             createWorkoutButton.frame = CGRect(x: CGFloat(i)*dateButtonWidth, y: navigationHeight!, width: dateButtonWidth, height: dateButtonWidth*2)
             //createWorkoutButton.addTarget(self, action: #selector(HomeViewController.createWorkout), for: UIControlEvents.touchUpInside)
-            createWorkoutButton.setTitle(String(calendar.component(.day, from: date!)), for: UIControlState.normal)
-            createWorkoutButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+            createWorkoutButton.setTitle(String(calendar.component(.day, from: date!)), for: UIControl.State.normal)
+            createWorkoutButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
             createWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 16.0)
             self.view.addSubview(createWorkoutButton)
             refreshableUI.add(createWorkoutButton)
@@ -272,11 +272,11 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let allStrings = NSMutableAttributedString()
         
         let boldText  = "Worked Muscles: "
-        let attrs = [NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 16)]
+        let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]
         let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
         
         let normalText = "Back(x\(dictionary["back"] ?? 0)), Chest(x\(dictionary["chest"] ?? 0)), Biceps(x\(dictionary["biceps"] ?? 0)), Triceps(x\(dictionary["triceps"] ?? 0)), Legs(x\(dictionary["legs"] ?? 0)), Shoulders(x\(dictionary["shoulders"] ?? 0)), Abs(x\(dictionary["back"] ?? 0))"
-        let attrs2 = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 15)]
+        let attrs2 = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)]
         let normalString = NSMutableAttributedString(string:normalText, attributes:attrs2)
         
         allStrings.append(attributedString)
@@ -302,12 +302,12 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         let bodyFront = UIImageView(frame: CGRect(x: 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
         bodyFront.image = UIImage(named: "body_front")
-        bodyFront.contentMode = UIViewContentMode.scaleAspectFit
+        bodyFront.contentMode = UIView.ContentMode.scaleAspectFit
         self.view.addSubview(bodyFront)
         
         let bodyBack = UIImageView(frame: CGRect(x: screenRect.size.width/2 + 10, y: bodyImagesY, width: screenRect.size.width/2 - 20, height: screenRect.size.height - bodyImagesY - bottomBarHeight))
         bodyBack.image = UIImage(named: "body_back")
-        bodyBack.contentMode = UIViewContentMode.scaleAspectFit
+        bodyBack.contentMode = UIView.ContentMode.scaleAspectFit
         self.view.addSubview(bodyBack)
 
         refreshableUI.addObjects(from: [bodyBack,bodyFront])
@@ -323,7 +323,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyFront.image = UIImage(named: partName)
             bodyFront.image = bodyFront.image?.withRenderingMode(.alwaysTemplate)
             bodyFront.tintColor = color
-            bodyFront.contentMode = UIViewContentMode.scaleAspectFit
+            bodyFront.contentMode = UIView.ContentMode.scaleAspectFit
             self.view.addSubview(bodyFront)
             refreshableUI.add(bodyFront)
         }
@@ -333,7 +333,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyBack.image = UIImage(named: partName)
             bodyBack.image = bodyBack.image?.withRenderingMode(.alwaysTemplate)
             bodyBack.tintColor = color
-            bodyBack.contentMode = UIViewContentMode.scaleAspectFit
+            bodyBack.contentMode = UIView.ContentMode.scaleAspectFit
             self.view.addSubview(bodyBack)
             refreshableUI.add(bodyBack)
         }
@@ -343,7 +343,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyFront.image = UIImage(named: "shoulder_front")
             bodyFront.image = bodyFront.image?.withRenderingMode(.alwaysTemplate)
             bodyFront.tintColor = color
-            bodyFront.contentMode = UIViewContentMode.scaleAspectFit
+            bodyFront.contentMode = UIView.ContentMode.scaleAspectFit
             self.view.addSubview(bodyFront)
             refreshableUI.add(bodyFront)
 
@@ -351,7 +351,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyBack.image = UIImage(named: "shoulder_back")
             bodyBack.image = bodyBack.image?.withRenderingMode(.alwaysTemplate)
             bodyBack.tintColor = color
-            bodyBack.contentMode = UIViewContentMode.scaleAspectFit
+            bodyBack.contentMode = UIView.ContentMode.scaleAspectFit
             self.view.addSubview(bodyBack)
             refreshableUI.add(bodyBack)
 
@@ -362,7 +362,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyFront.image = UIImage(named: "legs_front")
             bodyFront.image = bodyFront.image?.withRenderingMode(.alwaysTemplate)
             bodyFront.tintColor = color
-            bodyFront.contentMode = UIViewContentMode.scaleAspectFit
+            bodyFront.contentMode = UIView.ContentMode.scaleAspectFit
             self.view.addSubview(bodyFront)
             refreshableUI.add(bodyFront)
 
@@ -370,7 +370,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             bodyBack.image = UIImage(named: "legs_back")
             bodyBack.image = bodyBack.image?.withRenderingMode(.alwaysTemplate)
             bodyBack.tintColor = color
-            bodyBack.contentMode = UIViewContentMode.scaleAspectFit
+            bodyBack.contentMode = UIView.ContentMode.scaleAspectFit
             self.view.addSubview(bodyBack)
             refreshableUI.add(bodyBack)
 

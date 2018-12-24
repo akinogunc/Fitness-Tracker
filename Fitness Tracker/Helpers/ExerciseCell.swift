@@ -17,7 +17,7 @@ class ExerciseCell: UITableViewCell {
     var isCardio: Bool!
 
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, isCardio: Bool) {
+    init(style: UITableViewCell.CellStyle, reuseIdentifier: String?, isCardio: Bool) {
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 

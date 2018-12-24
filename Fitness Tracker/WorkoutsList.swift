@@ -20,10 +20,10 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.view.backgroundColor = UIColor.white
 
         //Customizing navigation bar
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationItem.title = "Workouts"
         
-        let editButton:UIBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.editWorkout))
+        let editButton:UIBarButtonItem = UIBarButtonItem(title: "Edit", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.editWorkout))
         self.navigationItem.rightBarButtonItem = editButton;
 
         //Getting size of the device
@@ -94,7 +94,7 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
             jsonManager.deleteJSONByName(name: (workoutsArray.object(at: indexPath.row) as! NSDictionary)["name"] as! String)
             self.workoutsArray.removeObject(at: indexPath.row)
             jsonManager.saveArrayToJSONByName(array: workoutsArray, name: "workouts")
-            self.workoutsTableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            self.workoutsTableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             self.workoutsTableView.endUpdates()
         }
     }
@@ -105,10 +105,10 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         var cell: WorkoutCell? = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? WorkoutCell
         if(cell == nil){
-            cell = WorkoutCell.init(style: UITableViewCellStyle.default, reuseIdentifier: cellIdentifier)
+            cell = WorkoutCell.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellIdentifier)
         }
         
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
 
         //Setting exercise values from json array
         let workoutName = workoutsArray.object(at: indexPath.row) as! NSDictionary
@@ -119,25 +119,25 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         //converting muscle groups array to a single string
         let muscleGroupsAsString = (workoutName["muscle_groups"] as! Array).joined(separator: ",")
         
-        let att = [NSAttributedStringKey.font : UIFont(name: "Metropolis-Bold", size: 14.0)]
-        let boldString = NSMutableAttributedString(string:"Muscles: ", attributes: att as [NSAttributedStringKey : Any])
-        let att2 = [NSAttributedStringKey.font : UIFont(name: "Metropolis-Medium", size: 14.0)]
-        let normalString = NSMutableAttributedString(string:muscleGroupsAsString, attributes:att2 as [NSAttributedStringKey : Any])
+        let att = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Bold", size: 14.0)]
+        let boldString = NSMutableAttributedString(string:"Muscles: ", attributes: att as [NSAttributedString.Key : Any])
+        let att2 = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 14.0)]
+        let normalString = NSMutableAttributedString(string:muscleGroupsAsString, attributes:att2 as [NSAttributedString.Key : Any])
         boldString.append(normalString)
 
         cell?.muscleGroupsLabel.attributedText = boldString
         
         if editMode{
-            cell?.startWorkoutButton.setTitle("Edit", for: UIControlState.normal)
+            cell?.startWorkoutButton.setTitle("Edit", for: UIControl.State.normal)
             cell?.startWorkoutButton.backgroundColor = UIColor.init(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
             cell?.startWorkoutButton.tag = indexPath.row
         }else{
-            cell?.startWorkoutButton.setTitle("Start", for: UIControlState.normal)
+            cell?.startWorkoutButton.setTitle("Start", for: UIControl.State.normal)
             cell?.startWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
             cell?.startWorkoutButton.tag = indexPath.row
         }
         
-        cell?.startWorkoutButton.addTarget(self, action: #selector(startEditAction(sender:)), for: UIControlEvents.touchUpInside)
+        cell?.startWorkoutButton.addTarget(self, action: #selector(startEditAction(sender:)), for: UIControl.Event.touchUpInside)
 
         return cell!
     }

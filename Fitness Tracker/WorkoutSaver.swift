@@ -61,14 +61,14 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
 
         //Workout name text field
         workoutNameTextField = UITextField(frame: CGRect(x: 20, y: 50, width: screenRect.size.width - 80, height: 30))
-        workoutNameTextField.borderStyle = UITextBorderStyle.roundedRect
+        workoutNameTextField.borderStyle = UITextField.BorderStyle.roundedRect
         workoutNameTextField.font = UIFont(name: "Metropolis-Medium", size: 16.0)
         workoutNameTextField.placeholder = "Chest&Biceps"
         workoutNameTextField.autocorrectionType = UITextAutocorrectionType.no
         workoutNameTextField.keyboardType = UIKeyboardType.default
         workoutNameTextField.returnKeyType = UIReturnKeyType.done
-        workoutNameTextField.clearButtonMode = UITextFieldViewMode.whileEditing
-        workoutNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        workoutNameTextField.clearButtonMode = UITextField.ViewMode.whileEditing
+        workoutNameTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         workoutNameTextField.delegate = self
         self.view.addSubview(workoutNameTextField)
 
@@ -129,41 +129,41 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         restLabel.textAlignment = NSTextAlignment.center;
         self.view.addSubview(restLabel)
         
-        restDownButton = UIButton(type: UIButtonType.custom)
-        restDownButton.setImage(UIImage(named: "down"), for: UIControlState.normal)
+        restDownButton = UIButton(type: UIButton.ButtonType.custom)
+        restDownButton.setImage(UIImage(named: "down"), for: UIControl.State.normal)
         restDownButton.frame = CGRect(x: 20, y: 325, width: 30, height: 30)
-        restDownButton.addTarget(self, action: #selector(self.decreaseRest), for: UIControlEvents.touchUpInside)
+        restDownButton.addTarget(self, action: #selector(self.decreaseRest), for: UIControl.Event.touchUpInside)
         self.view.addSubview(restDownButton)
         
-        restUpButton = UIButton(type: UIButtonType.custom)
-        restUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
+        restUpButton = UIButton(type: UIButton.ButtonType.custom)
+        restUpButton.setImage(UIImage(named: "up"), for: UIControl.State.normal)
         restUpButton.frame = CGRect(x: screenRect.size.width - 90, y: 325, width: 30, height: 30)
-        restUpButton.addTarget(self, action: #selector(self.increaseRest), for: UIControlEvents.touchUpInside)
+        restUpButton.addTarget(self, action: #selector(self.increaseRest), for: UIControl.Event.touchUpInside)
         self.view.addSubview(restUpButton)
 
         //Cancel and save buttons UI
         let bottomButtonsWidth = (screenRect.size.width - 100)/2
         
         //This button will save the workout
-        let saveWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
-        saveWorkoutButton.setTitle("Save Workout", for: UIControlState.normal)
-        saveWorkoutButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        let saveWorkoutButton:UIButton = UIButton(type: UIButton.ButtonType.custom)
+        saveWorkoutButton.setTitle("Save Workout", for: UIControl.State.normal)
+        saveWorkoutButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         saveWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         saveWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
         saveWorkoutButton.backgroundColor = green
         saveWorkoutButton.frame = CGRect(x: 40 + bottomButtonsWidth, y: 385, width: bottomButtonsWidth, height: 45)
-        saveWorkoutButton.addTarget(self, action: #selector(self.saveWorkout), for: UIControlEvents.touchUpInside)
+        saveWorkoutButton.addTarget(self, action: #selector(self.saveWorkout), for: UIControl.Event.touchUpInside)
         self.view.addSubview(saveWorkoutButton)
 
         //This button will dismiss the popup
-        let cancelButton:UIButton = UIButton(type: UIButtonType.custom)
-        cancelButton.setTitle("Cancel", for: UIControlState.normal)
-        cancelButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        let cancelButton:UIButton = UIButton(type: UIButton.ButtonType.custom)
+        cancelButton.setTitle("Cancel", for: UIControl.State.normal)
+        cancelButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         cancelButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         cancelButton.titleLabel?.textAlignment = NSTextAlignment.center
         cancelButton.backgroundColor = orange
         cancelButton.frame = CGRect(x: 20, y: 385, width: bottomButtonsWidth, height: 45)
-        cancelButton.addTarget(self, action: #selector(self.dismissPopup), for: UIControlEvents.touchUpInside)
+        cancelButton.addTarget(self, action: #selector(self.dismissPopup), for: UIControl.Event.touchUpInside)
         self.view.addSubview(cancelButton)
 
         if (workoutDict != nil){
@@ -197,8 +197,8 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         
         if (workoutNameTextField.text == "") {
             
-            let alertController = UIAlertController(title: "Workout name can not be empty", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            let alertController = UIAlertController(title: "Workout name can not be empty", message: nil, preferredStyle: UIAlertController.Style.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
 
@@ -206,8 +206,8 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
             bicepsRadioButton.isSelected == false && tricepsRadioButton.isSelected == false && absRadioButton.isSelected == false &&
             shouldersRadioButton.isSelected == false){
             
-            let alertController = UIAlertController(title: "Choose at least one muscle group", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            let alertController = UIAlertController(title: "Choose at least one muscle group", message: nil, preferredStyle: UIAlertController.Style.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
 

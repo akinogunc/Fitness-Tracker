@@ -40,10 +40,10 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
 
         //Adding navigation bar with items
         let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenRect.size.width, height: 50))
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Medium", size: 18)!]
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Metropolis-Medium", size: 18)!]
 
-        let cancelItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ExerciseCreator.closeModal))
-        let doneItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.plain, target: self, action: #selector(ExerciseCreator.saveExercise))
+        let cancelItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItem.Style.plain, target: self, action: #selector(ExerciseCreator.closeModal))
+        let doneItem = UIBarButtonItem(title: "Add", style: UIBarButtonItem.Style.plain, target: self, action: #selector(ExerciseCreator.saveExercise))
 
         let navigationItems = UINavigationItem(title: "Create Exercise")
         navigationItems.rightBarButtonItem = doneItem
@@ -65,21 +65,21 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         
         //Adding exercise name text field
         exerciseNameTextField = UITextField(frame: CGRect(x: screenRect.size.width/2 - 30, y: 70, width: screenRect.size.width/2 + 10, height: 30))
-        exerciseNameTextField.borderStyle = UITextBorderStyle.roundedRect
+        exerciseNameTextField.borderStyle = UITextField.BorderStyle.roundedRect
         exerciseNameTextField.font = UIFont(name: "Metropolis-Medium", size: 16.0)
         exerciseNameTextField.placeholder = "Exercise Name"
         exerciseNameTextField.autocorrectionType = UITextAutocorrectionType.no
         exerciseNameTextField.keyboardType = UIKeyboardType.default
         exerciseNameTextField.returnKeyType = UIReturnKeyType.done
-        exerciseNameTextField.clearButtonMode = UITextFieldViewMode.whileEditing
-        exerciseNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        exerciseNameTextField.clearButtonMode = UITextField.ViewMode.whileEditing
+        exerciseNameTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         exerciseNameTextField.delegate = self
         self.view.addSubview(exerciseNameTextField)
 
         //This segmented control switches between Weights UI and Cardio UI
         segmentedControl = UISegmentedControl(items: ["Weights", "Cardio"])
         segmentedControl.frame = CGRect(x: 20, y: 120, width: screenRect.size.width - 40, height: 30)
-        segmentedControl.addTarget(self, action: #selector(ExerciseCreator.segmentControlAction(segment:)), for: UIControlEvents.valueChanged)
+        segmentedControl.addTarget(self, action: #selector(ExerciseCreator.segmentControlAction(segment:)), for: UIControl.Event.valueChanged)
         segmentedControl.selectedSegmentIndex = 0;
         self.view.addSubview(segmentedControl)
 
@@ -94,16 +94,16 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         setsLabel.accessibilityIdentifier = "SetsLabel"
         self.view.addSubview(setsLabel)
 
-        setsDownButton = UIButton(type: UIButtonType.custom)
-        setsDownButton.setImage(UIImage(named: "down"), for: UIControlState.normal)
+        setsDownButton = UIButton(type: UIButton.ButtonType.custom)
+        setsDownButton.setImage(UIImage(named: "down"), for: UIControl.State.normal)
         setsDownButton.frame = CGRect(x: 20, y: 170, width: 30, height: 30)
-        setsDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseSets), for: UIControlEvents.touchUpInside)
+        setsDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseSets), for: UIControl.Event.touchUpInside)
         self.view.addSubview(setsDownButton)
 
-        setsUpButton = UIButton(type: UIButtonType.custom)
-        setsUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
+        setsUpButton = UIButton(type: UIButton.ButtonType.custom)
+        setsUpButton.setImage(UIImage(named: "up"), for: UIControl.State.normal)
         setsUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 170, width: 30, height: 30)
-        setsUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseSets), for: UIControlEvents.touchUpInside)
+        setsUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseSets), for: UIControl.Event.touchUpInside)
         self.view.addSubview(setsUpButton)
 
         //Reps UI setup
@@ -117,16 +117,16 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         repsLabel.accessibilityIdentifier = "RepsLabel"
         self.view.addSubview(repsLabel)
         
-        repsDownButton = UIButton(type: UIButtonType.custom)
-        repsDownButton.setImage(UIImage(named: "down"), for: UIControlState.normal)
+        repsDownButton = UIButton(type: UIButton.ButtonType.custom)
+        repsDownButton.setImage(UIImage(named: "down"), for: UIControl.State.normal)
         repsDownButton.frame = CGRect(x: 20, y: 220, width: 30, height: 30)
-        repsDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseReps), for: UIControlEvents.touchUpInside)
+        repsDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseReps), for: UIControl.Event.touchUpInside)
         self.view.addSubview(repsDownButton)
         
-        repsUpButton = UIButton(type: UIButtonType.custom)
-        repsUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
+        repsUpButton = UIButton(type: UIButton.ButtonType.custom)
+        repsUpButton.setImage(UIImage(named: "up"), for: UIControl.State.normal)
         repsUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 220, width: 30, height: 30)
-        repsUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseReps), for: UIControlEvents.touchUpInside)
+        repsUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseReps), for: UIControl.Event.touchUpInside)
         self.view.addSubview(repsUpButton)
 
         //Rest UI setup
@@ -139,16 +139,16 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         durationLabel.textAlignment = NSTextAlignment.center;
         self.view.addSubview(durationLabel)
         
-        durationDownButton = UIButton(type: UIButtonType.custom)
-        durationDownButton.setImage(UIImage(named: "down"), for: UIControlState.normal)
+        durationDownButton = UIButton(type: UIButton.ButtonType.custom)
+        durationDownButton.setImage(UIImage(named: "down"), for: UIControl.State.normal)
         durationDownButton.frame = CGRect(x: 20, y: 270, width: 30, height: 30)
-        durationDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseRest), for: UIControlEvents.touchUpInside)
+        durationDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseRest), for: UIControl.Event.touchUpInside)
         self.view.addSubview(durationDownButton)
         
-        durationUpButton = UIButton(type: UIButtonType.custom)
-        durationUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
+        durationUpButton = UIButton(type: UIButton.ButtonType.custom)
+        durationUpButton.setImage(UIImage(named: "up"), for: UIControl.State.normal)
         durationUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 270, width: 30, height: 30)
-        durationUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseRest), for: UIControlEvents.touchUpInside)
+        durationUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseRest), for: UIControl.Event.touchUpInside)
         self.view.addSubview(durationUpButton)
 
         //Cardio UI
@@ -162,16 +162,16 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         cardioTimeLabel.accessibilityIdentifier = "CardioLabel"
         self.view.addSubview(cardioTimeLabel)
         
-        cardioDownButton = UIButton(type: UIButtonType.custom)
-        cardioDownButton.setImage(UIImage(named: "down"), for: UIControlState.normal)
+        cardioDownButton = UIButton(type: UIButton.ButtonType.custom)
+        cardioDownButton.setImage(UIImage(named: "down"), for: UIControl.State.normal)
         cardioDownButton.frame = CGRect(x: 20, y: 180, width: 30, height: 30)
-        cardioDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseCardioMinutes), for: UIControlEvents.touchUpInside)
+        cardioDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseCardioMinutes), for: UIControl.Event.touchUpInside)
         self.view.addSubview(cardioDownButton)
         
-        cardioUpButton = UIButton(type: UIButtonType.custom)
-        cardioUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
+        cardioUpButton = UIButton(type: UIButton.ButtonType.custom)
+        cardioUpButton.setImage(UIImage(named: "up"), for: UIControl.State.normal)
         cardioUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 180, width: 30, height: 30)
-        cardioUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseCardioMinutes), for: UIControlEvents.touchUpInside)
+        cardioUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseCardioMinutes), for: UIControl.Event.touchUpInside)
         self.view.addSubview(cardioUpButton)
 
         self.hideCardioUI()
@@ -299,8 +299,8 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
     @objc func saveExercise() -> () {
 
         if(exerciseNameTextField.text == ""){
-            let alertController = UIAlertController(title: "Please enter an exercise name", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            let alertController = UIAlertController(title: "Please enter an exercise name", message: nil, preferredStyle: UIAlertController.Style.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
             

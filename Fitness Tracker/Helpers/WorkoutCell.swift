@@ -15,7 +15,7 @@ class WorkoutCell: UITableViewCell {
     var workoutDuration: UILabel!
     var muscleGroupsLabel: UILabel!
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         //Getting size of the device
@@ -55,9 +55,9 @@ class WorkoutCell: UITableViewCell {
         self.addSubview(restStaticLabel)
 
         //This button will save the workout
-        startWorkoutButton = UIButton(type: UIButtonType.custom)
-        startWorkoutButton.setTitle("Start", for: UIControlState.normal)
-        startWorkoutButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        startWorkoutButton = UIButton(type: UIButton.ButtonType.custom)
+        startWorkoutButton.setTitle("Start", for: UIControl.State.normal)
+        startWorkoutButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         startWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         startWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
         startWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)

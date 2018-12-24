@@ -20,7 +20,7 @@ class WorkoutHistory: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.backgroundColor = UIColor.white
 
         //Customizing navigation bar
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationItem.title = "History"
 
         //Creating table view which will show workouts
@@ -56,10 +56,10 @@ class WorkoutHistory: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? WorkoutHistoryCell
         if(cell == nil){
-            cell = WorkoutHistoryCell.init(style: UITableViewCellStyle.default, reuseIdentifier: cellIdentifier)
+            cell = WorkoutHistoryCell.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellIdentifier)
         }
         
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
 
         //Setting exercise values from json array
         let completedWorkoutDict = completedWorkoutsArray.object(at: indexPath.row) as! NSDictionary
@@ -67,10 +67,10 @@ class WorkoutHistory: UIViewController, UITableViewDelegate, UITableViewDataSour
         //converting muscle groups array to a single string
         let muscleGroupsAsString = (completedWorkoutDict["muscle_groups"] as! Array).joined(separator: ",")
         
-        let att = [NSAttributedStringKey.font : UIFont(name: "Metropolis-Bold", size: 14.0)]
-        let boldString = NSMutableAttributedString(string:"Muscles: ", attributes: att as [NSAttributedStringKey : Any])
-        let att2 = [NSAttributedStringKey.font : UIFont(name: "Metropolis-Medium", size: 14.0)]
-        let normalString = NSMutableAttributedString(string:muscleGroupsAsString, attributes:att2 as [NSAttributedStringKey : Any])
+        let att = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Bold", size: 14.0)]
+        let boldString = NSMutableAttributedString(string:"Muscles: ", attributes: att as [NSAttributedString.Key : Any])
+        let att2 = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 14.0)]
+        let normalString = NSMutableAttributedString(string:muscleGroupsAsString, attributes:att2 as [NSAttributedString.Key : Any])
         boldString.append(normalString)
         
         //convert string to date in the json

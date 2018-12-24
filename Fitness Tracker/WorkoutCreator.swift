@@ -21,22 +21,22 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Getting size of the device
 
         //Customizing navigation bar
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationItem.title = "Create Workout"
         
         //Creating plus button which will open workout item view controller
-        let plusButton:UIBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(WorkoutCreator.plusButtonHit))
+        let plusButton:UIBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(WorkoutCreator.plusButtonHit))
         self.navigationItem.rightBarButtonItem = plusButton;
 
         //This button will save the workout
-        let saveWorkoutButton:UIButton = UIButton(type: UIButtonType.custom)
-        saveWorkoutButton.setTitle("Save Workout", for: UIControlState.normal)
-        saveWorkoutButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        let saveWorkoutButton:UIButton = UIButton(type: UIButton.ButtonType.custom)
+        saveWorkoutButton.setTitle("Save Workout", for: UIControl.State.normal)
+        saveWorkoutButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         saveWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         saveWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
         saveWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
         saveWorkoutButton.frame = CGRect(x: 0, y: screenRect.size.height - 80, width: screenRect.size.width, height: 80)
-        saveWorkoutButton.addTarget(self, action: #selector(WorkoutCreator.saveWorkout), for: UIControlEvents.touchUpInside)
+        saveWorkoutButton.addTarget(self, action: #selector(WorkoutCreator.saveWorkout), for: UIControl.Event.touchUpInside)
         self.view.addSubview(saveWorkoutButton)
 
         //Creating table view which will show workouts
@@ -52,8 +52,8 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if(exercisesArray.count <= 0){
             
-            let alertController = UIAlertController(title: "Please create at least one exercise", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            let alertController = UIAlertController(title: "Please create at least one exercise", message: nil, preferredStyle: UIAlertController.Style.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
             alertController.addAction(cancelAction)
             self.present(alertController, animated: true, completion: nil)
             
@@ -106,7 +106,7 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
         if (editingStyle == .delete) {
             exercisesTableView.beginUpdates()
             exercisesArray.removeObject(at: indexPath.row)
-            exercisesTableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            exercisesTableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
             exercisesTableView.endUpdates()
         }
     }
@@ -120,10 +120,10 @@ class WorkoutCreator: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var cell: ExerciseCell? = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? ExerciseCell
         if(cell == nil){
-            cell = ExerciseCell.init(style: UITableViewCellStyle.default, reuseIdentifier: cellIdentifier, isCardio: isCardio)
+            cell = ExerciseCell.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellIdentifier, isCardio: isCardio)
         }
         
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
 
         if isCardio {
             

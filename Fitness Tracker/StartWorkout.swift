@@ -36,11 +36,11 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         workoutNameWithoutExtension = workoutDict["name"] as? String
 
         //Customizing navigation bar
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont(name: "Metropolis-Bold", size: 20)!]
         self.navigationItem.title = workoutNameWithoutExtension
         
         //Creating cancel button which will close the modal
-        let cancelButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: #selector(StartWorkout.cancelButtonHit))
+        let cancelButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(StartWorkout.cancelButtonHit))
         self.navigationItem.rightBarButtonItem = cancelButton
 
         //Creating table view which will show exercises
@@ -51,14 +51,14 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.view.addSubview(exercisesTableView)
 
         //This button will start and pause the workout
-        startPauseWorkoutButton = UIButton(type: UIButtonType.custom)
-        startPauseWorkoutButton.setTitle("START", for: UIControlState.normal)
-        startPauseWorkoutButton.setTitleColor(UIColor.white, for: UIControlState.normal)
+        startPauseWorkoutButton = UIButton(type: UIButton.ButtonType.custom)
+        startPauseWorkoutButton.setTitle("START", for: UIControl.State.normal)
+        startPauseWorkoutButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         startPauseWorkoutButton.titleLabel?.font = UIFont(name: "Metropolis-Medium", size: 18.0)
         startPauseWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
         startPauseWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
         startPauseWorkoutButton.frame = CGRect(x: 0, y: screenRect.size.height - 80, width: screenRect.size.width, height: 80)
-        startPauseWorkoutButton.addTarget(self, action: #selector(StartWorkout.startPauseWorkout), for: UIControlEvents.touchUpInside)
+        startPauseWorkoutButton.addTarget(self, action: #selector(StartWorkout.startPauseWorkout), for: UIControl.Event.touchUpInside)
         self.view.addSubview(startPauseWorkoutButton)
 
         //Get the exercises array from json and separate them
@@ -71,7 +71,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         if (isWorkoutActive) {
             isWorkoutActive = false;
             startPauseWorkoutButton.backgroundColor = UIColor(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
-            startPauseWorkoutButton.setTitle("START", for: UIControlState.normal)
+            startPauseWorkoutButton.setTitle("START", for: UIControl.State.normal)
             countdownTimer.invalidate()
             
             //changing color of the cell
@@ -85,7 +85,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         }else{
             isWorkoutActive = true;
             startPauseWorkoutButton.backgroundColor = UIColor(red: 229.0/255.0, green: 93.0/255.0, blue: 41.0/255.0, alpha: 1)
-            startPauseWorkoutButton.setTitle("PAUSE", for: UIControlState.normal)
+            startPauseWorkoutButton.setTitle("PAUSE", for: UIControl.State.normal)
             countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(StartWorkout.updateTimer), userInfo: nil, repeats: true)
         }
 
@@ -116,8 +116,8 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
             //save the workout info to the user defaults
             jsonManager.saveCompletedWorkout(dict: workoutDict)
             
-            let alertController = UIAlertController(title: ("You have completed the " + workoutNameWithoutExtension), message: "You can check your completed workouts on History page", preferredStyle: UIAlertControllerStyle.alert)
-            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: { (action) in
+            let alertController = UIAlertController(title: ("You have completed the " + workoutNameWithoutExtension), message: "You can check your completed workouts on History page", preferredStyle: UIAlertController.Style.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: { (action) in
                 self.dismiss(animated: true, completion: nil)
             })
             alertController.addAction(cancelAction)
@@ -206,10 +206,10 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         var cell: SeparatedExerciseCell? = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? SeparatedExerciseCell
         if(cell == nil){
-            cell = SeparatedExerciseCell.init(style: UITableViewCellStyle.default, reuseIdentifier: cellIdentifier)
+            cell = SeparatedExerciseCell.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellIdentifier)
         }
         
-        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+        cell?.selectionStyle = UITableViewCell.SelectionStyle.none
 
         let separatedExerciseDict = separatedExercisesArray.object(at: indexPath.row) as! NSDictionary
         let durationAsString:String = String(format: "%@", separatedExerciseDict["duration"] as! CVarArg)
