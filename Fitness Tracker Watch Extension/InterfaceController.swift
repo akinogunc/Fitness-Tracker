@@ -70,8 +70,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             }
 
             let dict = workoutsArray[i] as! NSDictionary
-            let workoutNameWithoutExtension = (dict["name"] as! NSString).deletingPathExtension
-            row.workoutName.setText(workoutNameWithoutExtension)
+            let workoutName = dict["name"] as! String
+            row.workoutName.setText(workoutName)
 
         }
         
@@ -80,8 +80,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
 
         let dict = workoutsArray[rowIndex] as! NSDictionary
-        let workoutName = dict["name"] as! NSString
-        let messageDict = ["message": workoutName]
+        let workoutName = dict["name"] as! String
+        let messageDict = ["message": "send_workout " + workoutName]
 
         WCSession.default.sendMessage(messageDict, replyHandler: { (replyDict) -> Void in
             

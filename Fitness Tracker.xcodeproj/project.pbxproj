@@ -69,6 +69,9 @@
 		F48039382127630800D08AAE /* TestCreateExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48039372127630800D08AAE /* TestCreateExercise.swift */; };
 		F4A6D99621B1C20600EA98F0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A6D99521B1C20600EA98F0 /* HealthKit.framework */; };
 		F4A6D99821B1C21400EA98F0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A6D99721B1C21400EA98F0 /* HealthKit.framework */; };
+		F4B1676A21CB9DDC007F2C29 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1676921CB9DDC007F2C29 /* JSONManager.swift */; };
+		F4BA5A7021CE927B0015987D /* GlobalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA5A6F21CE927B0015987D /* GlobalExtensions.swift */; };
+		F4BB356621C2D4060014FC0F /* EditWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB356521C2D4060014FC0F /* EditWorkout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +193,9 @@
 		F48039372127630800D08AAE /* TestCreateExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCreateExercise.swift; sourceTree = "<group>"; };
 		F4A6D99521B1C20600EA98F0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F4A6D99721B1C21400EA98F0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		F4B1676921CB9DDC007F2C29 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
+		F4BA5A6F21CE927B0015987D /* GlobalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalExtensions.swift; sourceTree = "<group>"; };
+		F4BB356521C2D4060014FC0F /* EditWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkout.swift; sourceTree = "<group>"; };
 		F4CCF5D7216B4BA40028F653 /* Fitness Tracker Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker Watch.entitlements"; sourceTree = "<group>"; };
 		F4CCF5D8216B4BC70028F653 /* Fitness Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker.entitlements"; sourceTree = "<group>"; };
 		F4CCF5D9216B4BCE0028F653 /* Fitness Tracker Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker Watch Extension.entitlements"; sourceTree = "<group>"; };
@@ -315,10 +321,13 @@
 				F4158A192122EC8B00DEC513 /* HomeViewController.swift */,
 				E7EC277E21246CD2009391EC /* WorkoutsList.swift */,
 				F4235E022127297200E15B09 /* StartWorkout.swift */,
+				F4BB356521C2D4060014FC0F /* EditWorkout.swift */,
 				E7EC278521259BBD009391EC /* WorkoutCreator.swift */,
 				F459D04B2135C5700095609F /* WorkoutSaver.swift */,
 				F4235E002126B4ED00E15B09 /* ExerciseCreator.swift */,
 				F43238842177AD1700FCC2B4 /* WorkoutHistory.swift */,
+				F4B1676921CB9DDC007F2C29 /* JSONManager.swift */,
+				F4BA5A6F21CE927B0015987D /* GlobalExtensions.swift */,
 				F47C07E820EB9E6600591C29 /* Assets.xcassets */,
 				F47C07ED20EB9E6600591C29 /* Info.plist */,
 				F47C081F20ED313B00591C29 /* Helpers */,
@@ -718,11 +727,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7EC277F21246CD2009391EC /* WorkoutsList.swift in Sources */,
+				F4B1676A21CB9DDC007F2C29 /* JSONManager.swift in Sources */,
 				E7EC278621259BBD009391EC /* WorkoutCreator.swift in Sources */,
 				E726B05C2125CCEA005ED12A /* ExerciseCell.swift in Sources */,
 				F459D04C2135C5700095609F /* WorkoutSaver.swift in Sources */,
 				F43238872177AEFE00FCC2B4 /* WorkoutHistoryCell.swift in Sources */,
 				E7EC27882125C2DD009391EC /* WorkoutCell.swift in Sources */,
+				F4BB356621C2D4060014FC0F /* EditWorkout.swift in Sources */,
+				F4BA5A7021CE927B0015987D /* GlobalExtensions.swift in Sources */,
 				F43238852177AD1700FCC2B4 /* WorkoutHistory.swift in Sources */,
 				F4235E032127297200E15B09 /* StartWorkout.swift in Sources */,
 				F4158A1A2122EC8B00DEC513 /* HomeViewController.swift in Sources */,
@@ -1036,7 +1048,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1065,7 +1077,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DFGPKV3K8S;
 				INFOPLIST_FILE = "Fitness Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

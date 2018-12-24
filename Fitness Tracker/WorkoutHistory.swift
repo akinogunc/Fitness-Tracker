@@ -13,6 +13,7 @@ class WorkoutHistory: UIViewController, UITableViewDelegate, UITableViewDataSour
     var workoutsTableView: UITableView!
     var completedWorkoutsArray = NSMutableArray()
     let screenRect = UIScreen.main.bounds
+    let jsonManager = JSONManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +31,8 @@ class WorkoutHistory: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.addSubview(workoutsTableView)
         
         
-        //getting completed workouts array from user defaults
-        if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "completedWorkouts") as? NSArray{
-            completedWorkoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
-        }
+        //getting completed workouts array from json
+        completedWorkoutsArray = jsonManager.readJSONbyName(name: "history")
 
         //reverse array for showing last completed workout at first
         completedWorkoutsArray = NSMutableArray(array: completedWorkoutsArray.reversed())
@@ -69,10 +68,13 @@ class WorkoutHistory: UIViewController, UITableViewDelegate, UITableViewDataSour
         let muscleGroupsAsString = (completedWorkoutDict["muscle_groups"] as! Array).joined(separator: ",")
         
         let att = [NSAttributedStringKey.font : UIFont(name: "Metropolis-Bold", size: 14.0)]
-        let boldString = NSMutableAttributedString(string:"Muscles: ", attributes: att)
+        let boldString = NSMutableAttributedString(string:"Muscles: ", attributes: att as [NSAttributedStringKey : Any])
         let att2 = [NSAttributedStringKey.font : UIFont(name: "Metropolis-Medium", size: 14.0)]
-        let normalString = NSMutableAttributedString(string:muscleGroupsAsString, attributes:att2)
+        let normalString = NSMutableAttributedString(string:muscleGroupsAsString, attributes:att2 as [NSAttributedStringKey : Any])
         boldString.append(normalString)
+        
+        //convert string to date in the json
+        let dateString = completedWorkoutDict["date"] as! String
         
         //Formatting the date
         let dateFormatter = DateFormatter()
@@ -83,8 +85,8 @@ class WorkoutHistory: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Setting the labels on the cell
         cell?.workoutNameLabel.text = (completedWorkoutDict["name"] as! String)
         cell?.muscleGroupsLabel.attributedText = boldString
-        cell?.dateLabel.text = dateFormatter.string(from: completedWorkoutDict["date"] as! Date)
-        cell?.dayLabel.text = dateFormatter2.string(from: completedWorkoutDict["date"] as! Date)
+        cell?.dateLabel.text = dateFormatter.string(from: dateString.stringToDate())
+        cell?.dayLabel.text = dateFormatter2.string(from: dateString.stringToDate())
 
         return cell!
     }

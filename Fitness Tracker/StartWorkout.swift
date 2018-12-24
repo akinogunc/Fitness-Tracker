@@ -19,7 +19,8 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
     var exercisesTableView: UITableView!
     var workoutNameWithoutExtension: String!
     var workoutDict: NSDictionary!
-    
+    let jsonManager = JSONManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -27,12 +28,12 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         //Getting size of the device
         let screenRect = UIScreen.main.bounds
 
-        //getting workouts array from user defaults
-        let workoutsArray = UserDefaults.standard.object(forKey: "savedWorkouts") as! NSArray
+        //getting workouts list from json
+        let workoutsArray = jsonManager.readJSONbyName(name: "workouts")
         
         //removing .json extension
-        workoutDict = workoutsArray.object(at: self.workoutNo) as! NSDictionary
-        workoutNameWithoutExtension = (workoutDict["name"] as! NSString).deletingPathExtension
+        workoutDict = workoutsArray.object(at: self.workoutNo) as? NSDictionary
+        workoutNameWithoutExtension = workoutDict["name"] as? String
 
         //Customizing navigation bar
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black, NSAttributedStringKey.font: UIFont(name: "Metropolis-Bold", size: 20)!]
@@ -60,8 +61,8 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         startPauseWorkoutButton.addTarget(self, action: #selector(StartWorkout.startPauseWorkout), for: UIControlEvents.touchUpInside)
         self.view.addSubview(startPauseWorkoutButton)
 
-        //Get the json data with name of the file
-        self.readWorkoutJSONbyName(name: workoutDict["name"] as! String)
+        //Get the exercises array from json and separate them
+        self.seperateExercisesBySetsAndRests(rawExercisesArray: jsonManager.readJSONbyName(name: workoutDict["name"] as! String))
 
     }
 
@@ -113,7 +114,7 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
             countdownTimer.invalidate()
             
             //save the workout info to the user defaults
-            self.saveCompletedWorkout()
+            jsonManager.saveCompletedWorkout(dict: workoutDict)
             
             let alertController = UIAlertController(title: ("You have completed the " + workoutNameWithoutExtension), message: "You can check your completed workouts on History page", preferredStyle: UIAlertControllerStyle.alert)
             let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: { (action) in
@@ -137,12 +138,18 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
             let mutableDict: NSMutableDictionary = NSMutableDictionary(dictionary: separatedExerciseDict)
             mutableDict["duration"] = String(format: "%d", duration)
             mutableDict["status"] = "1"
+
+            if(duration < 6 && mutableDict["name"] as! String == "Rest"){
+                mutableDict["name"] = "Get Ready"
+                AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate, {})
+            }
+
             separatedExercisesArray.replaceObject(at: indexOfObject, with: mutableDict)
             exercisesTableView.reloadData()
 
         }else{
             
-            AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate, {});
+            AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate, {})
             
             separatedExercisesArray.removeObject(at: indexOfObject)
             exercisesTableView.reloadData()
@@ -150,23 +157,6 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    func readWorkoutJSONbyName(name: String) -> Void {
-        
-        let filePath = NSString(string: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
-        var fileAtPath = filePath.strings(byAppendingPaths: [name])
-        
-        if (FileManager.default.fileExists(atPath: fileAtPath[0])) {
-            
-            let fileData = try! Data.init(contentsOf: URL.init(fileURLWithPath: fileAtPath[0]))
-            let jsonObject = try! JSONSerialization.jsonObject(with: fileData, options: JSONSerialization.ReadingOptions.mutableContainers)
-            let rawExercisesArray = jsonObject as! NSMutableArray
-            self.seperateExercisesBySetsAndRests(rawExercisesArray: rawExercisesArray)
-        }else{
-            print("File don't exist")
-        }
-        
-    }
-
     func seperateExercisesBySetsAndRests(rawExercisesArray: NSMutableArray) -> () {
         
         for i in 0..<rawExercisesArray.count {
@@ -263,28 +253,6 @@ class StartWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource
 
         return cell!
 
-    }
-
-    func saveCompletedWorkout() -> Void {
-        
-        var completedWorkoutsArray = NSMutableArray()
-        
-        //getting completed workouts array from user defaults
-        if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "completedWorkouts") as? NSArray{
-            completedWorkoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
-        }
-        
-        let completedWorkoutDict = NSMutableDictionary()
-        completedWorkoutDict["name"] = workoutNameWithoutExtension
-        completedWorkoutDict["muscle_groups"] = workoutDict["muscle_groups"]
-        completedWorkoutDict["date"] = Date()
-
-        //Adding the completed workout to array
-        completedWorkoutsArray.add(completedWorkoutDict)
-        
-        UserDefaults.standard.set(completedWorkoutsArray, forKey: "completedWorkouts")
-        UserDefaults.standard.synchronize()
-        
     }
     
     @objc func cancelButtonHit() -> () {

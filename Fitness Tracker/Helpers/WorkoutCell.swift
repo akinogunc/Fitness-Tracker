@@ -13,7 +13,8 @@ class WorkoutCell: UITableViewCell {
     var workoutLabel: UILabel!
     var startWorkoutButton: UIButton!
     var workoutDuration: UILabel!
-    
+    var muscleGroupsLabel: UILabel!
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -21,13 +22,22 @@ class WorkoutCell: UITableViewCell {
         let screenRect = UIScreen.main.bounds
 
         //Label of the exercise name
-        workoutLabel = UILabel(frame: CGRect(x: 10, y: 0, width: screenRect.size.width/2 - 10, height: 70))
+        workoutLabel = UILabel(frame: CGRect(x: 10, y: 10, width: screenRect.size.width/2 - 10, height: 25))
         workoutLabel.textColor = UIColor.black
         workoutLabel.backgroundColor = UIColor.clear
         workoutLabel.font = UIFont(name: "Metropolis-Medium", size: 16.0)
-        workoutLabel.numberOfLines = 2
+        workoutLabel.numberOfLines = 1
         self.addSubview(workoutLabel)
         
+        //Label of the minutes of workout duration
+        muscleGroupsLabel = UILabel(frame: CGRect(x: 10, y: 35, width: screenRect.size.width/2 - 10, height: 25))
+        muscleGroupsLabel.textColor = UIColor.black
+        muscleGroupsLabel.backgroundColor = UIColor.clear
+        muscleGroupsLabel.font = UIFont(name: "Metropolis-Medium", size: 14.0)
+        muscleGroupsLabel.textAlignment = NSTextAlignment.left;
+        muscleGroupsLabel.numberOfLines = 1
+        self.addSubview(muscleGroupsLabel)
+
         //Label of the minutes of workout duration
         workoutDuration = UILabel(frame: CGRect(x: screenRect.size.width/2, y: 10, width: screenRect.size.width/4, height: 25))
         workoutDuration.textColor = UIColor.black
