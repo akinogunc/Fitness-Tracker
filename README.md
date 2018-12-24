@@ -1,4 +1,4 @@
-![Swift Version](https://img.shields.io/badge/Swift-4.1-F16D39.svg?style=flat)![License](https://img.shields.io/dub/l/vibe-d.svg)
+![Swift Version](https://img.shields.io/badge/Swift-4.2-F16D39.svg?style=flat)![License](https://img.shields.io/dub/l/vibe-d.svg)
 
 Fitness Tracker is an app with three main features:
 
