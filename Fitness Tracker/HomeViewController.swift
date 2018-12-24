@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     let darkGreen = UIColor.init(red: 18.0/255.0, green: 121.0/255.0, blue: 21.0/255.0, alpha: 1)
     var colors: NSMutableArray = []
     var refreshableUI: NSMutableArray = []
+    let jsonManager = JSONManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,14 +79,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     //This function gets all completed workouts and returns current weeks workouts
     func getThisWeeksCompletedWorkouts() -> Void {
         
-        var completedWorkoutsArray = NSMutableArray()
+        var completedWorkoutsArray = jsonManager.readJSONbyName(name: "history")
         let thisWeekCompletedWorkoutsArray = NSMutableArray()
 
-        //getting completed workouts array from user defaults
-        if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "completedWorkouts") as? NSArray{
-            completedWorkoutsArray = savedWorkoutsObject.mutableCopy() as! NSMutableArray
-        }
-        
         //reversing workout to make newest at first
         completedWorkoutsArray = NSMutableArray(array: completedWorkoutsArray.reversed())
         
@@ -106,7 +102,8 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         for i in 0..<completedWorkoutsArray.count{
             
             let completedWorkoutDict = completedWorkoutsArray.object(at: i) as! NSDictionary
-            let date = completedWorkoutDict["date"] as! Date
+            let dateString = completedWorkoutDict["date"] as! String
+            let date = dateString.stringToDate()
             let string = formatter.string(from: sunday!, to: date)!//2 days, -1 days
             let arr = string.components(separatedBy:" ")//["2", "days"]
 
@@ -137,9 +134,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             }else{
                 
                 let dict1 = completedWorkouts.object(at: i) as! NSDictionary
-                let date1 = dict1["date"] as! Date
+                let date1 = (dict1["date"] as! String).stringToDate()
                 let dict2 = mergedCompletedWorkoutsArray.lastObject as! NSDictionary
-                let date2 = dict2["date"] as! Date
+                let date2 = (dict2["date"] as! String).stringToDate()
                 
                 let string = formatter.string(from: date1, to: date2)!//2 days, -1 days
                 let arr = string.components(separatedBy:" ")//["2", "days"]
@@ -150,7 +147,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
                 //if the workouts are at the same day
                 if(Int(arr[0])! == 0 && day1 == day2){
                     
-                    let date = dict1["date"] as! Date
+                    let date = dict1["date"] as! String
                     let arr1 = dict1["muscle_groups"] as! NSArray
                     let arr2 = dict2["muscle_groups"] as! NSArray
                     let muscleGroups = arr1.addingObjects(from: arr2 as! [Any])
@@ -223,7 +220,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             for j in 0..<mergedWorkouts.count{
                 
                 let dict = mergedWorkouts.object(at: j) as! NSDictionary
-                let workoutDate = dict["date"] as! Date
+                let workoutDate = (dict["date"] as! String).stringToDate()
                 let muscleGroups = dict["muscle_groups"] as! NSArray
                 
                 if(Calendar.current.isDate(workoutDate, inSameDayAs:date!)){

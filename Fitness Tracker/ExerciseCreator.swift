@@ -18,18 +18,18 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
     var repsDownButton: UIButton!
     var repsUpButton: UIButton!
     var repsCount = 1;
-    var restLabel: UILabel!
-    var restDownButton: UIButton!
-    var restUpButton: UIButton!
-    var restSeconds = 30;
+    var durationLabel: UILabel!
+    var durationDownButton: UIButton!
+    var durationUpButton: UIButton!
+    var durationSeconds = 30;
     var cardioTimeLabel: UILabel!
     var cardioDownButton: UIButton!
     var cardioUpButton: UIButton!
     var cardioMinutes = 1;
     var exerciseNameTextField: UITextField!
     var segmentedControl: UISegmentedControl!
-    var onDoneBlock : (() -> Void)?
-
+    var onDoneBlock : ((NSDictionary) -> Void)?
+    var viewReady : (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,26 +130,26 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         self.view.addSubview(repsUpButton)
 
         //Rest UI setup
-        restLabel = UILabel(frame: CGRect(x: screenRect.size.width/2 - 90, y: 270, width: 180, height: 30))
-        restLabel.textColor = UIColor.black
-        restLabel.backgroundColor = UIColor.clear
-        restLabel.font = UIFont(name: "Metropolis-Medium", size: 16.0)
-        restLabel.text = "Duration: 30 Seconds";
-        restLabel.numberOfLines = 0;
-        restLabel.textAlignment = NSTextAlignment.center;
-        self.view.addSubview(restLabel)
+        durationLabel = UILabel(frame: CGRect(x: screenRect.size.width/2 - 90, y: 270, width: 180, height: 30))
+        durationLabel.textColor = UIColor.black
+        durationLabel.backgroundColor = UIColor.clear
+        durationLabel.font = UIFont(name: "Metropolis-Medium", size: 16.0)
+        durationLabel.text = "Duration: 30 Seconds";
+        durationLabel.numberOfLines = 0;
+        durationLabel.textAlignment = NSTextAlignment.center;
+        self.view.addSubview(durationLabel)
         
-        restDownButton = UIButton(type: UIButtonType.custom)
-        restDownButton.setImage(UIImage(named: "down"), for: UIControlState.normal)
-        restDownButton.frame = CGRect(x: 20, y: 270, width: 30, height: 30)
-        restDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseRest), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(restDownButton)
+        durationDownButton = UIButton(type: UIButtonType.custom)
+        durationDownButton.setImage(UIImage(named: "down"), for: UIControlState.normal)
+        durationDownButton.frame = CGRect(x: 20, y: 270, width: 30, height: 30)
+        durationDownButton.addTarget(self, action: #selector(ExerciseCreator.decreaseRest), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(durationDownButton)
         
-        restUpButton = UIButton(type: UIButtonType.custom)
-        restUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
-        restUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 270, width: 30, height: 30)
-        restUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseRest), for: UIControlEvents.touchUpInside)
-        self.view.addSubview(restUpButton)
+        durationUpButton = UIButton(type: UIButtonType.custom)
+        durationUpButton.setImage(UIImage(named: "up"), for: UIControlState.normal)
+        durationUpButton.frame = CGRect(x: screenRect.size.width - 50, y: 270, width: 30, height: 30)
+        durationUpButton.addTarget(self, action: #selector(ExerciseCreator.increaseRest), for: UIControlEvents.touchUpInside)
+        self.view.addSubview(durationUpButton)
 
         //Cardio UI
         cardioTimeLabel = UILabel(frame: CGRect(x: screenRect.size.width/2 - 50, y: 180, width: 100, height: 30))
@@ -175,9 +175,29 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         self.view.addSubview(cardioUpButton)
 
         self.hideCardioUI()
-        
+        self.viewReady!()
     }
 
+    func setExerciseValues(name: String, sets: String, reps: String, duration: String, isCardio: Bool){
+
+        exerciseNameTextField.text = name
+
+        if isCardio{
+            showCardioUI()
+            hideWeightsUI()
+            cardioMinutes = Int(duration)!
+            cardioTimeLabel.text = duration + " Minutes"
+        }else{
+            setCount = Int(sets)!
+            repsCount = Int(reps)!
+            durationSeconds = Int(duration)!
+            setsLabel.text = sets + " Sets"
+            repsLabel.text = reps + " Reps"
+            durationLabel.text = "Duration: " + duration + " Seconds"
+        }
+        
+    }
+    
     func hideCardioUI () -> (){
         cardioTimeLabel.isHidden = true
         cardioDownButton.isHidden = true
@@ -197,9 +217,9 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         repsLabel.isHidden = true
         repsDownButton.isHidden = true
         repsUpButton.isHidden = true
-        restLabel.isHidden = true
-        restDownButton.isHidden = true
-        restUpButton.isHidden = true
+        durationLabel.isHidden = true
+        durationDownButton.isHidden = true
+        durationUpButton.isHidden = true
     }
     
     func showWeightsUI () -> (){
@@ -209,9 +229,9 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         repsLabel.isHidden = false
         repsDownButton.isHidden = false
         repsUpButton.isHidden = false
-        restLabel.isHidden = false
-        restDownButton.isHidden = false
-        restUpButton.isHidden = false
+        durationLabel.isHidden = false
+        durationDownButton.isHidden = false
+        durationUpButton.isHidden = false
     }
 
     @objc func segmentControlAction(segment: UISegmentedControl) -> () {
@@ -249,15 +269,15 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
     }
 
     @objc func decreaseRest () -> (){
-        if(restSeconds>10){
-            restSeconds -= 10
-            restLabel.text = String(format: "Duration: %d Seconds", restSeconds)
+        if(durationSeconds>10){
+            durationSeconds -= 10
+            durationLabel.text = String(format: "Duration: %d Seconds", durationSeconds)
         }
     }
     
     @objc func increaseRest () -> (){
-        restSeconds += 10
-        restLabel.text = String(format: "Duration: %d Seconds", restSeconds)
+        durationSeconds += 10
+        durationLabel.text = String(format: "Duration: %d Seconds", durationSeconds)
     }
 
     @objc func decreaseCardioMinutes () -> (){
@@ -291,71 +311,16 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
         var exerciseDictionary: NSDictionary!
         
         if (segmentedControl.selectedSegmentIndex == 0) {
-            exerciseDictionary =  ["name" : exerciseNameTextField.text!, "sets" : String(format: "%d", setCount), "reps" : String(format: "%d", repsCount), "duration" : String(format: "%d", restSeconds), "isCardio" : false]
+            exerciseDictionary =  ["name" : exerciseNameTextField.text!, "sets" : String(format: "%d", setCount), "reps" : String(format: "%d", repsCount), "duration" : String(format: "%d", durationSeconds), "isCardio" : false]
         }else{
             exerciseDictionary =  ["name" : exerciseNameTextField.text!, "cardio_minutes" : String(format: "%d", cardioMinutes), "isCardio" : true]
         }
         
-        //Reading exercises JSON file
-        let exercisesString = self.readExercisesJSON()
-
-        //If JSON file is empty, create it from the dictionary
-        if(exercisesString == "empty"){
-            
-            let exercisesArray: NSMutableArray = NSMutableArray.init()
-            exercisesArray.add(exerciseDictionary)
-
-            let jsonData: Data = try! JSONSerialization.data(withJSONObject: exercisesArray, options: JSONSerialization.WritingOptions.prettyPrinted)
-            let jsonString: String = String.init(data: jsonData, encoding: String.Encoding.utf8)!
-            self.addExerciseToJSON(exerciseString: jsonString)
-            
-        }else{//if JSON file is not empty, get it and add dictionary to it then write it to file
-            
-            let exercisesArray = try! JSONSerialization.jsonObject(with: exercisesString.data(using: String.Encoding.utf8)!, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSMutableArray
-            exercisesArray.add(exerciseDictionary)
-            
-            let jsonData: Data = try! JSONSerialization.data(withJSONObject: exercisesArray, options: JSONSerialization.WritingOptions.prettyPrinted)
-            let jsonString: String = String.init(data: jsonData, encoding: String.Encoding.utf8)!
-            self.addExerciseToJSON(exerciseString: jsonString)
-
-        }
-
         //Closing modal and refreshing tableview on parent view controller
         if let callback = self.onDoneBlock {
-            callback ()
+            callback (exerciseDictionary)
         }
 
-    }
-
-
-    func addExerciseToJSON (exerciseString: String) -> () {
-        
-        let filePath = NSString(string: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
-        var fileAtPath = filePath.strings(byAppendingPaths: ["temp.json"])
-        
-        if (!FileManager.default.fileExists(atPath: fileAtPath[0])) {
-            FileManager.default.createFile(atPath: fileAtPath[0], contents: nil, attributes: nil)
-        }
-        
-        //write to file
-        try! exerciseString.data(using: String.Encoding.utf8)?.write(to: URL(fileURLWithPath: fileAtPath[0]), options: Data.WritingOptions.atomic)
-    }
-
-    
-    func readExercisesJSON() -> String {
-        
-        let filePath = NSString(string: NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
-        var fileAtPath = filePath.strings(byAppendingPaths: ["temp.json"])
-        
-        if (FileManager.default.fileExists(atPath: fileAtPath[0])) {
-            
-            let fileData = try! Data.init(contentsOf: URL.init(fileURLWithPath: fileAtPath[0]))
-            return String.init(data: fileData, encoding: String.Encoding.utf8)!
-
-        }else{
-            return "empty"
-        }
-        
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

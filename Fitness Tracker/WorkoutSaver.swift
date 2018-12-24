@@ -10,7 +10,7 @@ import UIKit
 import xRadioButton
 
 public protocol WorkoutSaverDelegate{
-    func saveCompleted(workoutName : String)
+    func saveCompleted()
 }
 
 class WorkoutSaver: UIViewController, UITextFieldDelegate {
@@ -31,7 +31,20 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
     var restDownButton: UIButton!
     var restUpButton: UIButton!
     var restSeconds = 45;
+    var exercisesArray: NSMutableArray!
+    let jsonManager = JSONManager()
+    var workoutDict: NSDictionary?
+    
+    init(exercisesArray: NSMutableArray?, workoutDict: NSDictionary?) {
+        self.exercisesArray = exercisesArray
+        self.workoutDict = workoutDict
+        super.init(nibName: nil, bundle: nil)
+    }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
@@ -153,8 +166,33 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         cancelButton.addTarget(self, action: #selector(self.dismissPopup), for: UIControlEvents.touchUpInside)
         self.view.addSubview(cancelButton)
 
+        if (workoutDict != nil){
+            setInitialValues()
+        }
     }
 
+    //workoutDictionary =  ["name" : workoutNameTextField.text!, "muscle_groups" : self.createMuscleGroupsArray(), "rest" : restSeconds]
+
+    //edit workout
+    func setInitialValues(){
+        
+        var muscles = workoutDict!["muscle_groups"] as! [String]
+        
+        for i in 0..<muscles.count{
+            if(muscles[i] == "chest"){chestRadioButton.sendActions(for: .touchUpInside)}
+            if(muscles[i] == "back"){backRadioButton.sendActions(for: .touchUpInside)}
+            if(muscles[i] == "legs"){legsRadioButton.sendActions(for: .touchUpInside)}
+            if(muscles[i] == "biceps"){bicepsRadioButton.sendActions(for: .touchUpInside)}
+            if(muscles[i] == "triceps"){tricepsRadioButton.sendActions(for: .touchUpInside)}
+            if(muscles[i] == "abs"){absRadioButton.sendActions(for: .touchUpInside)}
+            if(muscles[i] == "shoulders"){shouldersRadioButton.sendActions(for: .touchUpInside)}
+        }
+
+        workoutNameTextField.text = workoutDict!["name"] as? String
+        restSeconds = workoutDict!["rest"] as! Int
+        setRestTextWithFormat(restSeconds: restSeconds)
+    }
+    
     @objc func saveWorkout() -> Void {
         
         if (workoutNameTextField.text == "") {
@@ -175,27 +213,21 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
 
         }else{
             
-            var savedWorkouts: NSMutableArray!
+            //Delete if a file exists with same name
+            jsonManager.deleteJSONByName(name: workoutNameTextField.text!)
             
-            //Getting workouts array
-            if let savedWorkoutsObject = UserDefaults.standard.object(forKey: "savedWorkouts") as? NSArray{
-                savedWorkouts = savedWorkoutsObject.mutableCopy() as? NSMutableArray
-            }else{
-                savedWorkouts = NSMutableArray()
-            }
-            
+            //Save workout to json file
+            jsonManager.saveArrayToJSONByName(array: exercisesArray, name: workoutNameTextField.text!)
+
             //Creating a dictionary from the exercise values
             var workoutDictionary: NSDictionary!
-            workoutDictionary =  ["name" : workoutNameTextField.text! + ".json", "muscle_groups" : self.createMuscleGroupsArray(), "rest" : restSeconds]
+            workoutDictionary =  ["name" : workoutNameTextField.text!, "muscle_groups" : self.createMuscleGroupsArray(), "rest" : restSeconds]
 
-            //Adding name of the workout to array
-            savedWorkouts?.add(workoutDictionary)
-            
-            UserDefaults.standard.set(savedWorkouts, forKey: "savedWorkouts")
-            UserDefaults.standard.synchronize()
+            //Saving workout name to workouts list
+            jsonManager.addNewWorkoutToList(dict: workoutDictionary)
 
             self.dismiss(animated: true) {
-                self.delegate?.saveCompleted(workoutName: self.workoutNameTextField.text!)
+                self.delegate?.saveCompleted()
             }
 
         }
@@ -220,26 +252,17 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
     @objc func decreaseRest () -> (){
         if(restSeconds>15){
             restSeconds -= 15
-            
-            let minutes = restSeconds/60
-            let seconds = restSeconds%60
-            
-            if(minutes>0){
-                if(seconds>0){
-                    restLabel.text = String(format: "%d Min %02d Secs", minutes, seconds)
-                }else{
-                    restLabel.text = String(format: "%d Min", minutes)
-                }
-            }else{
-                restLabel.text = String(format: "%d Seconds", restSeconds)
-            }
-
+            setRestTextWithFormat(restSeconds: restSeconds)
         }
     }
     
     @objc func increaseRest () -> (){
         restSeconds += 15
+        setRestTextWithFormat(restSeconds: restSeconds)
+    }
 
+    func setRestTextWithFormat(restSeconds: Int){
+        
         let minutes = restSeconds/60
         let seconds = restSeconds%60
         
@@ -254,7 +277,7 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         }
 
     }
-
+    
     @objc func dismissPopup() -> Void {
         self.dismiss(animated: true, completion: nil)
     }
@@ -268,6 +291,4 @@ class WorkoutSaver: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
-
-
 }

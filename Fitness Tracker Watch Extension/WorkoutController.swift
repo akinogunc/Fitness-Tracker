@@ -135,6 +135,12 @@ class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
             let mutableDict: NSMutableDictionary = NSMutableDictionary(dictionary: separatedExerciseDict)
             mutableDict["duration"] = String(format: "%d", duration)
             mutableDict["status"] = "1"
+            
+            if(duration < 6 && mutableDict["name"] as! String == "Rest"){
+                mutableDict["name"] = "Get Ready"
+                WKInterfaceDevice.current().play(.notification)
+            }
+
             separatedExercisesArray.replaceObject(at: indexOfObject, with: mutableDict)
             reloadCountdownLabel(index: indexOfObject)
             
@@ -186,7 +192,7 @@ class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
                     let s1 = NSMutableAttributedString(string:bigText, attributes:attrs as [NSAttributedString.Key : Any])
                     
                     let smallText = "\nNext: " + (nextExerciseDict["name"] as! String)
-                    let attrs2 = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 13.0)]
+                    let attrs2 = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 16.0)]
                     let s2 = NSMutableAttributedString(string:smallText, attributes:attrs2 as [NSAttributedString.Key : Any])
                     
                     allStrings.append(s1)
