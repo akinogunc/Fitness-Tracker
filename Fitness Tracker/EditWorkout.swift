@@ -180,8 +180,7 @@ class EditWorkout: UIViewController, UITableViewDelegate, UITableViewDataSource,
         }
         exerciseCreator.onDoneBlock = {(dict) -> Void in
             self.dismiss(animated: true, completion: {
-                self.exercisesArray.removeObject(at: indexPath.row)
-                self.exercisesArray.add(dict)
+                self.exercisesArray.replaceObject(at: indexPath.row, with: dict)
                 self.exercisesTableView.reloadData()
             })
         }

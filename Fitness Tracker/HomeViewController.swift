@@ -34,6 +34,12 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let newBackButton:UIBarButtonItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: nil)
         self.navigationItem.backBarButtonItem = newBackButton;
         
+        //system info button
+        let infoButton = UIButton(type: .infoLight)
+        infoButton.addTarget(self, action: #selector(showInfo), for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: infoButton)
+        self.navigationItem.rightBarButtonItem = barButton;
+
         //This button will open the start workout view controller
         let startWorkoutButton:UIButton = UIButton(type: UIButton.ButtonType.custom)
         startWorkoutButton.setTitle("Start Workout", for: UIControl.State.normal)
@@ -391,6 +397,11 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
     @objc func showHistory() -> Void {
         let workoutHistory = WorkoutHistory();
         self.navigationController?.pushViewController(workoutHistory, animated: true)
+    }
+
+    @objc func showInfo(){
+        let infoView = InfoView();
+        self.navigationController?.pushViewController(infoView, animated: true)
     }
 
     @objc func willEnterForeground() -> Void {

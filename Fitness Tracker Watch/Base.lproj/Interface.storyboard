@@ -19,7 +19,7 @@
         <!--workout-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="workout" spacing="0.0" hidesWhenLoading="NO" fullBounds="YES" id="AgC-eL-Hgc" customClass="WorkoutController" customModule="Fitness_Tracker_Watch_Extension">
+                <controller identifier="workout" spacing="0.0" hidesWhenLoading="NO" fullBounds="YES" fullScreen="YES" id="AgC-eL-Hgc" customClass="WorkoutController" customModule="Fitness_Tracker_Watch_Extension">
                     <items>
                         <label width="1" height="36" alignment="center" text="00:00" textAlignment="center" baselineAdjustment="alignCenters" id="5hL-wY-QYl">
                             <color key="textColor" red="0.98039215690000003" green="0.066666666669999999" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -78,13 +78,13 @@
             <objects>
                 <controller identifier="home" id="Uvb-gS-F3P" customClass="InterfaceController" customModule="Fitness_Tracker_Watch_Extension">
                     <items>
-                        <table alignment="left" id="CSW-Kn-6iA">
+                        <table alignment="left" hidden="YES" id="CSW-Kn-6iA">
                             <items>
                                 <tableRow identifier="WorkoutRow" id="ail-Fj-OrZ" customClass="WorkoutRowController" customModule="Fitness_Tracker_Watch_Extension">
                                     <group key="rootItem" width="1" height="50" alignment="left" layout="vertical" spacing="6" id="rNu-Wu-XwR">
                                         <items>
                                             <label alignment="left" verticalAlignment="center" text="Chest workout" numberOfLines="2" id="o9b-Rq-6lI">
-                                                <fontDescription key="font" type="system" weight="medium" pointSize="17"/>
+                                                <fontDescription key="font" name="Metropolis-Medium" family="Metropolis" pointSize="17"/>
                                             </label>
                                         </items>
                                     </group>
@@ -94,8 +94,10 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <label width="1" height="1" alignment="left" text="Loading..." textAlignment="center" id="mCp-ek-bZJ"/>
                     </items>
                     <connections>
+                        <outlet property="loadingLabel" destination="mCp-ek-bZJ" id="v8r-B6-Vja"/>
                         <outlet property="workoutsTable" destination="CSW-Kn-6iA" id="UX2-09-7DV"/>
                     </connections>
                 </controller>

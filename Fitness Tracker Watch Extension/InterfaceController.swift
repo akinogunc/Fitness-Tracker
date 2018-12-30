@@ -13,12 +13,13 @@ import WatchConnectivity
 class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
     @IBOutlet weak var workoutsTable: WKInterfaceTable!
+    @IBOutlet weak var loadingLabel: WKInterfaceLabel!
     var workoutsArray: NSMutableArray!
     var isActivated = false
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        
+
         if WCSession.isSupported() {
             let session = WCSession.default
             session.delegate = self
@@ -49,6 +50,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             
             WCSession.default.sendMessage(messageDict, replyHandler: { (replyDict) -> Void in
                 self.workoutsArray = ((replyDict["message"] as! NSArray).mutableCopy() as! NSMutableArray)
+                self.workoutsTable.setHidden(false)
+                self.loadingLabel.setHidden(true)
                 self.loadTableData()
             }, errorHandler: { (error) -> Void in
                 print(error)

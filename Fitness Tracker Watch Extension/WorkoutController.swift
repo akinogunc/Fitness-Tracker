@@ -188,11 +188,11 @@ class WorkoutController: WKInterfaceController, HKWorkoutSessionDelegate {
                     let allStrings = NSMutableAttributedString()
                     
                     let bigText  = separatedExerciseDict["name"] as! String
-                    let attrs = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 20.0)]
+                    let attrs = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 22.0)]
                     let s1 = NSMutableAttributedString(string:bigText, attributes:attrs as [NSAttributedString.Key : Any])
                     
                     let smallText = "\nNext: " + (nextExerciseDict["name"] as! String)
-                    let attrs2 = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 16.0)]
+                    let attrs2 = [NSAttributedString.Key.font : UIFont(name: "Metropolis-Medium", size: 15.0)]
                     let s2 = NSMutableAttributedString(string:smallText, attributes:attrs2 as [NSAttributedString.Key : Any])
                     
                     allStrings.append(s1)

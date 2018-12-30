@@ -58,6 +58,7 @@
 		F43944982130211B00EAC17F /* legs_front.png in Resources */ = {isa = PBXBuildFile; fileRef = F43944972130211B00EAC17F /* legs_front.png */; };
 		F439449A213021DF00EAC17F /* legs_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F4394499213021DF00EAC17F /* legs_back.png */; };
 		F459D04C2135C5700095609F /* WorkoutSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F459D04B2135C5700095609F /* WorkoutSaver.swift */; };
+		F47A24E721D7DBDB00581E61 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F47A24E621D7DBDB00581E61 /* HealthKit.framework */; };
 		F47C07E720EB9E6500591C29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E520EB9E6500591C29 /* Main.storyboard */; };
 		F47C07E920EB9E6600591C29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47C07E820EB9E6600591C29 /* Assets.xcassets */; };
 		F47C07EC20EB9E6600591C29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47C07EA20EB9E6600591C29 /* LaunchScreen.storyboard */; };
@@ -67,11 +68,11 @@
 		F47C082320ED3AAE00591C29 /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = F47C082120ED3AAE00591C29 /* down.png */; };
 		F48039362127611200D08AAE /* ExerciseCreatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48039352127611200D08AAE /* ExerciseCreatorTests.swift */; };
 		F48039382127630800D08AAE /* TestCreateExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48039372127630800D08AAE /* TestCreateExercise.swift */; };
-		F4A6D99621B1C20600EA98F0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A6D99521B1C20600EA98F0 /* HealthKit.framework */; };
 		F4A6D99821B1C21400EA98F0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4A6D99721B1C21400EA98F0 /* HealthKit.framework */; };
 		F4B1676A21CB9DDC007F2C29 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4B1676921CB9DDC007F2C29 /* JSONManager.swift */; };
 		F4BA5A7021CE927B0015987D /* GlobalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA5A6F21CE927B0015987D /* GlobalExtensions.swift */; };
 		F4BB356621C2D4060014FC0F /* EditWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BB356521C2D4060014FC0F /* EditWorkout.swift */; };
+		F4FD1E5321D221B0005E071D /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FD1E5221D221B0005E071D /* InfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +177,7 @@
 		F43944972130211B00EAC17F /* legs_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legs_front.png; sourceTree = "<group>"; };
 		F4394499213021DF00EAC17F /* legs_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legs_back.png; sourceTree = "<group>"; };
 		F459D04B2135C5700095609F /* WorkoutSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSaver.swift; sourceTree = "<group>"; };
+		F47A24E621D7DBDB00581E61 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F47C07DC20EB9E6400591C29 /* Fitness Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fitness Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47C07E620EB9E6500591C29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F47C07E820EB9E6600591C29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,7 +193,6 @@
 		F47C082120ED3AAE00591C29 /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
 		F48039352127611200D08AAE /* ExerciseCreatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCreatorTests.swift; sourceTree = "<group>"; };
 		F48039372127630800D08AAE /* TestCreateExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCreateExercise.swift; sourceTree = "<group>"; };
-		F4A6D99521B1C20600EA98F0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F4A6D99721B1C21400EA98F0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		F4B1676921CB9DDC007F2C29 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 		F4BA5A6F21CE927B0015987D /* GlobalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalExtensions.swift; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 		F4CCF5D7216B4BA40028F653 /* Fitness Tracker Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker Watch.entitlements"; sourceTree = "<group>"; };
 		F4CCF5D8216B4BC70028F653 /* Fitness Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker.entitlements"; sourceTree = "<group>"; };
 		F4CCF5D9216B4BCE0028F653 /* Fitness Tracker Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fitness Tracker Watch Extension.entitlements"; sourceTree = "<group>"; };
+		F4FD1E5221D221B0005E071D /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		FFFA5814F8DA9D3A492996E8 /* Pods-Fitness Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fitness Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fitness Tracker/Pods-Fitness Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,7 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F0AB82461DEE67898C56C99 /* Pods_Fitness_Tracker.framework in Frameworks */,
-				F4A6D99621B1C20600EA98F0 /* HealthKit.framework in Frameworks */,
+				F47A24E721D7DBDB00581E61 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,8 +254,8 @@
 		B442A5C36D56613EDA6B28CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F47A24E621D7DBDB00581E61 /* HealthKit.framework */,
 				F4A6D99721B1C21400EA98F0 /* HealthKit.framework */,
-				F4A6D99521B1C20600EA98F0 /* HealthKit.framework */,
 				475357710B5E17428D43F869 /* Pods_Fitness_Tracker.framework */,
 				2044219A29A71F2590AD5B3F /* Pods_Fitness_Tracker_Fitness_TrackerTests.framework */,
 			);
@@ -326,6 +328,7 @@
 				F459D04B2135C5700095609F /* WorkoutSaver.swift */,
 				F4235E002126B4ED00E15B09 /* ExerciseCreator.swift */,
 				F43238842177AD1700FCC2B4 /* WorkoutHistory.swift */,
+				F4FD1E5221D221B0005E071D /* InfoView.swift */,
 				F4B1676921CB9DDC007F2C29 /* JSONManager.swift */,
 				F4BA5A6F21CE927B0015987D /* GlobalExtensions.swift */,
 				F47C07E820EB9E6600591C29 /* Assets.xcassets */,
@@ -726,6 +729,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FD1E5321D221B0005E071D /* InfoView.swift in Sources */,
 				E7EC277F21246CD2009391EC /* WorkoutsList.swift in Sources */,
 				F4B1676A21CB9DDC007F2C29 /* JSONManager.swift in Sources */,
 				E7EC278621259BBD009391EC /* WorkoutCreator.swift in Sources */,

@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
@@ -32,13 +32,17 @@
 	</dict>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
-    <key>WKBackgroundModes</key>
-    <array>
-        <string>workout-processing</string>
-    </array>
-    <key>UIBackgroundModes</key>
-    <array>
-        <string>audio</string>
-    </array>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>This app uses Health Kit in order to watch extension properly work</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>This app uses Health Kit in order to watch extension properly work</string>
 </dict>
 </plist>
