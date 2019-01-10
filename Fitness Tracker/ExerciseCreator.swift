@@ -187,6 +187,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
             hideWeightsUI()
             cardioMinutes = Int(duration)!
             cardioTimeLabel.text = duration + " Minutes"
+            segmentedControl.selectedSegmentIndex = 1
         }else{
             setCount = Int(sets)!
             repsCount = Int(reps)!
@@ -194,6 +195,7 @@ class ExerciseCreator: UIViewController, UITextFieldDelegate {
             setsLabel.text = sets + " Sets"
             repsLabel.text = reps + " Reps"
             durationLabel.text = "Duration: " + duration + " Seconds"
+            segmentedControl.selectedSegmentIndex = 0
         }
         
     }

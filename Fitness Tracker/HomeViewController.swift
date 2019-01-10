@@ -78,10 +78,9 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         
         colors = [yellow, blue, green, orange, darkBlue, darkGreen, UIColor.magenta]
         NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-
+        
     }
 
-    
     //This function gets all completed workouts and returns current weeks workouts
     func getThisWeeksCompletedWorkouts() -> Void {
         
@@ -281,7 +280,7 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
         let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]
         let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
         
-        let normalText = "Back(x\(dictionary["back"] ?? 0)), Chest(x\(dictionary["chest"] ?? 0)), Biceps(x\(dictionary["biceps"] ?? 0)), Triceps(x\(dictionary["triceps"] ?? 0)), Legs(x\(dictionary["legs"] ?? 0)), Shoulders(x\(dictionary["shoulders"] ?? 0)), Abs(x\(dictionary["back"] ?? 0))"
+        let normalText = "Back(x\(dictionary["back"] ?? 0)), Chest(x\(dictionary["chest"] ?? 0)), Biceps(x\(dictionary["biceps"] ?? 0)), Triceps(x\(dictionary["triceps"] ?? 0)), Legs(x\(dictionary["legs"] ?? 0)), Shoulders(x\(dictionary["shoulders"] ?? 0)), Abs(x\(dictionary["abs"] ?? 0))"
         let attrs2 = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15)]
         let normalString = NSMutableAttributedString(string:normalText, attributes:attrs2)
         

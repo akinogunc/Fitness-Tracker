@@ -84,7 +84,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
 
         let dict = workoutsArray[rowIndex] as! NSDictionary
         let workoutName = dict["name"] as! String
-        let messageDict = ["message": "send_workout " + workoutName]
+        let messageDict = ["message": "send_workout|" + workoutName]
 
         WCSession.default.sendMessage(messageDict, replyHandler: { (replyDict) -> Void in
             

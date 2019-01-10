@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             
         }else if(mesaj.range(of:"send_workout") != nil){
             
-            let stringArray = mesaj.components(separatedBy: " ")
+            let stringArray = mesaj.components(separatedBy: "|")
             let workoutArray = jsonManager.readJSONbyName(name: stringArray[1])
             replyHandler(["message": workoutArray])
 
