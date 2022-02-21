@@ -113,8 +113,10 @@ class HomeViewController: UIViewController, UIPopoverPresentationControllerDeleg
             let arr = string.components(separatedBy:" ")//["2", "days"]
 
             //if the workout completed at current week, add it
-            if(Int(arr[0])! > 0){
-                thisWeekCompletedWorkoutsArray.add(completedWorkoutDict)
+            if(Int(arr[0]) != nil){
+                if(Int(arr[0])! > 0){
+                    thisWeekCompletedWorkoutsArray.add(completedWorkoutDict)
+                }
             }
             
         }

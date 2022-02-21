@@ -109,7 +109,8 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         }
         
         cell?.selectionStyle = UITableViewCell.SelectionStyle.none
-
+        cell?.backgroundColor = .white
+        
         //Setting exercise values from json array
         let workoutName = workoutsArray.object(at: indexPath.row) as! NSDictionary
         let workoutNameWithoutExtension = (workoutName["name"] as! NSString).deletingPathExtension
@@ -143,7 +144,7 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     @objc func startEditAction(sender: UIButton) -> Void {
-        
+        print("asdasd")
         if editMode{
             let editWorkout = EditWorkout()
             editWorkout.workoutNo = sender.tag
@@ -153,8 +154,7 @@ class WorkoutsList: UIViewController, UITableViewDelegate, UITableViewDataSource
         }else{
             let startWorkout = StartWorkout()
             startWorkout.workoutNo = sender.tag
-            let navController = UINavigationController.init(rootViewController: startWorkout)
-            self.present(navController, animated: true, completion: nil)
+            self.navigationController?.pushViewController(startWorkout, animated: true)
         }
 
     }

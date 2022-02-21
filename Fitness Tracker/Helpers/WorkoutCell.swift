@@ -62,7 +62,7 @@ class WorkoutCell: UITableViewCell {
         startWorkoutButton.titleLabel?.textAlignment = NSTextAlignment.center
         startWorkoutButton.backgroundColor = UIColor.init(red: 0, green: 179.0/255.0, blue: 85.0/255.0, alpha: 1)
         startWorkoutButton.frame = CGRect(x: 3*screenRect.size.width/4, y: 10, width: screenRect.size.width/4 - 10, height: 50)
-        self.addSubview(startWorkoutButton)
+        self.contentView.addSubview(startWorkoutButton)
 
         
     }
